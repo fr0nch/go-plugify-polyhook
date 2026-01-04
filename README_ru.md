@@ -1,0 +1,23 @@
+[![English](https://img.shields.io/badge/English-%F0%9F%87%AC%F0%9F%87%A7-blue?style=for-the-badge)](README.md)
+
+# Go биндинги для PolyHook Plugify плагина
+
+Этот репозиторий содержит Go биндинги для плагина [plugify-plugin-polyhook](https://github.com/untrustedmodders/plugify-plugin-polyhook). Биндинги генерируются автоматически и синхронизируются с оригинальным плагином.
+
+## Документация по API
+
+Полную документацию по API можно найти здесь на сайте [API Hub](https://api.plugify.net?file=https://raw.githubusercontent.com/untrustedmodders/plugify-plugin-polyhook/refs/heads/main/plugify-plugin-polyhook.pplugin.in)
+
+## Установка
+
+```bash
+go get github.com/fr0nch/go-plugify-polyhook
+```
+
+## Обновление
+
+Этот репозиторий использует GitHub Actions для автоматической проверки обновлений в [plugify-plugin-polyhook](https://github.com/untrustedmodders/plugify-plugin-polyhook) каждые 3 часа. При обнаружении новой версии, биндинги обновляются, и создается новый релиз.
+
+## Лицензия
+
+Этот модуль Go для Plugify лицензирован на условиях [MIT License](LICENSE).
