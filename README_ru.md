@@ -11,7 +11,7 @@
 ## Установка
 
 ```bash
-go get github.com/fr0nch/go-plugify-polyhook
+go get github.com/fr0nch/go-plugify-polyhook/v2
 ```
 
 ## Обновление
