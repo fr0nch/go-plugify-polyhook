@@ -16,7 +16,7 @@ go get github.com/fr0nch/go-plugify-polyhook/v2
 
 ## Updates
 
-This repository uses GitHub Actions to automatically check for updates in [plugify-plugin-polyhook](https://github.com/untrustedmodders/plugify-plugin-polyhook) every 3 hours. When a new version is detected, the bindings are updated, and a new release is created.
+This repository uses GitHub Actions to automatically check for updates in [plugify-plugin-polyhook](https://github.com/untrustedmodders/plugify-plugin-polyhook) every day at 2:00 UTC. When a new version is detected, the bindings are updated, and a new release is created.
 
 ## License
 
