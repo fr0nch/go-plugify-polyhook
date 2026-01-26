@@ -30,6 +30,20 @@ package polyhook
 #cgo noescape SetReturnPointer
 #cgo noescape SetReturnString
 #cgo noescape SetReturn
+#cgo noescape SetRegisterBool
+#cgo noescape SetRegisterInt8
+#cgo noescape SetRegisterUInt8
+#cgo noescape SetRegisterInt16
+#cgo noescape SetRegisterUInt16
+#cgo noescape SetRegisterInt32
+#cgo noescape SetRegisterUInt32
+#cgo noescape SetRegisterInt64
+#cgo noescape SetRegisterUInt64
+#cgo noescape SetRegisterFloat
+#cgo noescape SetRegisterDouble
+#cgo noescape SetRegisterPointer
+#cgo noescape SetRegisterString
+#cgo noescape SetRegister
 */
 import "C"
 import (
@@ -52,9 +66,9 @@ var _ = plugify.Plugin.Loaded
 //  @brief Set argument value
 //
 //  @param params: Pointer to params structure
-//  @param index: Value to set
+//  @param index: Index to set
 //  @param value: Value to set
-func SetArgumentBool(params uintptr, index uint64, value bool) {
+func SetArgumentBool(params ParametersHandle, index uint64, value bool) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.bool(value)
@@ -65,9 +79,9 @@ func SetArgumentBool(params uintptr, index uint64, value bool) {
 //  @brief Set argument value
 //
 //  @param params: Pointer to params structure
-//  @param index: Value to set
+//  @param index: Index to set
 //  @param value: Value to set
-func SetArgumentInt8(params uintptr, index uint64, value int8) {
+func SetArgumentInt8(params ParametersHandle, index uint64, value int8) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.int8_t(value)
@@ -78,9 +92,9 @@ func SetArgumentInt8(params uintptr, index uint64, value int8) {
 //  @brief Set argument value
 //
 //  @param params: Pointer to params structure
-//  @param index: Value to set
+//  @param index: Index to set
 //  @param value: Value to set
-func SetArgumentUInt8(params uintptr, index uint64, value uint8) {
+func SetArgumentUInt8(params ParametersHandle, index uint64, value uint8) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.uint8_t(value)
@@ -91,9 +105,9 @@ func SetArgumentUInt8(params uintptr, index uint64, value uint8) {
 //  @brief Set argument value
 //
 //  @param params: Pointer to params structure
-//  @param index: Value to set
+//  @param index: Index to set
 //  @param value: Value to set
-func SetArgumentInt16(params uintptr, index uint64, value int16) {
+func SetArgumentInt16(params ParametersHandle, index uint64, value int16) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.int16_t(value)
@@ -104,9 +118,9 @@ func SetArgumentInt16(params uintptr, index uint64, value int16) {
 //  @brief Set argument value
 //
 //  @param params: Pointer to params structure
-//  @param index: Value to set
+//  @param index: Index to set
 //  @param value: Value to set
-func SetArgumentUInt16(params uintptr, index uint64, value uint16) {
+func SetArgumentUInt16(params ParametersHandle, index uint64, value uint16) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.uint16_t(value)
@@ -117,9 +131,9 @@ func SetArgumentUInt16(params uintptr, index uint64, value uint16) {
 //  @brief Set argument value
 //
 //  @param params: Pointer to params structure
-//  @param index: Value to set
+//  @param index: Index to set
 //  @param value: Value to set
-func SetArgumentInt32(params uintptr, index uint64, value int32) {
+func SetArgumentInt32(params ParametersHandle, index uint64, value int32) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.int32_t(value)
@@ -130,9 +144,9 @@ func SetArgumentInt32(params uintptr, index uint64, value int32) {
 //  @brief Set argument value
 //
 //  @param params: Pointer to params structure
-//  @param index: Value to set
+//  @param index: Index to set
 //  @param value: Value to set
-func SetArgumentUInt32(params uintptr, index uint64, value uint32) {
+func SetArgumentUInt32(params ParametersHandle, index uint64, value uint32) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.uint32_t(value)
@@ -143,9 +157,9 @@ func SetArgumentUInt32(params uintptr, index uint64, value uint32) {
 //  @brief Set argument value
 //
 //  @param params: Pointer to params structure
-//  @param index: Value to set
+//  @param index: Index to set
 //  @param value: Value to set
-func SetArgumentInt64(params uintptr, index uint64, value int64) {
+func SetArgumentInt64(params ParametersHandle, index uint64, value int64) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.int64_t(value)
@@ -156,9 +170,9 @@ func SetArgumentInt64(params uintptr, index uint64, value int64) {
 //  @brief Set argument value
 //
 //  @param params: Pointer to params structure
-//  @param index: Value to set
+//  @param index: Index to set
 //  @param value: Value to set
-func SetArgumentUInt64(params uintptr, index uint64, value uint64) {
+func SetArgumentUInt64(params ParametersHandle, index uint64, value uint64) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.uint64_t(value)
@@ -169,9 +183,9 @@ func SetArgumentUInt64(params uintptr, index uint64, value uint64) {
 //  @brief Set argument value
 //
 //  @param params: Pointer to params structure
-//  @param index: Value to set
+//  @param index: Index to set
 //  @param value: Value to set
-func SetArgumentFloat(params uintptr, index uint64, value float32) {
+func SetArgumentFloat(params ParametersHandle, index uint64, value float32) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.float(value)
@@ -182,9 +196,9 @@ func SetArgumentFloat(params uintptr, index uint64, value float32) {
 //  @brief Set argument value
 //
 //  @param params: Pointer to params structure
-//  @param index: Value to set
+//  @param index: Index to set
 //  @param value: Value to set
-func SetArgumentDouble(params uintptr, index uint64, value float64) {
+func SetArgumentDouble(params ParametersHandle, index uint64, value float64) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.double(value)
@@ -195,9 +209,9 @@ func SetArgumentDouble(params uintptr, index uint64, value float64) {
 //  @brief Set argument value
 //
 //  @param params: Pointer to params structure
-//  @param index: Value to set
+//  @param index: Index to set
 //  @param value: Value to set
-func SetArgumentPointer(params uintptr, index uint64, value uintptr) {
+func SetArgumentPointer(params ParametersHandle, index uint64, value uintptr) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.uintptr_t(value)
@@ -209,9 +223,9 @@ func SetArgumentPointer(params uintptr, index uint64, value uintptr) {
 //
 //  @param hook: Hook pointer
 //  @param params: Pointer to params structure
-//  @param index: Value to set
+//  @param index: Index to set
 //  @param value: Value to set
-func SetArgumentString(hook uintptr, params uintptr, index uint64, value string) {
+func SetArgumentString(hook HookHandle, params ParametersHandle, index uint64, value string) {
 	__hook := C.uintptr_t(hook)
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
@@ -234,7 +248,7 @@ func SetArgumentString(hook uintptr, params uintptr, index uint64, value string)
 //  @param params: Pointer to params structure
 //  @param index: Value to set
 //  @param value: Value to set
-func SetArgument(hook uintptr, params uintptr, index uint64, value any) {
+func SetArgument(hook HookHandle, params ParametersHandle, index uint64, value any) {
 	__hook := C.uintptr_t(hook)
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
@@ -255,7 +269,7 @@ func SetArgument(hook uintptr, params uintptr, index uint64, value any) {
 //
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
-func SetReturnBool(ret uintptr, value bool) {
+func SetReturnBool(ret ReturnHandle, value bool) {
 	__ret := C.uintptr_t(ret)
 	__value := C.bool(value)
 	C.SetReturnBool(__ret, __value)
@@ -266,7 +280,7 @@ func SetReturnBool(ret uintptr, value bool) {
 //
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
-func SetReturnInt8(ret uintptr, value int8) {
+func SetReturnInt8(ret ReturnHandle, value int8) {
 	__ret := C.uintptr_t(ret)
 	__value := C.int8_t(value)
 	C.SetReturnInt8(__ret, __value)
@@ -277,7 +291,7 @@ func SetReturnInt8(ret uintptr, value int8) {
 //
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
-func SetReturnUInt8(ret uintptr, value uint8) {
+func SetReturnUInt8(ret ReturnHandle, value uint8) {
 	__ret := C.uintptr_t(ret)
 	__value := C.uint8_t(value)
 	C.SetReturnUInt8(__ret, __value)
@@ -288,7 +302,7 @@ func SetReturnUInt8(ret uintptr, value uint8) {
 //
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
-func SetReturnInt16(ret uintptr, value int16) {
+func SetReturnInt16(ret ReturnHandle, value int16) {
 	__ret := C.uintptr_t(ret)
 	__value := C.int16_t(value)
 	C.SetReturnInt16(__ret, __value)
@@ -299,7 +313,7 @@ func SetReturnInt16(ret uintptr, value int16) {
 //
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
-func SetReturnUInt16(ret uintptr, value uint16) {
+func SetReturnUInt16(ret ReturnHandle, value uint16) {
 	__ret := C.uintptr_t(ret)
 	__value := C.uint16_t(value)
 	C.SetReturnUInt16(__ret, __value)
@@ -310,7 +324,7 @@ func SetReturnUInt16(ret uintptr, value uint16) {
 //
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
-func SetReturnInt32(ret uintptr, value int32) {
+func SetReturnInt32(ret ReturnHandle, value int32) {
 	__ret := C.uintptr_t(ret)
 	__value := C.int32_t(value)
 	C.SetReturnInt32(__ret, __value)
@@ -321,7 +335,7 @@ func SetReturnInt32(ret uintptr, value int32) {
 //
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
-func SetReturnUInt32(ret uintptr, value uint32) {
+func SetReturnUInt32(ret ReturnHandle, value uint32) {
 	__ret := C.uintptr_t(ret)
 	__value := C.uint32_t(value)
 	C.SetReturnUInt32(__ret, __value)
@@ -332,7 +346,7 @@ func SetReturnUInt32(ret uintptr, value uint32) {
 //
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
-func SetReturnInt64(ret uintptr, value int64) {
+func SetReturnInt64(ret ReturnHandle, value int64) {
 	__ret := C.uintptr_t(ret)
 	__value := C.int64_t(value)
 	C.SetReturnInt64(__ret, __value)
@@ -343,7 +357,7 @@ func SetReturnInt64(ret uintptr, value int64) {
 //
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
-func SetReturnUInt64(ret uintptr, value uint64) {
+func SetReturnUInt64(ret ReturnHandle, value uint64) {
 	__ret := C.uintptr_t(ret)
 	__value := C.uint64_t(value)
 	C.SetReturnUInt64(__ret, __value)
@@ -354,7 +368,7 @@ func SetReturnUInt64(ret uintptr, value uint64) {
 //
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
-func SetReturnFloat(ret uintptr, value float32) {
+func SetReturnFloat(ret ReturnHandle, value float32) {
 	__ret := C.uintptr_t(ret)
 	__value := C.float(value)
 	C.SetReturnFloat(__ret, __value)
@@ -365,7 +379,7 @@ func SetReturnFloat(ret uintptr, value float32) {
 //
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
-func SetReturnDouble(ret uintptr, value float64) {
+func SetReturnDouble(ret ReturnHandle, value float64) {
 	__ret := C.uintptr_t(ret)
 	__value := C.double(value)
 	C.SetReturnDouble(__ret, __value)
@@ -376,7 +390,7 @@ func SetReturnDouble(ret uintptr, value float64) {
 //
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
-func SetReturnPointer(ret uintptr, value uintptr) {
+func SetReturnPointer(ret ReturnHandle, value uintptr) {
 	__ret := C.uintptr_t(ret)
 	__value := C.uintptr_t(value)
 	C.SetReturnPointer(__ret, __value)
@@ -388,7 +402,7 @@ func SetReturnPointer(ret uintptr, value uintptr) {
 //  @param hook: Hook pointer
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
-func SetReturnString(hook uintptr, ret uintptr, value string) {
+func SetReturnString(hook HookHandle, ret ReturnHandle, value string) {
 	__hook := C.uintptr_t(hook)
 	__ret := C.uintptr_t(ret)
 	__value := plugify.ConstructString(value)
@@ -409,13 +423,215 @@ func SetReturnString(hook uintptr, ret uintptr, value string) {
 //  @param hook: Hook pointer
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
-func SetReturn(hook uintptr, ret uintptr, value any) {
+func SetReturn(hook HookHandle, ret ReturnHandle, value any) {
 	__hook := C.uintptr_t(hook)
 	__ret := C.uintptr_t(ret)
 	__value := plugify.ConstructVariant(value)
 	plugify.Block {
 		Try: func() {
 			C.SetReturn(__hook, __ret, (*C.Variant)(unsafe.Pointer(&__value)))
+		},
+		Finally: func() {
+			// Perform cleanup.
+			plugify.DestroyVariant(&__value)
+		},
+	}.Do()
+}
+
+// SetRegisterBool 
+//  @brief Set register value
+//
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
+func SetRegisterBool(registers RegistersHandle, reg RegisterType, value bool) {
+	__registers := C.uintptr_t(registers)
+	__reg := C.uint64_t(reg)
+	__value := C.bool(value)
+	C.SetRegisterBool(__registers, __reg, __value)
+}
+
+// SetRegisterInt8 
+//  @brief Set register value
+//
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
+func SetRegisterInt8(registers RegistersHandle, reg RegisterType, value int8) {
+	__registers := C.uintptr_t(registers)
+	__reg := C.uint64_t(reg)
+	__value := C.int8_t(value)
+	C.SetRegisterInt8(__registers, __reg, __value)
+}
+
+// SetRegisterUInt8 
+//  @brief Set register value
+//
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
+func SetRegisterUInt8(registers RegistersHandle, reg RegisterType, value uint8) {
+	__registers := C.uintptr_t(registers)
+	__reg := C.uint64_t(reg)
+	__value := C.uint8_t(value)
+	C.SetRegisterUInt8(__registers, __reg, __value)
+}
+
+// SetRegisterInt16 
+//  @brief Set register value
+//
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
+func SetRegisterInt16(registers RegistersHandle, reg RegisterType, value int16) {
+	__registers := C.uintptr_t(registers)
+	__reg := C.uint64_t(reg)
+	__value := C.int16_t(value)
+	C.SetRegisterInt16(__registers, __reg, __value)
+}
+
+// SetRegisterUInt16 
+//  @brief Set register value
+//
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
+func SetRegisterUInt16(registers RegistersHandle, reg RegisterType, value uint16) {
+	__registers := C.uintptr_t(registers)
+	__reg := C.uint64_t(reg)
+	__value := C.uint16_t(value)
+	C.SetRegisterUInt16(__registers, __reg, __value)
+}
+
+// SetRegisterInt32 
+//  @brief Set register value
+//
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
+func SetRegisterInt32(registers RegistersHandle, reg RegisterType, value int32) {
+	__registers := C.uintptr_t(registers)
+	__reg := C.uint64_t(reg)
+	__value := C.int32_t(value)
+	C.SetRegisterInt32(__registers, __reg, __value)
+}
+
+// SetRegisterUInt32 
+//  @brief Set register value
+//
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
+func SetRegisterUInt32(registers RegistersHandle, reg RegisterType, value uint32) {
+	__registers := C.uintptr_t(registers)
+	__reg := C.uint64_t(reg)
+	__value := C.uint32_t(value)
+	C.SetRegisterUInt32(__registers, __reg, __value)
+}
+
+// SetRegisterInt64 
+//  @brief Set register value
+//
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
+func SetRegisterInt64(registers RegistersHandle, reg RegisterType, value int64) {
+	__registers := C.uintptr_t(registers)
+	__reg := C.uint64_t(reg)
+	__value := C.int64_t(value)
+	C.SetRegisterInt64(__registers, __reg, __value)
+}
+
+// SetRegisterUInt64 
+//  @brief Set register value
+//
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
+func SetRegisterUInt64(registers RegistersHandle, reg RegisterType, value uint64) {
+	__registers := C.uintptr_t(registers)
+	__reg := C.uint64_t(reg)
+	__value := C.uint64_t(value)
+	C.SetRegisterUInt64(__registers, __reg, __value)
+}
+
+// SetRegisterFloat 
+//  @brief Set register value
+//
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
+func SetRegisterFloat(registers RegistersHandle, reg RegisterType, value float32) {
+	__registers := C.uintptr_t(registers)
+	__reg := C.uint64_t(reg)
+	__value := C.float(value)
+	C.SetRegisterFloat(__registers, __reg, __value)
+}
+
+// SetRegisterDouble 
+//  @brief Set register value
+//
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
+func SetRegisterDouble(registers RegistersHandle, reg RegisterType, value float64) {
+	__registers := C.uintptr_t(registers)
+	__reg := C.uint64_t(reg)
+	__value := C.double(value)
+	C.SetRegisterDouble(__registers, __reg, __value)
+}
+
+// SetRegisterPointer 
+//  @brief Set register value
+//
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
+func SetRegisterPointer(registers RegistersHandle, reg RegisterType, value uintptr) {
+	__registers := C.uintptr_t(registers)
+	__reg := C.uint64_t(reg)
+	__value := C.uintptr_t(value)
+	C.SetRegisterPointer(__registers, __reg, __value)
+}
+
+// SetRegisterString 
+//  @brief Set register value
+//
+//  @param hook: Hook pointer
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
+func SetRegisterString(hook HookHandle, registers RegistersHandle, reg RegisterType, value string) {
+	__hook := C.uintptr_t(hook)
+	__registers := C.uintptr_t(registers)
+	__reg := C.uint64_t(reg)
+	__value := plugify.ConstructString(value)
+	plugify.Block {
+		Try: func() {
+			C.SetRegisterString(__hook, __registers, __reg, (*C.String)(unsafe.Pointer(&__value)))
+		},
+		Finally: func() {
+			// Perform cleanup.
+			plugify.DestroyString(&__value)
+		},
+	}.Do()
+}
+
+// SetRegister 
+//  @brief Set register value
+//
+//  @param hook: Hook pointer
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
+func SetRegister(hook HookHandle, registers RegistersHandle, reg RegisterType, value any) {
+	__hook := C.uintptr_t(hook)
+	__registers := C.uintptr_t(registers)
+	__reg := C.uint64_t(reg)
+	__value := plugify.ConstructVariant(value)
+	plugify.Block {
+		Try: func() {
+			C.SetRegister(__hook, __registers, __reg, (*C.Variant)(unsafe.Pointer(&__value)))
 		},
 		Finally: func() {
 			// Perform cleanup.

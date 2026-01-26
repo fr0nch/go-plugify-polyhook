@@ -3,6 +3,9 @@
 PLUGIFY_EXPORT uintptr_t (*__polyhook_HookDetour)(uintptr_t, uint8_t, Vector*, int32_t) = NULL;
 
 
+PLUGIFY_EXPORT uintptr_t (*__polyhook_HookDetour2)(uintptr_t) = NULL;
+
+
 PLUGIFY_EXPORT uintptr_t (*__polyhook_HookVirtualTable)(uintptr_t, int32_t, uint8_t, Vector*, int32_t) = NULL;
 
 

@@ -3,6 +3,7 @@ package polyhook
 /*
 #include "core.h"
 #cgo noescape HookDetour
+#cgo noescape HookDetour2
 #cgo noescape HookVirtualTable
 #cgo noescape HookVirtualTable2
 #cgo noescape HookVirtualFunc
@@ -46,8 +47,8 @@ var _ = plugify.Plugin.Loaded
 //  @param varIndex: Index of a first variadic argument or -1
 //
 //  @return Returns hook pointer
-func HookDetour(pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32) uintptr {
-	var __retVal uintptr
+func HookDetour(pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32) HookHandle {
+	var __retVal HookHandle
 	__pFunc := C.uintptr_t(pFunc)
 	__returnType := C.uint8_t(returnType)
 	__arguments := plugify.ConstructVectorUInt8(arguments)
@@ -64,6 +65,19 @@ func HookDetour(pFunc uintptr, returnType DataType, arguments []DataType, varInd
 	return __retVal
 }
 
+// HookDetour2 
+//  @brief Sets a mid hook
+//
+//  @param pFunc: Function address
+//
+//  @return Returns hook pointer
+func HookDetour2(pFunc uintptr) HookHandle {
+	var __retVal HookHandle
+	__pFunc := C.uintptr_t(pFunc)
+	__retVal = uintptr(C.HookDetour2(__pFunc))
+	return __retVal
+}
+
 // HookVirtualTable 
 //  @brief Sets a virtual table hook
 //
@@ -74,8 +88,8 @@ func HookDetour(pFunc uintptr, returnType DataType, arguments []DataType, varInd
 //  @param varIndex: Index of a first variadic argument or -1
 //
 //  @return Returns hook pointer
-func HookVirtualTable(pClass uintptr, index int32, returnType DataType, arguments []DataType, varIndex int32) uintptr {
-	var __retVal uintptr
+func HookVirtualTable(pClass uintptr, index int32, returnType DataType, arguments []DataType, varIndex int32) HookHandle {
+	var __retVal HookHandle
 	__pClass := C.uintptr_t(pClass)
 	__index := C.int32_t(index)
 	__returnType := C.uint8_t(returnType)
@@ -103,8 +117,8 @@ func HookVirtualTable(pClass uintptr, index int32, returnType DataType, argument
 //  @param varIndex: Index of a first variadic argument or -1
 //
 //  @return Returns hook pointer
-func HookVirtualTable2(pClass uintptr, pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32) uintptr {
-	var __retVal uintptr
+func HookVirtualTable2(pClass uintptr, pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32) HookHandle {
+	var __retVal HookHandle
 	__pClass := C.uintptr_t(pClass)
 	__pFunc := C.uintptr_t(pFunc)
 	__returnType := C.uint8_t(returnType)
@@ -132,8 +146,8 @@ func HookVirtualTable2(pClass uintptr, pFunc uintptr, returnType DataType, argum
 //  @param varIndex: Index of a first variadic argument or -1
 //
 //  @return Returns hook pointer
-func HookVirtualFunc(pClass uintptr, index int32, returnType DataType, arguments []DataType, varIndex int32) uintptr {
-	var __retVal uintptr
+func HookVirtualFunc(pClass uintptr, index int32, returnType DataType, arguments []DataType, varIndex int32) HookHandle {
+	var __retVal HookHandle
 	__pClass := C.uintptr_t(pClass)
 	__index := C.int32_t(index)
 	__returnType := C.uint8_t(returnType)
@@ -161,8 +175,8 @@ func HookVirtualFunc(pClass uintptr, index int32, returnType DataType, arguments
 //  @param varIndex: Index of a first variadic argument or -1
 //
 //  @return Returns hook pointer
-func HookVirtualFunc2(pClass uintptr, pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32) uintptr {
-	var __retVal uintptr
+func HookVirtualFunc2(pClass uintptr, pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32) HookHandle {
+	var __retVal HookHandle
 	__pClass := C.uintptr_t(pClass)
 	__pFunc := C.uintptr_t(pFunc)
 	__returnType := C.uint8_t(returnType)
@@ -197,7 +211,7 @@ func UnhookDetour(pFunc uintptr) bool {
 //  @brief Removes a virtual hook table
 //
 //  @param pClass: Object pointer
-//  @param index: Value to set
+//  @param index: Virtual table index
 //
 //  @return Returns true on success, false otherwise
 func UnhookVirtualTable(pClass uintptr, index int32) bool {
@@ -227,7 +241,7 @@ func UnhookVirtualTable2(pClass uintptr, pFunc uintptr) bool {
 //  @brief Removes a virtual function table
 //
 //  @param pClass: Object pointer
-//  @param index: Value to set
+//  @param index: Virtual table index
 //
 //  @return Returns true on success, false otherwise
 func UnhookVirtualFunc(pClass uintptr, index int32) bool {
@@ -277,7 +291,7 @@ func UnhookAllVirtual(pClass uintptr) {
 //  @param handler: Callback function which trigger by hook.
 //
 //  @return Returns true on success, false otherwise
-func AddCallback(hook uintptr, type_ CallbackType, handler CallbackHandler) bool {
+func AddCallback(hook HookHandle, type_ CallbackType, handler CallbackHandler) bool {
 	var __retVal bool
 	__hook := C.uintptr_t(hook)
 	__type_ := C.uint8_t(type_)
@@ -295,7 +309,7 @@ func AddCallback(hook uintptr, type_ CallbackType, handler CallbackHandler) bool
 //  @param priority: Priority of callback among others
 //
 //  @return Returns true on success, false otherwise
-func AddCallback2(hook uintptr, type_ CallbackType, handler CallbackHandler, priority int32) bool {
+func AddCallback2(hook HookHandle, type_ CallbackType, handler CallbackHandler, priority int32) bool {
 	var __retVal bool
 	__hook := C.uintptr_t(hook)
 	__type_ := C.uint8_t(type_)
@@ -313,7 +327,7 @@ func AddCallback2(hook uintptr, type_ CallbackType, handler CallbackHandler, pri
 //  @param handler: Callback function which trigger by hook.
 //
 //  @return Returns true on success, false otherwise
-func RemoveCallback(hook uintptr, type_ CallbackType, handler CallbackHandler) bool {
+func RemoveCallback(hook HookHandle, type_ CallbackType, handler CallbackHandler) bool {
 	var __retVal bool
 	__hook := C.uintptr_t(hook)
 	__type_ := C.uint8_t(type_)
@@ -330,7 +344,7 @@ func RemoveCallback(hook uintptr, type_ CallbackType, handler CallbackHandler) b
 //  @param handler: Callback function which trigger by hook.
 //
 //  @return Returns true on success, false otherwise
-func IsCallbackRegistered(hook uintptr, type_ CallbackType, handler CallbackHandler) bool {
+func IsCallbackRegistered(hook HookHandle, type_ CallbackType, handler CallbackHandler) bool {
 	var __retVal bool
 	__hook := C.uintptr_t(hook)
 	__type_ := C.uint8_t(type_)
@@ -345,7 +359,7 @@ func IsCallbackRegistered(hook uintptr, type_ CallbackType, handler CallbackHand
 //  @param hook: Hook pointer
 //
 //  @return Returns true on success, false otherwise
-func AreCallbacksRegistered(hook uintptr) bool {
+func AreCallbacksRegistered(hook HookHandle) bool {
 	var __retVal bool
 	__hook := C.uintptr_t(hook)
 	__retVal = bool(C.AreCallbacksRegistered(__hook))

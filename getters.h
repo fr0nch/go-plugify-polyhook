@@ -182,3 +182,87 @@ static Variant GetReturn(uintptr_t ret) {
 	return __polyhook_GetReturn(ret);
 }
 
+extern bool (*__polyhook_GetRegisterBool)(uintptr_t, uint64_t);
+
+static bool GetRegisterBool(uintptr_t registers, uint64_t reg) {
+	return __polyhook_GetRegisterBool(registers, reg);
+}
+
+extern int8_t (*__polyhook_GetRegisterInt8)(uintptr_t, uint64_t);
+
+static int8_t GetRegisterInt8(uintptr_t registers, uint64_t reg) {
+	return __polyhook_GetRegisterInt8(registers, reg);
+}
+
+extern uint8_t (*__polyhook_GetRegisterUInt8)(uintptr_t, uint64_t);
+
+static uint8_t GetRegisterUInt8(uintptr_t registers, uint64_t reg) {
+	return __polyhook_GetRegisterUInt8(registers, reg);
+}
+
+extern int16_t (*__polyhook_GetRegisterInt16)(uintptr_t, uint64_t);
+
+static int16_t GetRegisterInt16(uintptr_t registers, uint64_t reg) {
+	return __polyhook_GetRegisterInt16(registers, reg);
+}
+
+extern uint16_t (*__polyhook_GetRegisterUInt16)(uintptr_t, uint64_t);
+
+static uint16_t GetRegisterUInt16(uintptr_t registers, uint64_t reg) {
+	return __polyhook_GetRegisterUInt16(registers, reg);
+}
+
+extern int32_t (*__polyhook_GetRegisterInt32)(uintptr_t, uint64_t);
+
+static int32_t GetRegisterInt32(uintptr_t registers, uint64_t reg) {
+	return __polyhook_GetRegisterInt32(registers, reg);
+}
+
+extern uint32_t (*__polyhook_GetRegisterUInt32)(uintptr_t, uint64_t);
+
+static uint32_t GetRegisterUInt32(uintptr_t registers, uint64_t reg) {
+	return __polyhook_GetRegisterUInt32(registers, reg);
+}
+
+extern int64_t (*__polyhook_GetRegisterInt64)(uintptr_t, uint64_t);
+
+static int64_t GetRegisterInt64(uintptr_t registers, uint64_t reg) {
+	return __polyhook_GetRegisterInt64(registers, reg);
+}
+
+extern uint64_t (*__polyhook_GetRegisterUInt64)(uintptr_t, uint64_t);
+
+static uint64_t GetRegisterUInt64(uintptr_t registers, uint64_t reg) {
+	return __polyhook_GetRegisterUInt64(registers, reg);
+}
+
+extern float (*__polyhook_GetRegisterFloat)(uintptr_t, uint64_t);
+
+static float GetRegisterFloat(uintptr_t registers, uint64_t reg) {
+	return __polyhook_GetRegisterFloat(registers, reg);
+}
+
+extern double (*__polyhook_GetRegisterDouble)(uintptr_t, uint64_t);
+
+static double GetRegisterDouble(uintptr_t registers, uint64_t reg) {
+	return __polyhook_GetRegisterDouble(registers, reg);
+}
+
+extern uintptr_t (*__polyhook_GetRegisterPointer)(uintptr_t, uint64_t);
+
+static uintptr_t GetRegisterPointer(uintptr_t registers, uint64_t reg) {
+	return __polyhook_GetRegisterPointer(registers, reg);
+}
+
+extern String (*__polyhook_GetRegisterString)(uintptr_t, uint64_t);
+
+static String GetRegisterString(uintptr_t registers, uint64_t reg) {
+	return __polyhook_GetRegisterString(registers, reg);
+}
+
+extern Variant (*__polyhook_GetRegister)(uintptr_t, uint64_t);
+
+static Variant GetRegister(uintptr_t registers, uint64_t reg) {
+	return __polyhook_GetRegister(registers, reg);
+}
+

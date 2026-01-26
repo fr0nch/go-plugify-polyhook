@@ -170,3 +170,87 @@ static void SetReturn(uintptr_t hook, uintptr_t ret, Variant* value) {
 	__polyhook_SetReturn(hook, ret, value);
 }
 
+extern void (*__polyhook_SetRegisterBool)(uintptr_t, uint64_t, bool);
+
+static void SetRegisterBool(uintptr_t registers, uint64_t reg, bool value) {
+	__polyhook_SetRegisterBool(registers, reg, value);
+}
+
+extern void (*__polyhook_SetRegisterInt8)(uintptr_t, uint64_t, int8_t);
+
+static void SetRegisterInt8(uintptr_t registers, uint64_t reg, int8_t value) {
+	__polyhook_SetRegisterInt8(registers, reg, value);
+}
+
+extern void (*__polyhook_SetRegisterUInt8)(uintptr_t, uint64_t, uint8_t);
+
+static void SetRegisterUInt8(uintptr_t registers, uint64_t reg, uint8_t value) {
+	__polyhook_SetRegisterUInt8(registers, reg, value);
+}
+
+extern void (*__polyhook_SetRegisterInt16)(uintptr_t, uint64_t, int16_t);
+
+static void SetRegisterInt16(uintptr_t registers, uint64_t reg, int16_t value) {
+	__polyhook_SetRegisterInt16(registers, reg, value);
+}
+
+extern void (*__polyhook_SetRegisterUInt16)(uintptr_t, uint64_t, uint16_t);
+
+static void SetRegisterUInt16(uintptr_t registers, uint64_t reg, uint16_t value) {
+	__polyhook_SetRegisterUInt16(registers, reg, value);
+}
+
+extern void (*__polyhook_SetRegisterInt32)(uintptr_t, uint64_t, int32_t);
+
+static void SetRegisterInt32(uintptr_t registers, uint64_t reg, int32_t value) {
+	__polyhook_SetRegisterInt32(registers, reg, value);
+}
+
+extern void (*__polyhook_SetRegisterUInt32)(uintptr_t, uint64_t, uint32_t);
+
+static void SetRegisterUInt32(uintptr_t registers, uint64_t reg, uint32_t value) {
+	__polyhook_SetRegisterUInt32(registers, reg, value);
+}
+
+extern void (*__polyhook_SetRegisterInt64)(uintptr_t, uint64_t, int64_t);
+
+static void SetRegisterInt64(uintptr_t registers, uint64_t reg, int64_t value) {
+	__polyhook_SetRegisterInt64(registers, reg, value);
+}
+
+extern void (*__polyhook_SetRegisterUInt64)(uintptr_t, uint64_t, uint64_t);
+
+static void SetRegisterUInt64(uintptr_t registers, uint64_t reg, uint64_t value) {
+	__polyhook_SetRegisterUInt64(registers, reg, value);
+}
+
+extern void (*__polyhook_SetRegisterFloat)(uintptr_t, uint64_t, float);
+
+static void SetRegisterFloat(uintptr_t registers, uint64_t reg, float value) {
+	__polyhook_SetRegisterFloat(registers, reg, value);
+}
+
+extern void (*__polyhook_SetRegisterDouble)(uintptr_t, uint64_t, double);
+
+static void SetRegisterDouble(uintptr_t registers, uint64_t reg, double value) {
+	__polyhook_SetRegisterDouble(registers, reg, value);
+}
+
+extern void (*__polyhook_SetRegisterPointer)(uintptr_t, uint64_t, uintptr_t);
+
+static void SetRegisterPointer(uintptr_t registers, uint64_t reg, uintptr_t value) {
+	__polyhook_SetRegisterPointer(registers, reg, value);
+}
+
+extern void (*__polyhook_SetRegisterString)(uintptr_t, uintptr_t, uint64_t, String*);
+
+static void SetRegisterString(uintptr_t hook, uintptr_t registers, uint64_t reg, String* value) {
+	__polyhook_SetRegisterString(hook, registers, reg, value);
+}
+
+extern void (*__polyhook_SetRegister)(uintptr_t, uintptr_t, uint64_t, Variant*);
+
+static void SetRegister(uintptr_t hook, uintptr_t registers, uint64_t reg, Variant* value) {
+	__polyhook_SetRegister(hook, registers, reg, value);
+}
+

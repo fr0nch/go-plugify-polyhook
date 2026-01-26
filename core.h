@@ -8,6 +8,12 @@ static uintptr_t HookDetour(uintptr_t pFunc, uint8_t returnType, Vector* argumen
 	return __polyhook_HookDetour(pFunc, returnType, arguments, varIndex);
 }
 
+extern uintptr_t (*__polyhook_HookDetour2)(uintptr_t);
+
+static uintptr_t HookDetour2(uintptr_t pFunc) {
+	return __polyhook_HookDetour2(pFunc);
+}
+
 extern uintptr_t (*__polyhook_HookVirtualTable)(uintptr_t, int32_t, uint8_t, Vector*, int32_t);
 
 static uintptr_t HookVirtualTable(uintptr_t pClass, int32_t index, uint8_t returnType, Vector* arguments, int32_t varIndex) {

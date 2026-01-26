@@ -30,8 +30,8 @@ var _ = plugify.Plugin.Loaded
 //  @param pFunc: Function address
 //
 //  @return Returns hook pointer
-func FindDetour(pFunc uintptr) uintptr {
-	var __retVal uintptr
+func FindDetour(pFunc uintptr) HookHandle {
+	var __retVal HookHandle
 	__pFunc := C.uintptr_t(pFunc)
 	__retVal = uintptr(C.FindDetour(__pFunc))
 	return __retVal
@@ -41,7 +41,7 @@ func FindDetour(pFunc uintptr) uintptr {
 //  @brief Attempts to find existing virtual hook
 //
 //  @param pClass: Object pointer
-//  @param index: Value to set
+//  @param index: Virtual table index
 //
 //  @return Returns hook pointer
 func FindVirtual(pClass uintptr, index int32) uintptr {
@@ -59,8 +59,8 @@ func FindVirtual(pClass uintptr, index int32) uintptr {
 //  @param pFunc: Function address
 //
 //  @return Returns hook pointer
-func FindVirtual2(pClass uintptr, pFunc uintptr) uintptr {
-	var __retVal uintptr
+func FindVirtual2(pClass uintptr, pFunc uintptr) HookHandle {
+	var __retVal HookHandle
 	__pClass := C.uintptr_t(pClass)
 	__pFunc := C.uintptr_t(pFunc)
 	__retVal = uintptr(C.FindVirtual2(__pClass, __pFunc))

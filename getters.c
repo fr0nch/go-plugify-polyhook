@@ -90,3 +90,45 @@ PLUGIFY_EXPORT String (*__polyhook_GetReturnString)(uintptr_t) = NULL;
 PLUGIFY_EXPORT Variant (*__polyhook_GetReturn)(uintptr_t) = NULL;
 
 
+PLUGIFY_EXPORT bool (*__polyhook_GetRegisterBool)(uintptr_t, uint64_t) = NULL;
+
+
+PLUGIFY_EXPORT int8_t (*__polyhook_GetRegisterInt8)(uintptr_t, uint64_t) = NULL;
+
+
+PLUGIFY_EXPORT uint8_t (*__polyhook_GetRegisterUInt8)(uintptr_t, uint64_t) = NULL;
+
+
+PLUGIFY_EXPORT int16_t (*__polyhook_GetRegisterInt16)(uintptr_t, uint64_t) = NULL;
+
+
+PLUGIFY_EXPORT uint16_t (*__polyhook_GetRegisterUInt16)(uintptr_t, uint64_t) = NULL;
+
+
+PLUGIFY_EXPORT int32_t (*__polyhook_GetRegisterInt32)(uintptr_t, uint64_t) = NULL;
+
+
+PLUGIFY_EXPORT uint32_t (*__polyhook_GetRegisterUInt32)(uintptr_t, uint64_t) = NULL;
+
+
+PLUGIFY_EXPORT int64_t (*__polyhook_GetRegisterInt64)(uintptr_t, uint64_t) = NULL;
+
+
+PLUGIFY_EXPORT uint64_t (*__polyhook_GetRegisterUInt64)(uintptr_t, uint64_t) = NULL;
+
+
+PLUGIFY_EXPORT float (*__polyhook_GetRegisterFloat)(uintptr_t, uint64_t) = NULL;
+
+
+PLUGIFY_EXPORT double (*__polyhook_GetRegisterDouble)(uintptr_t, uint64_t) = NULL;
+
+
+PLUGIFY_EXPORT uintptr_t (*__polyhook_GetRegisterPointer)(uintptr_t, uint64_t) = NULL;
+
+
+PLUGIFY_EXPORT String (*__polyhook_GetRegisterString)(uintptr_t, uint64_t) = NULL;
+
+
+PLUGIFY_EXPORT Variant (*__polyhook_GetRegister)(uintptr_t, uint64_t) = NULL;
+
+
