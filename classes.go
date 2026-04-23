@@ -6,10 +6,10 @@ package polyhook
 import "C"
 import (
 	"errors"
-	"github.com/untrustedmodders/go-plugify"
 	"reflect"
 	"runtime"
 	"unsafe"
+	"github.com/untrustedmodders/go-plugify"
 )
 
 var _ = errors.New("")
@@ -24,15 +24,16 @@ var (
 	CallbackErrEmptyHandle = errors.New("Callback: empty handle")
 )
 
-// @brief RAII wrapper for Callback pointer from hook operations.
+//  @brief RAII wrapper for Callback pointer from hook operations.
+//
 type Callback struct {
-	handle uintptr
+	handle    uintptr
 }
 
 // NewCallback creates a Callback from a handle
 func NewCallback(handle uintptr) *Callback {
 	return &Callback{
-		handle: handle,
+		handle:    handle,
 	}
 }
 
@@ -58,15 +59,14 @@ func (w *Callback) IsValid() bool {
 	return w.handle != 0
 }
 
-// AddCallback
+// AddCallback 
+//  @brief Adds a callback to existing hook
 //
-//	@brief Adds a callback to existing hook
+//  @param hook: Hook pointer
+//  @param type_: Whether the hook was in post mode (after processing) or pre mode (before processing).
+//  @param handler: Callback function which trigger by hook.
 //
-//	@param hook: Hook pointer
-//	@param type_: Whether the hook was in post mode (after processing) or pre mode (before processing).
-//	@param handler: Callback function which trigger by hook.
-//
-//	@return Returns true on success, false otherwise
+//  @return Returns true on success, false otherwise
 func (w *Callback) AddCallback(type_ CallbackType, handler CallbackHandler) (bool, error) {
 	if w.handle == 0 {
 		var zero bool
@@ -75,16 +75,15 @@ func (w *Callback) AddCallback(type_ CallbackType, handler CallbackHandler) (boo
 	return AddCallback(w.handle, type_, handler), nil
 }
 
-// AddCallback2
+// AddCallback2 
+//  @brief Adds a callback to existing hook
 //
-//	@brief Adds a callback to existing hook
+//  @param hook: Hook pointer
+//  @param type_: Whether the hook was in post mode (after processing) or pre mode (before processing).
+//  @param handler: Callback function which trigger by hook.
+//  @param priority: Priority of callback among others
 //
-//	@param hook: Hook pointer
-//	@param type_: Whether the hook was in post mode (after processing) or pre mode (before processing).
-//	@param handler: Callback function which trigger by hook.
-//	@param priority: Priority of callback among others
-//
-//	@return Returns true on success, false otherwise
+//  @return Returns true on success, false otherwise
 func (w *Callback) AddCallback2(type_ CallbackType, handler CallbackHandler, priority int32) (bool, error) {
 	if w.handle == 0 {
 		var zero bool
@@ -93,15 +92,14 @@ func (w *Callback) AddCallback2(type_ CallbackType, handler CallbackHandler, pri
 	return AddCallback2(w.handle, type_, handler, priority), nil
 }
 
-// RemoveCallback
+// RemoveCallback 
+//  @brief Removes a callback from existing hook
 //
-//	@brief Removes a callback from existing hook
+//  @param hook: Hook pointer
+//  @param type_: Whether the hook was in post mode (after processing) or pre mode (before processing).
+//  @param handler: Callback function which trigger by hook.
 //
-//	@param hook: Hook pointer
-//	@param type_: Whether the hook was in post mode (after processing) or pre mode (before processing).
-//	@param handler: Callback function which trigger by hook.
-//
-//	@return Returns true on success, false otherwise
+//  @return Returns true on success, false otherwise
 func (w *Callback) RemoveCallback(type_ CallbackType, handler CallbackHandler) (bool, error) {
 	if w.handle == 0 {
 		var zero bool
@@ -110,15 +108,14 @@ func (w *Callback) RemoveCallback(type_ CallbackType, handler CallbackHandler) (
 	return RemoveCallback(w.handle, type_, handler), nil
 }
 
-// IsCallbackRegistered
+// IsCallbackRegistered 
+//  @brief Checks that a callback exists on existing hook
 //
-//	@brief Checks that a callback exists on existing hook
+//  @param hook: Hook pointer
+//  @param type_: Whether the hook was in post mode (after processing) or pre mode (before processing).
+//  @param handler: Callback function which trigger by hook.
 //
-//	@param hook: Hook pointer
-//	@param type_: Whether the hook was in post mode (after processing) or pre mode (before processing).
-//	@param handler: Callback function which trigger by hook.
-//
-//	@return Returns true on success, false otherwise
+//  @return Returns true on success, false otherwise
 func (w *Callback) IsCallbackRegistered(type_ CallbackType, handler CallbackHandler) (bool, error) {
 	if w.handle == 0 {
 		var zero bool
@@ -127,13 +124,12 @@ func (w *Callback) IsCallbackRegistered(type_ CallbackType, handler CallbackHand
 	return IsCallbackRegistered(w.handle, type_, handler), nil
 }
 
-// AreCallbacksRegistered
+// AreCallbacksRegistered 
+//  @brief Checks that a any callback exists on existing hook
 //
-//	@brief Checks that a any callback exists on existing hook
+//  @param hook: Hook pointer
 //
-//	@param hook: Hook pointer
-//
-//	@return Returns true on success, false otherwise
+//  @return Returns true on success, false otherwise
 func (w *Callback) AreCallbacksRegistered() (bool, error) {
 	if w.handle == 0 {
 		var zero bool
@@ -142,13 +138,12 @@ func (w *Callback) AreCallbacksRegistered() (bool, error) {
 	return AreCallbacksRegistered(w.handle), nil
 }
 
-// GetFunctionAddr
+// GetFunctionAddr 
+//  @brief Get generated function address
 //
-//	@brief Get generated function address
+//  @param hook: Hook pointer
 //
-//	@param hook: Hook pointer
-//
-//	@return Returns jit generated function pointer
+//  @return Returns jit generated function pointer
 func (w *Callback) GetFunctionAddr() (uintptr, error) {
 	if w.handle == 0 {
 		var zero uintptr
@@ -157,13 +152,12 @@ func (w *Callback) GetFunctionAddr() (uintptr, error) {
 	return GetFunctionAddr(w.handle), nil
 }
 
-// GetOriginalAddr
+// GetOriginalAddr 
+//  @brief Get original function address
 //
-//	@brief Get original function address
+//  @param hook: Hook pointer
 //
-//	@param hook: Hook pointer
-//
-//	@return Returns original function pointer
+//  @return Returns original function pointer
 func (w *Callback) GetOriginalAddr() (uintptr, error) {
 	if w.handle == 0 {
 		var zero uintptr
@@ -176,15 +170,16 @@ var (
 	ParametersErrEmptyHandle = errors.New("Parameters: empty handle")
 )
 
-// @brief RAII wrapper for Callback::Parameters pointer used in callback handlers.
+//  @brief RAII wrapper for Callback::Parameters pointer used in callback handlers.
+//
 type Parameters struct {
-	handle uintptr
+	handle    uintptr
 }
 
 // NewParameters creates a Parameters from a handle
 func NewParameters(handle uintptr) *Parameters {
 	return &Parameters{
-		handle: handle,
+		handle:    handle,
 	}
 }
 
@@ -210,12 +205,11 @@ func (w *Parameters) IsValid() bool {
 	return w.handle != 0
 }
 
-// GetBool
+// GetBool 
+//  @brief Get argument value
 //
-//	@brief Get argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to get
+//  @param params: Pointer to params structure
+//  @param index: Index to get
 func (w *Parameters) GetBool(index uint64) (bool, error) {
 	if w.handle == 0 {
 		var zero bool
@@ -224,12 +218,11 @@ func (w *Parameters) GetBool(index uint64) (bool, error) {
 	return GetArgumentBool(w.handle, index), nil
 }
 
-// GetInt8
+// GetInt8 
+//  @brief Get argument value
 //
-//	@brief Get argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to get
+//  @param params: Pointer to params structure
+//  @param index: Index to get
 func (w *Parameters) GetInt8(index uint64) (int8, error) {
 	if w.handle == 0 {
 		var zero int8
@@ -238,12 +231,11 @@ func (w *Parameters) GetInt8(index uint64) (int8, error) {
 	return GetArgumentInt8(w.handle, index), nil
 }
 
-// GetUInt8
+// GetUInt8 
+//  @brief Get argument value
 //
-//	@brief Get argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to get
+//  @param params: Pointer to params structure
+//  @param index: Index to get
 func (w *Parameters) GetUInt8(index uint64) (uint8, error) {
 	if w.handle == 0 {
 		var zero uint8
@@ -252,12 +244,11 @@ func (w *Parameters) GetUInt8(index uint64) (uint8, error) {
 	return GetArgumentUInt8(w.handle, index), nil
 }
 
-// GetInt16
+// GetInt16 
+//  @brief Get argument value
 //
-//	@brief Get argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to get
+//  @param params: Pointer to params structure
+//  @param index: Index to get
 func (w *Parameters) GetInt16(index uint64) (int16, error) {
 	if w.handle == 0 {
 		var zero int16
@@ -266,12 +257,11 @@ func (w *Parameters) GetInt16(index uint64) (int16, error) {
 	return GetArgumentInt16(w.handle, index), nil
 }
 
-// GetUInt16
+// GetUInt16 
+//  @brief Get argument value
 //
-//	@brief Get argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to get
+//  @param params: Pointer to params structure
+//  @param index: Index to get
 func (w *Parameters) GetUInt16(index uint64) (uint16, error) {
 	if w.handle == 0 {
 		var zero uint16
@@ -280,12 +270,11 @@ func (w *Parameters) GetUInt16(index uint64) (uint16, error) {
 	return GetArgumentUInt16(w.handle, index), nil
 }
 
-// GetInt32
+// GetInt32 
+//  @brief Get argument value
 //
-//	@brief Get argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to get
+//  @param params: Pointer to params structure
+//  @param index: Index to get
 func (w *Parameters) GetInt32(index uint64) (int32, error) {
 	if w.handle == 0 {
 		var zero int32
@@ -294,12 +283,11 @@ func (w *Parameters) GetInt32(index uint64) (int32, error) {
 	return GetArgumentInt32(w.handle, index), nil
 }
 
-// GetUInt32
+// GetUInt32 
+//  @brief Get argument value
 //
-//	@brief Get argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to get
+//  @param params: Pointer to params structure
+//  @param index: Index to get
 func (w *Parameters) GetUInt32(index uint64) (uint32, error) {
 	if w.handle == 0 {
 		var zero uint32
@@ -308,12 +296,11 @@ func (w *Parameters) GetUInt32(index uint64) (uint32, error) {
 	return GetArgumentUInt32(w.handle, index), nil
 }
 
-// GetInt64
+// GetInt64 
+//  @brief Get argument value
 //
-//	@brief Get argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to get
+//  @param params: Pointer to params structure
+//  @param index: Index to get
 func (w *Parameters) GetInt64(index uint64) (int64, error) {
 	if w.handle == 0 {
 		var zero int64
@@ -322,12 +309,11 @@ func (w *Parameters) GetInt64(index uint64) (int64, error) {
 	return GetArgumentInt64(w.handle, index), nil
 }
 
-// GetUInt64
+// GetUInt64 
+//  @brief Get argument value
 //
-//	@brief Get argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to get
+//  @param params: Pointer to params structure
+//  @param index: Index to get
 func (w *Parameters) GetUInt64(index uint64) (uint64, error) {
 	if w.handle == 0 {
 		var zero uint64
@@ -336,12 +322,11 @@ func (w *Parameters) GetUInt64(index uint64) (uint64, error) {
 	return GetArgumentUInt64(w.handle, index), nil
 }
 
-// GetFloat
+// GetFloat 
+//  @brief Get argument value
 //
-//	@brief Get argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to get
+//  @param params: Pointer to params structure
+//  @param index: Index to get
 func (w *Parameters) GetFloat(index uint64) (float32, error) {
 	if w.handle == 0 {
 		var zero float32
@@ -350,12 +335,11 @@ func (w *Parameters) GetFloat(index uint64) (float32, error) {
 	return GetArgumentFloat(w.handle, index), nil
 }
 
-// GetDouble
+// GetDouble 
+//  @brief Get argument value
 //
-//	@brief Get argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to get
+//  @param params: Pointer to params structure
+//  @param index: Index to get
 func (w *Parameters) GetDouble(index uint64) (float64, error) {
 	if w.handle == 0 {
 		var zero float64
@@ -364,12 +348,11 @@ func (w *Parameters) GetDouble(index uint64) (float64, error) {
 	return GetArgumentDouble(w.handle, index), nil
 }
 
-// GetPointer
+// GetPointer 
+//  @brief Get argument value
 //
-//	@brief Get argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to get
+//  @param params: Pointer to params structure
+//  @param index: Index to get
 func (w *Parameters) GetPointer(index uint64) (uintptr, error) {
 	if w.handle == 0 {
 		var zero uintptr
@@ -378,12 +361,11 @@ func (w *Parameters) GetPointer(index uint64) (uintptr, error) {
 	return GetArgumentPointer(w.handle, index), nil
 }
 
-// GetString
+// GetString 
+//  @brief Get argument value
 //
-//	@brief Get argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to get
+//  @param params: Pointer to params structure
+//  @param index: Index to get
 func (w *Parameters) GetString(index uint64) (string, error) {
 	if w.handle == 0 {
 		var zero string
@@ -392,13 +374,12 @@ func (w *Parameters) GetString(index uint64) (string, error) {
 	return GetArgumentString(w.handle, index), nil
 }
 
-// SetBool
+// SetBool 
+//  @brief Set argument value
 //
-//	@brief Set argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to set
-//	@param value: Value to set
+//  @param params: Pointer to params structure
+//  @param index: Index to set
+//  @param value: Value to set
 func (w *Parameters) SetBool(index uint64, value bool) error {
 	if w.handle == 0 {
 		return ParametersErrEmptyHandle
@@ -407,13 +388,12 @@ func (w *Parameters) SetBool(index uint64, value bool) error {
 	return nil
 }
 
-// SetInt8
+// SetInt8 
+//  @brief Set argument value
 //
-//	@brief Set argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to set
-//	@param value: Value to set
+//  @param params: Pointer to params structure
+//  @param index: Index to set
+//  @param value: Value to set
 func (w *Parameters) SetInt8(index uint64, value int8) error {
 	if w.handle == 0 {
 		return ParametersErrEmptyHandle
@@ -422,13 +402,12 @@ func (w *Parameters) SetInt8(index uint64, value int8) error {
 	return nil
 }
 
-// SetUInt8
+// SetUInt8 
+//  @brief Set argument value
 //
-//	@brief Set argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to set
-//	@param value: Value to set
+//  @param params: Pointer to params structure
+//  @param index: Index to set
+//  @param value: Value to set
 func (w *Parameters) SetUInt8(index uint64, value uint8) error {
 	if w.handle == 0 {
 		return ParametersErrEmptyHandle
@@ -437,13 +416,12 @@ func (w *Parameters) SetUInt8(index uint64, value uint8) error {
 	return nil
 }
 
-// SetInt16
+// SetInt16 
+//  @brief Set argument value
 //
-//	@brief Set argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to set
-//	@param value: Value to set
+//  @param params: Pointer to params structure
+//  @param index: Index to set
+//  @param value: Value to set
 func (w *Parameters) SetInt16(index uint64, value int16) error {
 	if w.handle == 0 {
 		return ParametersErrEmptyHandle
@@ -452,13 +430,12 @@ func (w *Parameters) SetInt16(index uint64, value int16) error {
 	return nil
 }
 
-// SetUInt16
+// SetUInt16 
+//  @brief Set argument value
 //
-//	@brief Set argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to set
-//	@param value: Value to set
+//  @param params: Pointer to params structure
+//  @param index: Index to set
+//  @param value: Value to set
 func (w *Parameters) SetUInt16(index uint64, value uint16) error {
 	if w.handle == 0 {
 		return ParametersErrEmptyHandle
@@ -467,13 +444,12 @@ func (w *Parameters) SetUInt16(index uint64, value uint16) error {
 	return nil
 }
 
-// SetInt32
+// SetInt32 
+//  @brief Set argument value
 //
-//	@brief Set argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to set
-//	@param value: Value to set
+//  @param params: Pointer to params structure
+//  @param index: Index to set
+//  @param value: Value to set
 func (w *Parameters) SetInt32(index uint64, value int32) error {
 	if w.handle == 0 {
 		return ParametersErrEmptyHandle
@@ -482,13 +458,12 @@ func (w *Parameters) SetInt32(index uint64, value int32) error {
 	return nil
 }
 
-// SetUInt32
+// SetUInt32 
+//  @brief Set argument value
 //
-//	@brief Set argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to set
-//	@param value: Value to set
+//  @param params: Pointer to params structure
+//  @param index: Index to set
+//  @param value: Value to set
 func (w *Parameters) SetUInt32(index uint64, value uint32) error {
 	if w.handle == 0 {
 		return ParametersErrEmptyHandle
@@ -497,13 +472,12 @@ func (w *Parameters) SetUInt32(index uint64, value uint32) error {
 	return nil
 }
 
-// SetInt64
+// SetInt64 
+//  @brief Set argument value
 //
-//	@brief Set argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to set
-//	@param value: Value to set
+//  @param params: Pointer to params structure
+//  @param index: Index to set
+//  @param value: Value to set
 func (w *Parameters) SetInt64(index uint64, value int64) error {
 	if w.handle == 0 {
 		return ParametersErrEmptyHandle
@@ -512,13 +486,12 @@ func (w *Parameters) SetInt64(index uint64, value int64) error {
 	return nil
 }
 
-// SetUInt64
+// SetUInt64 
+//  @brief Set argument value
 //
-//	@brief Set argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to set
-//	@param value: Value to set
+//  @param params: Pointer to params structure
+//  @param index: Index to set
+//  @param value: Value to set
 func (w *Parameters) SetUInt64(index uint64, value uint64) error {
 	if w.handle == 0 {
 		return ParametersErrEmptyHandle
@@ -527,13 +500,12 @@ func (w *Parameters) SetUInt64(index uint64, value uint64) error {
 	return nil
 }
 
-// SetFloat
+// SetFloat 
+//  @brief Set argument value
 //
-//	@brief Set argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to set
-//	@param value: Value to set
+//  @param params: Pointer to params structure
+//  @param index: Index to set
+//  @param value: Value to set
 func (w *Parameters) SetFloat(index uint64, value float32) error {
 	if w.handle == 0 {
 		return ParametersErrEmptyHandle
@@ -542,13 +514,12 @@ func (w *Parameters) SetFloat(index uint64, value float32) error {
 	return nil
 }
 
-// SetDouble
+// SetDouble 
+//  @brief Set argument value
 //
-//	@brief Set argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to set
-//	@param value: Value to set
+//  @param params: Pointer to params structure
+//  @param index: Index to set
+//  @param value: Value to set
 func (w *Parameters) SetDouble(index uint64, value float64) error {
 	if w.handle == 0 {
 		return ParametersErrEmptyHandle
@@ -557,13 +528,12 @@ func (w *Parameters) SetDouble(index uint64, value float64) error {
 	return nil
 }
 
-// SetPointer
+// SetPointer 
+//  @brief Set argument value
 //
-//	@brief Set argument value
-//
-//	@param params: Pointer to params structure
-//	@param index: Index to set
-//	@param value: Value to set
+//  @param params: Pointer to params structure
+//  @param index: Index to set
+//  @param value: Value to set
 func (w *Parameters) SetPointer(index uint64, value uintptr) error {
 	if w.handle == 0 {
 		return ParametersErrEmptyHandle
@@ -576,15 +546,16 @@ var (
 	ReturnErrEmptyHandle = errors.New("Return: empty handle")
 )
 
-// @brief RAII wrapper for Callback::Return pointer used in callback handlers.
+//  @brief RAII wrapper for Callback::Return pointer used in callback handlers.
+//
 type Return struct {
-	handle uintptr
+	handle    uintptr
 }
 
 // NewReturn creates a Return from a handle
 func NewReturn(handle uintptr) *Return {
 	return &Return{
-		handle: handle,
+		handle:    handle,
 	}
 }
 
@@ -610,11 +581,10 @@ func (w *Return) IsValid() bool {
 	return w.handle != 0
 }
 
-// GetBool
+// GetBool 
+//  @brief Get return value
 //
-//	@brief Get return value
-//
-//	@param ret: Pointer to return structure
+//  @param ret: Pointer to return structure
 func (w *Return) GetBool() (bool, error) {
 	if w.handle == 0 {
 		var zero bool
@@ -623,11 +593,10 @@ func (w *Return) GetBool() (bool, error) {
 	return GetReturnBool(w.handle), nil
 }
 
-// GetInt8
+// GetInt8 
+//  @brief Get return value
 //
-//	@brief Get return value
-//
-//	@param ret: Pointer to return structure
+//  @param ret: Pointer to return structure
 func (w *Return) GetInt8() (int8, error) {
 	if w.handle == 0 {
 		var zero int8
@@ -636,11 +605,10 @@ func (w *Return) GetInt8() (int8, error) {
 	return GetReturnInt8(w.handle), nil
 }
 
-// GetUInt8
+// GetUInt8 
+//  @brief Get return value
 //
-//	@brief Get return value
-//
-//	@param ret: Pointer to return structure
+//  @param ret: Pointer to return structure
 func (w *Return) GetUInt8() (uint8, error) {
 	if w.handle == 0 {
 		var zero uint8
@@ -649,11 +617,10 @@ func (w *Return) GetUInt8() (uint8, error) {
 	return GetReturnUInt8(w.handle), nil
 }
 
-// GetInt16
+// GetInt16 
+//  @brief Get return value
 //
-//	@brief Get return value
-//
-//	@param ret: Pointer to return structure
+//  @param ret: Pointer to return structure
 func (w *Return) GetInt16() (int16, error) {
 	if w.handle == 0 {
 		var zero int16
@@ -662,11 +629,10 @@ func (w *Return) GetInt16() (int16, error) {
 	return GetReturnInt16(w.handle), nil
 }
 
-// GetUInt16
+// GetUInt16 
+//  @brief Get return value
 //
-//	@brief Get return value
-//
-//	@param ret: Pointer to return structure
+//  @param ret: Pointer to return structure
 func (w *Return) GetUInt16() (uint16, error) {
 	if w.handle == 0 {
 		var zero uint16
@@ -675,11 +641,10 @@ func (w *Return) GetUInt16() (uint16, error) {
 	return GetReturnUInt16(w.handle), nil
 }
 
-// GetInt32
+// GetInt32 
+//  @brief Get return value
 //
-//	@brief Get return value
-//
-//	@param ret: Pointer to return structure
+//  @param ret: Pointer to return structure
 func (w *Return) GetInt32() (int32, error) {
 	if w.handle == 0 {
 		var zero int32
@@ -688,11 +653,10 @@ func (w *Return) GetInt32() (int32, error) {
 	return GetReturnInt32(w.handle), nil
 }
 
-// GetUInt32
+// GetUInt32 
+//  @brief Get return value
 //
-//	@brief Get return value
-//
-//	@param ret: Pointer to return structure
+//  @param ret: Pointer to return structure
 func (w *Return) GetUInt32() (uint32, error) {
 	if w.handle == 0 {
 		var zero uint32
@@ -701,11 +665,10 @@ func (w *Return) GetUInt32() (uint32, error) {
 	return GetReturnUInt32(w.handle), nil
 }
 
-// GetInt64
+// GetInt64 
+//  @brief Get return value
 //
-//	@brief Get return value
-//
-//	@param ret: Pointer to return structure
+//  @param ret: Pointer to return structure
 func (w *Return) GetInt64() (int64, error) {
 	if w.handle == 0 {
 		var zero int64
@@ -714,11 +677,10 @@ func (w *Return) GetInt64() (int64, error) {
 	return GetReturnInt64(w.handle), nil
 }
 
-// GetUInt64
+// GetUInt64 
+//  @brief Get return value
 //
-//	@brief Get return value
-//
-//	@param ret: Pointer to return structure
+//  @param ret: Pointer to return structure
 func (w *Return) GetUInt64() (uint64, error) {
 	if w.handle == 0 {
 		var zero uint64
@@ -727,11 +689,10 @@ func (w *Return) GetUInt64() (uint64, error) {
 	return GetReturnUInt64(w.handle), nil
 }
 
-// GetFloat
+// GetFloat 
+//  @brief Get return value
 //
-//	@brief Get return value
-//
-//	@param ret: Pointer to return structure
+//  @param ret: Pointer to return structure
 func (w *Return) GetFloat() (float32, error) {
 	if w.handle == 0 {
 		var zero float32
@@ -740,11 +701,10 @@ func (w *Return) GetFloat() (float32, error) {
 	return GetReturnFloat(w.handle), nil
 }
 
-// GetDouble
+// GetDouble 
+//  @brief Get return value
 //
-//	@brief Get return value
-//
-//	@param ret: Pointer to return structure
+//  @param ret: Pointer to return structure
 func (w *Return) GetDouble() (float64, error) {
 	if w.handle == 0 {
 		var zero float64
@@ -753,11 +713,10 @@ func (w *Return) GetDouble() (float64, error) {
 	return GetReturnDouble(w.handle), nil
 }
 
-// GetPointer
+// GetPointer 
+//  @brief Get return value
 //
-//	@brief Get return value
-//
-//	@param ret: Pointer to return structure
+//  @param ret: Pointer to return structure
 func (w *Return) GetPointer() (uintptr, error) {
 	if w.handle == 0 {
 		var zero uintptr
@@ -766,11 +725,10 @@ func (w *Return) GetPointer() (uintptr, error) {
 	return GetReturnPointer(w.handle), nil
 }
 
-// GetString
+// GetString 
+//  @brief Get return value
 //
-//	@brief Get return value
-//
-//	@param ret: Pointer to return structure
+//  @param ret: Pointer to return structure
 func (w *Return) GetString() (string, error) {
 	if w.handle == 0 {
 		var zero string
@@ -779,12 +737,11 @@ func (w *Return) GetString() (string, error) {
 	return GetReturnString(w.handle), nil
 }
 
-// SetBool
+// SetBool 
+//  @brief Set return value
 //
-//	@brief Set return value
-//
-//	@param ret: Pointer to return structure
-//	@param value: Value to set
+//  @param ret: Pointer to return structure
+//  @param value: Value to set
 func (w *Return) SetBool(value bool) error {
 	if w.handle == 0 {
 		return ReturnErrEmptyHandle
@@ -793,12 +750,11 @@ func (w *Return) SetBool(value bool) error {
 	return nil
 }
 
-// SetInt8
+// SetInt8 
+//  @brief Set return value
 //
-//	@brief Set return value
-//
-//	@param ret: Pointer to return structure
-//	@param value: Value to set
+//  @param ret: Pointer to return structure
+//  @param value: Value to set
 func (w *Return) SetInt8(value int8) error {
 	if w.handle == 0 {
 		return ReturnErrEmptyHandle
@@ -807,12 +763,11 @@ func (w *Return) SetInt8(value int8) error {
 	return nil
 }
 
-// SetUInt8
+// SetUInt8 
+//  @brief Set return value
 //
-//	@brief Set return value
-//
-//	@param ret: Pointer to return structure
-//	@param value: Value to set
+//  @param ret: Pointer to return structure
+//  @param value: Value to set
 func (w *Return) SetUInt8(value uint8) error {
 	if w.handle == 0 {
 		return ReturnErrEmptyHandle
@@ -821,12 +776,11 @@ func (w *Return) SetUInt8(value uint8) error {
 	return nil
 }
 
-// SetInt16
+// SetInt16 
+//  @brief Set return value
 //
-//	@brief Set return value
-//
-//	@param ret: Pointer to return structure
-//	@param value: Value to set
+//  @param ret: Pointer to return structure
+//  @param value: Value to set
 func (w *Return) SetInt16(value int16) error {
 	if w.handle == 0 {
 		return ReturnErrEmptyHandle
@@ -835,12 +789,11 @@ func (w *Return) SetInt16(value int16) error {
 	return nil
 }
 
-// SetUInt16
+// SetUInt16 
+//  @brief Set return value
 //
-//	@brief Set return value
-//
-//	@param ret: Pointer to return structure
-//	@param value: Value to set
+//  @param ret: Pointer to return structure
+//  @param value: Value to set
 func (w *Return) SetUInt16(value uint16) error {
 	if w.handle == 0 {
 		return ReturnErrEmptyHandle
@@ -849,12 +802,11 @@ func (w *Return) SetUInt16(value uint16) error {
 	return nil
 }
 
-// SetInt32
+// SetInt32 
+//  @brief Set return value
 //
-//	@brief Set return value
-//
-//	@param ret: Pointer to return structure
-//	@param value: Value to set
+//  @param ret: Pointer to return structure
+//  @param value: Value to set
 func (w *Return) SetInt32(value int32) error {
 	if w.handle == 0 {
 		return ReturnErrEmptyHandle
@@ -863,12 +815,11 @@ func (w *Return) SetInt32(value int32) error {
 	return nil
 }
 
-// SetUInt32
+// SetUInt32 
+//  @brief Set return value
 //
-//	@brief Set return value
-//
-//	@param ret: Pointer to return structure
-//	@param value: Value to set
+//  @param ret: Pointer to return structure
+//  @param value: Value to set
 func (w *Return) SetUInt32(value uint32) error {
 	if w.handle == 0 {
 		return ReturnErrEmptyHandle
@@ -877,12 +828,11 @@ func (w *Return) SetUInt32(value uint32) error {
 	return nil
 }
 
-// SetInt64
+// SetInt64 
+//  @brief Set return value
 //
-//	@brief Set return value
-//
-//	@param ret: Pointer to return structure
-//	@param value: Value to set
+//  @param ret: Pointer to return structure
+//  @param value: Value to set
 func (w *Return) SetInt64(value int64) error {
 	if w.handle == 0 {
 		return ReturnErrEmptyHandle
@@ -891,12 +841,11 @@ func (w *Return) SetInt64(value int64) error {
 	return nil
 }
 
-// SetUInt64
+// SetUInt64 
+//  @brief Set return value
 //
-//	@brief Set return value
-//
-//	@param ret: Pointer to return structure
-//	@param value: Value to set
+//  @param ret: Pointer to return structure
+//  @param value: Value to set
 func (w *Return) SetUInt64(value uint64) error {
 	if w.handle == 0 {
 		return ReturnErrEmptyHandle
@@ -905,12 +854,11 @@ func (w *Return) SetUInt64(value uint64) error {
 	return nil
 }
 
-// SetFloat
+// SetFloat 
+//  @brief Set return value
 //
-//	@brief Set return value
-//
-//	@param ret: Pointer to return structure
-//	@param value: Value to set
+//  @param ret: Pointer to return structure
+//  @param value: Value to set
 func (w *Return) SetFloat(value float32) error {
 	if w.handle == 0 {
 		return ReturnErrEmptyHandle
@@ -919,12 +867,11 @@ func (w *Return) SetFloat(value float32) error {
 	return nil
 }
 
-// SetDouble
+// SetDouble 
+//  @brief Set return value
 //
-//	@brief Set return value
-//
-//	@param ret: Pointer to return structure
-//	@param value: Value to set
+//  @param ret: Pointer to return structure
+//  @param value: Value to set
 func (w *Return) SetDouble(value float64) error {
 	if w.handle == 0 {
 		return ReturnErrEmptyHandle
@@ -933,12 +880,11 @@ func (w *Return) SetDouble(value float64) error {
 	return nil
 }
 
-// SetPointer
+// SetPointer 
+//  @brief Set return value
 //
-//	@brief Set return value
-//
-//	@param ret: Pointer to return structure
-//	@param value: Value to set
+//  @param ret: Pointer to return structure
+//  @param value: Value to set
 func (w *Return) SetPointer(value uintptr) error {
 	if w.handle == 0 {
 		return ReturnErrEmptyHandle
@@ -951,15 +897,16 @@ var (
 	RegistersErrEmptyHandle = errors.New("Registers: empty handle")
 )
 
-// @brief RAII wrapper for Callback::Registers pointer used in callback handlers.
+//  @brief RAII wrapper for Callback::Registers pointer used in callback handlers.
+//
 type Registers struct {
-	handle uintptr
+	handle    uintptr
 }
 
 // NewRegisters creates a Registers from a handle
 func NewRegisters(handle uintptr) *Registers {
 	return &Registers{
-		handle: handle,
+		handle:    handle,
 	}
 }
 
@@ -985,12 +932,11 @@ func (w *Registers) IsValid() bool {
 	return w.handle != 0
 }
 
-// GetBool
+// GetBool 
+//  @brief Get register value
 //
-//	@brief Get register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to get
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to get
 func (w *Registers) GetBool(reg RegisterType) (bool, error) {
 	if w.handle == 0 {
 		var zero bool
@@ -999,12 +945,11 @@ func (w *Registers) GetBool(reg RegisterType) (bool, error) {
 	return GetRegisterBool(w.handle, reg), nil
 }
 
-// GetInt8
+// GetInt8 
+//  @brief Get register value
 //
-//	@brief Get register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to get
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to get
 func (w *Registers) GetInt8(reg RegisterType) (int8, error) {
 	if w.handle == 0 {
 		var zero int8
@@ -1013,12 +958,11 @@ func (w *Registers) GetInt8(reg RegisterType) (int8, error) {
 	return GetRegisterInt8(w.handle, reg), nil
 }
 
-// GetUInt8
+// GetUInt8 
+//  @brief Get register value
 //
-//	@brief Get register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to get
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to get
 func (w *Registers) GetUInt8(reg RegisterType) (uint8, error) {
 	if w.handle == 0 {
 		var zero uint8
@@ -1027,12 +971,11 @@ func (w *Registers) GetUInt8(reg RegisterType) (uint8, error) {
 	return GetRegisterUInt8(w.handle, reg), nil
 }
 
-// GetInt16
+// GetInt16 
+//  @brief Get register value
 //
-//	@brief Get register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to get
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to get
 func (w *Registers) GetInt16(reg RegisterType) (int16, error) {
 	if w.handle == 0 {
 		var zero int16
@@ -1041,12 +984,11 @@ func (w *Registers) GetInt16(reg RegisterType) (int16, error) {
 	return GetRegisterInt16(w.handle, reg), nil
 }
 
-// GetUInt16
+// GetUInt16 
+//  @brief Get register value
 //
-//	@brief Get register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to get
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to get
 func (w *Registers) GetUInt16(reg RegisterType) (uint16, error) {
 	if w.handle == 0 {
 		var zero uint16
@@ -1055,12 +997,11 @@ func (w *Registers) GetUInt16(reg RegisterType) (uint16, error) {
 	return GetRegisterUInt16(w.handle, reg), nil
 }
 
-// GetInt32
+// GetInt32 
+//  @brief Get register value
 //
-//	@brief Get register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to get
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to get
 func (w *Registers) GetInt32(reg RegisterType) (int32, error) {
 	if w.handle == 0 {
 		var zero int32
@@ -1069,12 +1010,11 @@ func (w *Registers) GetInt32(reg RegisterType) (int32, error) {
 	return GetRegisterInt32(w.handle, reg), nil
 }
 
-// GetUInt32
+// GetUInt32 
+//  @brief Get register value
 //
-//	@brief Get register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to get
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to get
 func (w *Registers) GetUInt32(reg RegisterType) (uint32, error) {
 	if w.handle == 0 {
 		var zero uint32
@@ -1083,12 +1023,11 @@ func (w *Registers) GetUInt32(reg RegisterType) (uint32, error) {
 	return GetRegisterUInt32(w.handle, reg), nil
 }
 
-// GetInt64
+// GetInt64 
+//  @brief Get register value
 //
-//	@brief Get register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to get
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to get
 func (w *Registers) GetInt64(reg RegisterType) (int64, error) {
 	if w.handle == 0 {
 		var zero int64
@@ -1097,12 +1036,11 @@ func (w *Registers) GetInt64(reg RegisterType) (int64, error) {
 	return GetRegisterInt64(w.handle, reg), nil
 }
 
-// GetUInt64
+// GetUInt64 
+//  @brief Get register value
 //
-//	@brief Get register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to get
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to get
 func (w *Registers) GetUInt64(reg RegisterType) (uint64, error) {
 	if w.handle == 0 {
 		var zero uint64
@@ -1111,12 +1049,11 @@ func (w *Registers) GetUInt64(reg RegisterType) (uint64, error) {
 	return GetRegisterUInt64(w.handle, reg), nil
 }
 
-// GetFloat
+// GetFloat 
+//  @brief Get register value
 //
-//	@brief Get register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to get
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to get
 func (w *Registers) GetFloat(reg RegisterType) (float32, error) {
 	if w.handle == 0 {
 		var zero float32
@@ -1125,12 +1062,11 @@ func (w *Registers) GetFloat(reg RegisterType) (float32, error) {
 	return GetRegisterFloat(w.handle, reg), nil
 }
 
-// GetDouble
+// GetDouble 
+//  @brief Get register value
 //
-//	@brief Get register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to get
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to get
 func (w *Registers) GetDouble(reg RegisterType) (float64, error) {
 	if w.handle == 0 {
 		var zero float64
@@ -1139,12 +1075,11 @@ func (w *Registers) GetDouble(reg RegisterType) (float64, error) {
 	return GetRegisterDouble(w.handle, reg), nil
 }
 
-// GetPointer
+// GetPointer 
+//  @brief Get register value
 //
-//	@brief Get register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to get
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to get
 func (w *Registers) GetPointer(reg RegisterType) (uintptr, error) {
 	if w.handle == 0 {
 		var zero uintptr
@@ -1153,12 +1088,11 @@ func (w *Registers) GetPointer(reg RegisterType) (uintptr, error) {
 	return GetRegisterPointer(w.handle, reg), nil
 }
 
-// GetString
+// GetString 
+//  @brief Get register value
 //
-//	@brief Get register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to get
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to get
 func (w *Registers) GetString(reg RegisterType) (string, error) {
 	if w.handle == 0 {
 		var zero string
@@ -1167,13 +1101,12 @@ func (w *Registers) GetString(reg RegisterType) (string, error) {
 	return GetRegisterString(w.handle, reg), nil
 }
 
-// SetBool
+// SetBool 
+//  @brief Set register value
 //
-//	@brief Set register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to set
-//	@param value: Value to set
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
 func (w *Registers) SetBool(reg RegisterType, value bool) error {
 	if w.handle == 0 {
 		return RegistersErrEmptyHandle
@@ -1182,13 +1115,12 @@ func (w *Registers) SetBool(reg RegisterType, value bool) error {
 	return nil
 }
 
-// SetInt8
+// SetInt8 
+//  @brief Set register value
 //
-//	@brief Set register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to set
-//	@param value: Value to set
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
 func (w *Registers) SetInt8(reg RegisterType, value int8) error {
 	if w.handle == 0 {
 		return RegistersErrEmptyHandle
@@ -1197,13 +1129,12 @@ func (w *Registers) SetInt8(reg RegisterType, value int8) error {
 	return nil
 }
 
-// SetUInt8
+// SetUInt8 
+//  @brief Set register value
 //
-//	@brief Set register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to set
-//	@param value: Value to set
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
 func (w *Registers) SetUInt8(reg RegisterType, value uint8) error {
 	if w.handle == 0 {
 		return RegistersErrEmptyHandle
@@ -1212,13 +1143,12 @@ func (w *Registers) SetUInt8(reg RegisterType, value uint8) error {
 	return nil
 }
 
-// SetInt16
+// SetInt16 
+//  @brief Set register value
 //
-//	@brief Set register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to set
-//	@param value: Value to set
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
 func (w *Registers) SetInt16(reg RegisterType, value int16) error {
 	if w.handle == 0 {
 		return RegistersErrEmptyHandle
@@ -1227,13 +1157,12 @@ func (w *Registers) SetInt16(reg RegisterType, value int16) error {
 	return nil
 }
 
-// SetUInt16
+// SetUInt16 
+//  @brief Set register value
 //
-//	@brief Set register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to set
-//	@param value: Value to set
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
 func (w *Registers) SetUInt16(reg RegisterType, value uint16) error {
 	if w.handle == 0 {
 		return RegistersErrEmptyHandle
@@ -1242,13 +1171,12 @@ func (w *Registers) SetUInt16(reg RegisterType, value uint16) error {
 	return nil
 }
 
-// SetInt32
+// SetInt32 
+//  @brief Set register value
 //
-//	@brief Set register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to set
-//	@param value: Value to set
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
 func (w *Registers) SetInt32(reg RegisterType, value int32) error {
 	if w.handle == 0 {
 		return RegistersErrEmptyHandle
@@ -1257,13 +1185,12 @@ func (w *Registers) SetInt32(reg RegisterType, value int32) error {
 	return nil
 }
 
-// SetUInt32
+// SetUInt32 
+//  @brief Set register value
 //
-//	@brief Set register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to set
-//	@param value: Value to set
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
 func (w *Registers) SetUInt32(reg RegisterType, value uint32) error {
 	if w.handle == 0 {
 		return RegistersErrEmptyHandle
@@ -1272,13 +1199,12 @@ func (w *Registers) SetUInt32(reg RegisterType, value uint32) error {
 	return nil
 }
 
-// SetInt64
+// SetInt64 
+//  @brief Set register value
 //
-//	@brief Set register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to set
-//	@param value: Value to set
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
 func (w *Registers) SetInt64(reg RegisterType, value int64) error {
 	if w.handle == 0 {
 		return RegistersErrEmptyHandle
@@ -1287,13 +1213,12 @@ func (w *Registers) SetInt64(reg RegisterType, value int64) error {
 	return nil
 }
 
-// SetUInt64
+// SetUInt64 
+//  @brief Set register value
 //
-//	@brief Set register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to set
-//	@param value: Value to set
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
 func (w *Registers) SetUInt64(reg RegisterType, value uint64) error {
 	if w.handle == 0 {
 		return RegistersErrEmptyHandle
@@ -1302,13 +1227,12 @@ func (w *Registers) SetUInt64(reg RegisterType, value uint64) error {
 	return nil
 }
 
-// SetFloat
+// SetFloat 
+//  @brief Set register value
 //
-//	@brief Set register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to set
-//	@param value: Value to set
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
 func (w *Registers) SetFloat(reg RegisterType, value float32) error {
 	if w.handle == 0 {
 		return RegistersErrEmptyHandle
@@ -1317,13 +1241,12 @@ func (w *Registers) SetFloat(reg RegisterType, value float32) error {
 	return nil
 }
 
-// SetDouble
+// SetDouble 
+//  @brief Set register value
 //
-//	@brief Set register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to set
-//	@param value: Value to set
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
 func (w *Registers) SetDouble(reg RegisterType, value float64) error {
 	if w.handle == 0 {
 		return RegistersErrEmptyHandle
@@ -1332,13 +1255,12 @@ func (w *Registers) SetDouble(reg RegisterType, value float64) error {
 	return nil
 }
 
-// SetPointer
+// SetPointer 
+//  @brief Set register value
 //
-//	@brief Set register value
-//
-//	@param registers: Pointer to registers structure
-//	@param reg: Register to set
-//	@param value: Value to set
+//  @param registers: Pointer to registers structure
+//  @param reg: Register to set
+//  @param value: Value to set
 func (w *Registers) SetPointer(reg RegisterType, value uintptr) error {
 	if w.handle == 0 {
 		return RegistersErrEmptyHandle
@@ -1347,212 +1269,198 @@ func (w *Registers) SetPointer(reg RegisterType, value uintptr) error {
 	return nil
 }
 
-// @brief Global hooking functions for PolyHook plugin.
+//  @brief Global hooking functions for PolyHook plugin.
+//
 type PolyHook struct {
 }
 
-// HookDetour
+// HookDetour 
+//  @brief Sets a detour hook
 //
-//	@brief Sets a detour hook
+//  @param pFunc: Function address
+//  @param returnType: Return type
+//  @param arguments: Arguments type array
+//  @param varIndex: Index of a first variadic argument or -1
 //
-//	@param pFunc: Function address
-//	@param returnType: Return type
-//	@param arguments: Arguments type array
-//	@param varIndex: Index of a first variadic argument or -1
-//
-//	@return Returns hook pointer
+//  @return Returns hook pointer
 func (w *PolyHook) HookDetour(pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32) *Callback {
 	return NewCallback(HookDetour(pFunc, returnType, arguments, varIndex))
 }
 
-// HookDetour2
+// HookDetour2 
+//  @brief Sets a mid hook
 //
-//	@brief Sets a mid hook
+//  @param pFunc: Function address
 //
-//	@param pFunc: Function address
-//
-//	@return Returns hook pointer
+//  @return Returns hook pointer
 func (w *PolyHook) HookDetour2(pFunc uintptr) *Callback {
 	return NewCallback(HookDetour2(pFunc))
 }
 
-// UnhookDetour
+// UnhookDetour 
+//  @brief Removes a detour hook
 //
-//	@brief Removes a detour hook
+//  @param pFunc: Function address
 //
-//	@param pFunc: Function address
-//
-//	@return Returns true on success, false otherwise
+//  @return Returns true on success, false otherwise
 func (w *PolyHook) UnhookDetour(pFunc uintptr) bool {
 	return UnhookDetour(pFunc)
 }
 
-// HookVirtualTable
+// HookVirtualTable 
+//  @brief Sets a virtual table hook
 //
-//	@brief Sets a virtual table hook
+//  @param pClass: Object pointer
+//  @param index: Vtable offset
+//  @param returnType: Return type
+//  @param arguments: Arguments type array
+//  @param varIndex: Index of a first variadic argument or -1
 //
-//	@param pClass: Object pointer
-//	@param index: Vtable offset
-//	@param returnType: Return type
-//	@param arguments: Arguments type array
-//	@param varIndex: Index of a first variadic argument or -1
-//
-//	@return Returns hook pointer
+//  @return Returns hook pointer
 func (w *PolyHook) HookVirtualTable(pClass uintptr, index int32, returnType DataType, arguments []DataType, varIndex int32) *Callback {
 	return NewCallback(HookVirtualTable(pClass, index, returnType, arguments, varIndex))
 }
 
-// HookVirtualTableByFunc
+// HookVirtualTableByFunc 
+//  @brief Sets a virtual table hook by pointer
 //
-//	@brief Sets a virtual table hook by pointer
+//  @param pClass: Object pointer
+//  @param pFunc: Vtable member function address
+//  @param returnType: Return type
+//  @param arguments: Arguments type array
+//  @param varIndex: Index of a first variadic argument or -1
 //
-//	@param pClass: Object pointer
-//	@param pFunc: Vtable member function address
-//	@param returnType: Return type
-//	@param arguments: Arguments type array
-//	@param varIndex: Index of a first variadic argument or -1
-//
-//	@return Returns hook pointer
+//  @return Returns hook pointer
 func (w *PolyHook) HookVirtualTableByFunc(pClass uintptr, pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32) *Callback {
 	return NewCallback(HookVirtualTable2(pClass, pFunc, returnType, arguments, varIndex))
 }
 
-// UnhookVirtualTable
+// UnhookVirtualTable 
+//  @brief Removes a virtual hook table
 //
-//	@brief Removes a virtual hook table
+//  @param pClass: Object pointer
+//  @param index: Virtual table index
 //
-//	@param pClass: Object pointer
-//	@param index: Virtual table index
-//
-//	@return Returns true on success, false otherwise
+//  @return Returns true on success, false otherwise
 func (w *PolyHook) UnhookVirtualTable(pClass uintptr, index int32) bool {
 	return UnhookVirtualTable(pClass, index)
 }
 
-// UnhookVirtualTableByFunc
+// UnhookVirtualTableByFunc 
+//  @brief Removes a virtual table hook by pointer
 //
-//	@brief Removes a virtual table hook by pointer
+//  @param pClass: Object pointer
+//  @param pFunc: Vtable member function address
 //
-//	@param pClass: Object pointer
-//	@param pFunc: Vtable member function address
-//
-//	@return Returns true on success, false otherwise
+//  @return Returns true on success, false otherwise
 func (w *PolyHook) UnhookVirtualTableByFunc(pClass uintptr, pFunc uintptr) bool {
 	return UnhookVirtualTable2(pClass, pFunc)
 }
 
-// HookVirtualFunc
+// HookVirtualFunc 
+//  @brief Sets a virtual function hook
 //
-//	@brief Sets a virtual function hook
+//  @param pClass: Object pointer
+//  @param index: Vtable offset
+//  @param returnType: Return type
+//  @param arguments: Arguments type array
+//  @param varIndex: Index of a first variadic argument or -1
 //
-//	@param pClass: Object pointer
-//	@param index: Vtable offset
-//	@param returnType: Return type
-//	@param arguments: Arguments type array
-//	@param varIndex: Index of a first variadic argument or -1
-//
-//	@return Returns hook pointer
+//  @return Returns hook pointer
 func (w *PolyHook) HookVirtualFunc(pClass uintptr, index int32, returnType DataType, arguments []DataType, varIndex int32) *Callback {
 	return NewCallback(HookVirtualFunc(pClass, index, returnType, arguments, varIndex))
 }
 
-// HookVirtualFuncByFunc
+// HookVirtualFuncByFunc 
+//  @brief Sets a virtual function hook by pointer
 //
-//	@brief Sets a virtual function hook by pointer
+//  @param pClass: Object pointer
+//  @param pFunc: Vtable member function address
+//  @param returnType: Return type
+//  @param arguments: Arguments type array
+//  @param varIndex: Index of a first variadic argument or -1
 //
-//	@param pClass: Object pointer
-//	@param pFunc: Vtable member function address
-//	@param returnType: Return type
-//	@param arguments: Arguments type array
-//	@param varIndex: Index of a first variadic argument or -1
-//
-//	@return Returns hook pointer
+//  @return Returns hook pointer
 func (w *PolyHook) HookVirtualFuncByFunc(pClass uintptr, pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32) *Callback {
 	return NewCallback(HookVirtualFunc2(pClass, pFunc, returnType, arguments, varIndex))
 }
 
-// UnhookVirtualFunc
+// UnhookVirtualFunc 
+//  @brief Removes a virtual function table
 //
-//	@brief Removes a virtual function table
+//  @param pClass: Object pointer
+//  @param index: Virtual table index
 //
-//	@param pClass: Object pointer
-//	@param index: Virtual table index
-//
-//	@return Returns true on success, false otherwise
+//  @return Returns true on success, false otherwise
 func (w *PolyHook) UnhookVirtualFunc(pClass uintptr, index int32) bool {
 	return UnhookVirtualFunc(pClass, index)
 }
 
-// UnhookVirtualFuncByFunc
+// UnhookVirtualFuncByFunc 
+//  @brief Removes a virtual function hook by pointer
 //
-//	@brief Removes a virtual function hook by pointer
+//  @param pClass: Object pointer
+//  @param pFunc: Vtable member function address
 //
-//	@param pClass: Object pointer
-//	@param pFunc: Vtable member function address
-//
-//	@return Returns true on success, false otherwise
+//  @return Returns true on success, false otherwise
 func (w *PolyHook) UnhookVirtualFuncByFunc(pClass uintptr, pFunc uintptr) bool {
 	return UnhookVirtualFunc2(pClass, pFunc)
 }
 
-// FindDetour
+// FindDetour 
+//  @brief Attempts to find existing detour hook
 //
-//	@brief Attempts to find existing detour hook
+//  @param pFunc: Function address
 //
-//	@param pFunc: Function address
-//
-//	@return Returns hook pointer
+//  @return Returns hook pointer
 func (w *PolyHook) FindDetour(pFunc uintptr) *Callback {
 	return NewCallback(FindDetour(pFunc))
 }
 
-// FindVirtual
+// FindVirtual 
+//  @brief Attempts to find existing virtual hook
 //
-//	@brief Attempts to find existing virtual hook
+//  @param pClass: Object pointer
+//  @param index: Virtual table index
 //
-//	@param pClass: Object pointer
-//	@param index: Virtual table index
-//
-//	@return Returns hook pointer
+//  @return Returns hook pointer
 func (w *PolyHook) FindVirtual(pClass uintptr, index int32) *Callback {
 	return NewCallback(FindVirtual(pClass, index))
 }
 
-// FindVirtualByFunc
+// FindVirtualByFunc 
+//  @brief Attempts to find existing detour hook by pointer
 //
-//	@brief Attempts to find existing detour hook by pointer
+//  @param pClass: Object pointer
+//  @param pFunc: Function address
 //
-//	@param pClass: Object pointer
-//	@param pFunc: Function address
-//
-//	@return Returns hook pointer
+//  @return Returns hook pointer
 func (w *PolyHook) FindVirtualByFunc(pClass uintptr, pFunc uintptr) *Callback {
 	return NewCallback(FindVirtual2(pClass, pFunc))
 }
 
-// GetVirtualIndex
+// GetVirtualIndex 
+//  @brief Attempts to find virtual table index of virtual function
 //
-//	@brief Attempts to find virtual table index of virtual function
+//  @param pFunc: Function address
 //
-//	@param pFunc: Function address
-//
-//	@return Virtual table index
+//  @return Virtual table index
 func (w *PolyHook) GetVirtualIndex(pFunc uintptr) int32 {
 	return GetVirtualIndex(pFunc)
 }
 
-// UnhookAll
+// UnhookAll 
+//  @brief Removes all previously set hooks
 //
-//	@brief Removes all previously set hooks
 func (w *PolyHook) UnhookAll() {
 	UnhookAll()
 }
 
-// UnhookAllVirtual
+// UnhookAllVirtual 
+//  @brief Removes all previously set hooks on the object
 //
-//	@brief Removes all previously set hooks on the object
-//
-//	@param pClass: Object pointer
+//  @param pClass: Object pointer
 func (w *PolyHook) UnhookAllVirtual(pClass uintptr) {
 	UnhookAllVirtual(pClass)
 }
+
