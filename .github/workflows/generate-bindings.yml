@@ -4,6 +4,17 @@ on:
   schedule:
     - cron: '0 2 * * *'
   workflow_dispatch:
+    inputs:
+      cleanup_only:
+        description: "Run cleanup of old workflow runs only"
+        required: false
+        type: boolean
+        default: false
+      days_ago:
+        description: "Delete workflow runs older than (days)"
+        required: false
+        type: number
+        default: 30
 
 permissions:
   contents: write
@@ -98,6 +109,7 @@ jobs:
           rm -rf plugify-gen ${{ env.PLUGIN_NAME }}.pplugin.in ${{ env.PLUGIN_SHORT_NAME }}
 
       - name: Ensure Go Modules
+        if: steps.current_version.outputs.update_needed == 'true'
         run: |
           ls -la
           
@@ -115,6 +127,7 @@ jobs:
 
 
       - name: Commit and Push changes
+        if: steps.current_version.outputs.update_needed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -143,3 +156,16 @@ jobs:
           HEADER="Original release notes from [${{ env.PLUGIN_REPO }}](https://github.com/${{ env.PLUGIN_REPO }}/releases/tag/${VERSION})"
           NOTES_WITH_LINK=$(printf "%s\n\n%s" "$HEADER" "$NOTES")
           gh release create "$VERSION" --notes "$NOTES_WITH_LINK"
+
+  delete-old-actions:
+    if: ${{ inputs.cleanup_only || success() }}
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Delete old workflow runs
+        uses: yanovation/delete-old-actions@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          days-ago: ${{ inputs.days_ago || 30 }}
+          dry-run: false
