@@ -22,6 +22,7 @@ permissions:
 
 jobs:
   update-bindings:
+    if: ${{ !inputs.cleanup_only }}
     runs-on: ubuntu-latest
     env:
       PLUGIN_REPO: untrustedmodders/plugify-plugin-polyhook
