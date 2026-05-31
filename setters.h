@@ -2,6 +2,12 @@
 
 #include "shared.h"
 
+extern void (*__polyhook_SetDebugName)(uintptr_t, String*);
+
+static void SetDebugName(uintptr_t hook, String* name) {
+	__polyhook_SetDebugName(hook, name);
+}
+
 extern void (*__polyhook_SetArgumentBool)(uintptr_t, uint64_t, bool);
 
 static void SetArgumentBool(uintptr_t params, uint64_t index, bool value) {

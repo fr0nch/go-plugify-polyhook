@@ -2,6 +2,12 @@
 
 #include "shared.h"
 
+extern String (*__polyhook_GetError)();
+
+static String GetError() {
+	return __polyhook_GetError();
+}
+
 extern uintptr_t (*__polyhook_GetFunctionAddr)(uintptr_t);
 
 static uintptr_t GetFunctionAddr(uintptr_t hook) {
@@ -12,6 +18,12 @@ extern uintptr_t (*__polyhook_GetOriginalAddr)(uintptr_t);
 
 static uintptr_t GetOriginalAddr(uintptr_t hook) {
 	return __polyhook_GetOriginalAddr(hook);
+}
+
+extern String (*__polyhook_GetDebugName)(uintptr_t);
+
+static String GetDebugName(uintptr_t hook) {
+	return __polyhook_GetDebugName(hook);
 }
 
 extern bool (*__polyhook_GetArgumentBool)(uintptr_t, uint64_t);

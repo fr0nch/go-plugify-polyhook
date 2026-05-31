@@ -2,6 +2,7 @@ package polyhook
 
 /*
 #include "setters.h"
+#cgo noescape SetDebugName
 #cgo noescape SetArgumentBool
 #cgo noescape SetArgumentInt8
 #cgo noescape SetArgumentUInt8
@@ -61,6 +62,25 @@ var _ = unsafe.Sizeof(0)
 var _ = plugify.Plugin()
 
 // Generated from polyhook (group: setters)
+
+// SetDebugName 
+//  @brief Set debug hook name
+//
+//  @param hook: Hook pointer
+//  @param name: Hook debug name
+func SetDebugName(hook HookHandle, name string) {
+	__hook := C.uintptr_t(hook)
+	__name := plugify.ConstructString(name)
+	plugify.Block {
+		Try: func() {
+			C.SetDebugName(__hook, (*C.String)(unsafe.Pointer(&__name)))
+		},
+		Finally: func() {
+			// Perform cleanup.
+			plugify.DestroyString(&__name)
+		},
+	}.Do()
+}
 
 // SetArgumentBool 
 //  @brief Set argument value
