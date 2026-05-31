@@ -2,40 +2,40 @@
 
 #include "shared.h"
 
-extern uintptr_t (*__polyhook_HookDetour)(uintptr_t, uint8_t, Vector*, int32_t);
+extern uintptr_t (*__polyhook_HookDetour)(uintptr_t, uint8_t, Vector*, int32_t, String*);
 
-static uintptr_t HookDetour(uintptr_t pFunc, uint8_t returnType, Vector* arguments, int32_t varIndex) {
-	return __polyhook_HookDetour(pFunc, returnType, arguments, varIndex);
+static uintptr_t HookDetour(uintptr_t pFunc, uint8_t returnType, Vector* arguments, int32_t varIndex, String* name) {
+	return __polyhook_HookDetour(pFunc, returnType, arguments, varIndex, name);
 }
 
-extern uintptr_t (*__polyhook_HookDetour2)(uintptr_t);
+extern uintptr_t (*__polyhook_HookDetour2)(uintptr_t, String*);
 
-static uintptr_t HookDetour2(uintptr_t pFunc) {
-	return __polyhook_HookDetour2(pFunc);
+static uintptr_t HookDetour2(uintptr_t pFunc, String* name) {
+	return __polyhook_HookDetour2(pFunc, name);
 }
 
-extern uintptr_t (*__polyhook_HookVirtualTable)(uintptr_t, int32_t, uint8_t, Vector*, int32_t);
+extern uintptr_t (*__polyhook_HookVirtualTable)(uintptr_t, int32_t, uint8_t, Vector*, int32_t, String*);
 
-static uintptr_t HookVirtualTable(uintptr_t pClass, int32_t index, uint8_t returnType, Vector* arguments, int32_t varIndex) {
-	return __polyhook_HookVirtualTable(pClass, index, returnType, arguments, varIndex);
+static uintptr_t HookVirtualTable(uintptr_t pClass, int32_t index, uint8_t returnType, Vector* arguments, int32_t varIndex, String* name) {
+	return __polyhook_HookVirtualTable(pClass, index, returnType, arguments, varIndex, name);
 }
 
-extern uintptr_t (*__polyhook_HookVirtualTable2)(uintptr_t, uintptr_t, uint8_t, Vector*, int32_t);
+extern uintptr_t (*__polyhook_HookVirtualTable2)(uintptr_t, uintptr_t, uint8_t, Vector*, int32_t, String*);
 
-static uintptr_t HookVirtualTable2(uintptr_t pClass, uintptr_t pFunc, uint8_t returnType, Vector* arguments, int32_t varIndex) {
-	return __polyhook_HookVirtualTable2(pClass, pFunc, returnType, arguments, varIndex);
+static uintptr_t HookVirtualTable2(uintptr_t pClass, uintptr_t pFunc, uint8_t returnType, Vector* arguments, int32_t varIndex, String* name) {
+	return __polyhook_HookVirtualTable2(pClass, pFunc, returnType, arguments, varIndex, name);
 }
 
-extern uintptr_t (*__polyhook_HookVirtualFunc)(uintptr_t, int32_t, uint8_t, Vector*, int32_t);
+extern uintptr_t (*__polyhook_HookVirtualFunc)(uintptr_t, int32_t, uint8_t, Vector*, int32_t, String*);
 
-static uintptr_t HookVirtualFunc(uintptr_t pClass, int32_t index, uint8_t returnType, Vector* arguments, int32_t varIndex) {
-	return __polyhook_HookVirtualFunc(pClass, index, returnType, arguments, varIndex);
+static uintptr_t HookVirtualFunc(uintptr_t pClass, int32_t index, uint8_t returnType, Vector* arguments, int32_t varIndex, String* name) {
+	return __polyhook_HookVirtualFunc(pClass, index, returnType, arguments, varIndex, name);
 }
 
-extern uintptr_t (*__polyhook_HookVirtualFunc2)(uintptr_t, uintptr_t, uint8_t, Vector*, int32_t);
+extern uintptr_t (*__polyhook_HookVirtualFunc2)(uintptr_t, uintptr_t, uint8_t, Vector*, int32_t, String*);
 
-static uintptr_t HookVirtualFunc2(uintptr_t pClass, uintptr_t pFunc, uint8_t returnType, Vector* arguments, int32_t varIndex) {
-	return __polyhook_HookVirtualFunc2(pClass, pFunc, returnType, arguments, varIndex);
+static uintptr_t HookVirtualFunc2(uintptr_t pClass, uintptr_t pFunc, uint8_t returnType, Vector* arguments, int32_t varIndex, String* name) {
+	return __polyhook_HookVirtualFunc2(pClass, pFunc, returnType, arguments, varIndex, name);
 }
 
 extern bool (*__polyhook_UnhookDetour)(uintptr_t);

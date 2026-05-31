@@ -9,9 +9,6 @@ PLUGIFY_EXPORT uintptr_t (*__polyhook_GetFunctionAddr)(uintptr_t) = NULL;
 PLUGIFY_EXPORT uintptr_t (*__polyhook_GetOriginalAddr)(uintptr_t) = NULL;
 
 
-PLUGIFY_EXPORT String (*__polyhook_GetDebugName)(uintptr_t) = NULL;
-
-
 PLUGIFY_EXPORT bool (*__polyhook_GetArgumentBool)(uintptr_t, uint64_t) = NULL;
 
 

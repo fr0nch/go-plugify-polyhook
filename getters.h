@@ -20,12 +20,6 @@ static uintptr_t GetOriginalAddr(uintptr_t hook) {
 	return __polyhook_GetOriginalAddr(hook);
 }
 
-extern String (*__polyhook_GetDebugName)(uintptr_t);
-
-static String GetDebugName(uintptr_t hook) {
-	return __polyhook_GetDebugName(hook);
-}
-
 extern bool (*__polyhook_GetArgumentBool)(uintptr_t, uint64_t);
 
 static bool GetArgumentBool(uintptr_t params, uint64_t index) {

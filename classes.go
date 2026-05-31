@@ -1281,20 +1281,22 @@ type PolyHook struct {
 //  @param returnType: Return type
 //  @param arguments: Arguments type array
 //  @param varIndex: Index of a first variadic argument or -1
+//  @param name: The debug name of hook for profiler and logging
 //
 //  @return Returns hook pointer
-func (w *PolyHook) HookDetour(pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32) *Callback {
-	return NewCallback(HookDetour(pFunc, returnType, arguments, varIndex))
+func (w *PolyHook) HookDetour(pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32, name string) *Callback {
+	return NewCallback(HookDetour(pFunc, returnType, arguments, varIndex, name))
 }
 
 // HookDetour2 
 //  @brief Sets a mid hook
 //
 //  @param pFunc: Function address
+//  @param name: The debug name of hook for profiler and logging
 //
 //  @return Returns hook pointer
-func (w *PolyHook) HookDetour2(pFunc uintptr) *Callback {
-	return NewCallback(HookDetour2(pFunc))
+func (w *PolyHook) HookDetour2(pFunc uintptr, name string) *Callback {
+	return NewCallback(HookDetour2(pFunc, name))
 }
 
 // UnhookDetour 
@@ -1315,10 +1317,11 @@ func (w *PolyHook) UnhookDetour(pFunc uintptr) bool {
 //  @param returnType: Return type
 //  @param arguments: Arguments type array
 //  @param varIndex: Index of a first variadic argument or -1
+//  @param name: The debug name of hook for profiler and logging
 //
 //  @return Returns hook pointer
-func (w *PolyHook) HookVirtualTable(pClass uintptr, index int32, returnType DataType, arguments []DataType, varIndex int32) *Callback {
-	return NewCallback(HookVirtualTable(pClass, index, returnType, arguments, varIndex))
+func (w *PolyHook) HookVirtualTable(pClass uintptr, index int32, returnType DataType, arguments []DataType, varIndex int32, name string) *Callback {
+	return NewCallback(HookVirtualTable(pClass, index, returnType, arguments, varIndex, name))
 }
 
 // HookVirtualTableByFunc 
@@ -1329,10 +1332,11 @@ func (w *PolyHook) HookVirtualTable(pClass uintptr, index int32, returnType Data
 //  @param returnType: Return type
 //  @param arguments: Arguments type array
 //  @param varIndex: Index of a first variadic argument or -1
+//  @param name: The debug name of hook for profiler and logging
 //
 //  @return Returns hook pointer
-func (w *PolyHook) HookVirtualTableByFunc(pClass uintptr, pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32) *Callback {
-	return NewCallback(HookVirtualTable2(pClass, pFunc, returnType, arguments, varIndex))
+func (w *PolyHook) HookVirtualTableByFunc(pClass uintptr, pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32, name string) *Callback {
+	return NewCallback(HookVirtualTable2(pClass, pFunc, returnType, arguments, varIndex, name))
 }
 
 // UnhookVirtualTable 
@@ -1365,10 +1369,11 @@ func (w *PolyHook) UnhookVirtualTableByFunc(pClass uintptr, pFunc uintptr) bool 
 //  @param returnType: Return type
 //  @param arguments: Arguments type array
 //  @param varIndex: Index of a first variadic argument or -1
+//  @param name: The debug name of hook for profiler and logging
 //
 //  @return Returns hook pointer
-func (w *PolyHook) HookVirtualFunc(pClass uintptr, index int32, returnType DataType, arguments []DataType, varIndex int32) *Callback {
-	return NewCallback(HookVirtualFunc(pClass, index, returnType, arguments, varIndex))
+func (w *PolyHook) HookVirtualFunc(pClass uintptr, index int32, returnType DataType, arguments []DataType, varIndex int32, name string) *Callback {
+	return NewCallback(HookVirtualFunc(pClass, index, returnType, arguments, varIndex, name))
 }
 
 // HookVirtualFuncByFunc 
@@ -1379,10 +1384,11 @@ func (w *PolyHook) HookVirtualFunc(pClass uintptr, index int32, returnType DataT
 //  @param returnType: Return type
 //  @param arguments: Arguments type array
 //  @param varIndex: Index of a first variadic argument or -1
+//  @param name: The debug name of hook for profiler and logging
 //
 //  @return Returns hook pointer
-func (w *PolyHook) HookVirtualFuncByFunc(pClass uintptr, pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32) *Callback {
-	return NewCallback(HookVirtualFunc2(pClass, pFunc, returnType, arguments, varIndex))
+func (w *PolyHook) HookVirtualFuncByFunc(pClass uintptr, pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32, name string) *Callback {
+	return NewCallback(HookVirtualFunc2(pClass, pFunc, returnType, arguments, varIndex, name))
 }
 
 // UnhookVirtualFunc 

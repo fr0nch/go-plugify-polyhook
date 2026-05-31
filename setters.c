@@ -1,8 +1,5 @@
 #include "shared.h"
 
-PLUGIFY_EXPORT void (*__polyhook_SetDebugName)(uintptr_t, String*) = NULL;
-
-
 PLUGIFY_EXPORT void (*__polyhook_SetArgumentBool)(uintptr_t, uint64_t, bool) = NULL;
 
 

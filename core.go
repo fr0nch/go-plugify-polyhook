@@ -45,21 +45,24 @@ var _ = plugify.Plugin()
 //  @param returnType: Return type
 //  @param arguments: Arguments type array
 //  @param varIndex: Index of a first variadic argument or -1
+//  @param name: The debug name of hook for profiler and logging
 //
 //  @return Returns hook pointer
-func HookDetour(pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32) HookHandle {
+func HookDetour(pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32, name string) HookHandle {
 	var __retVal HookHandle
 	__pFunc := C.uintptr_t(pFunc)
 	__returnType := C.uint8_t(returnType)
 	__arguments := plugify.ConstructVectorUInt8(arguments)
 	__varIndex := C.int32_t(varIndex)
+	__name := plugify.ConstructString(name)
 	plugify.Block {
 		Try: func() {
-			__retVal = uintptr(C.HookDetour(__pFunc, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex))
+			__retVal = uintptr(C.HookDetour(__pFunc, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
 		},
 		Finally: func() {
 			// Perform cleanup.
 			plugify.DestroyVectorUInt8(&__arguments)
+			plugify.DestroyString(&__name)
 		},
 	}.Do()
 	return __retVal
@@ -69,12 +72,22 @@ func HookDetour(pFunc uintptr, returnType DataType, arguments []DataType, varInd
 //  @brief Sets a mid hook
 //
 //  @param pFunc: Function address
+//  @param name: The debug name of hook for profiler and logging
 //
 //  @return Returns hook pointer
-func HookDetour2(pFunc uintptr) HookHandle {
+func HookDetour2(pFunc uintptr, name string) HookHandle {
 	var __retVal HookHandle
 	__pFunc := C.uintptr_t(pFunc)
-	__retVal = uintptr(C.HookDetour2(__pFunc))
+	__name := plugify.ConstructString(name)
+	plugify.Block {
+		Try: func() {
+			__retVal = uintptr(C.HookDetour2(__pFunc, (*C.String)(unsafe.Pointer(&__name))))
+		},
+		Finally: func() {
+			// Perform cleanup.
+			plugify.DestroyString(&__name)
+		},
+	}.Do()
 	return __retVal
 }
 
@@ -86,22 +99,25 @@ func HookDetour2(pFunc uintptr) HookHandle {
 //  @param returnType: Return type
 //  @param arguments: Arguments type array
 //  @param varIndex: Index of a first variadic argument or -1
+//  @param name: The debug name of hook for profiler and logging
 //
 //  @return Returns hook pointer
-func HookVirtualTable(pClass uintptr, index int32, returnType DataType, arguments []DataType, varIndex int32) HookHandle {
+func HookVirtualTable(pClass uintptr, index int32, returnType DataType, arguments []DataType, varIndex int32, name string) HookHandle {
 	var __retVal HookHandle
 	__pClass := C.uintptr_t(pClass)
 	__index := C.int32_t(index)
 	__returnType := C.uint8_t(returnType)
 	__arguments := plugify.ConstructVectorUInt8(arguments)
 	__varIndex := C.int32_t(varIndex)
+	__name := plugify.ConstructString(name)
 	plugify.Block {
 		Try: func() {
-			__retVal = uintptr(C.HookVirtualTable(__pClass, __index, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex))
+			__retVal = uintptr(C.HookVirtualTable(__pClass, __index, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
 		},
 		Finally: func() {
 			// Perform cleanup.
 			plugify.DestroyVectorUInt8(&__arguments)
+			plugify.DestroyString(&__name)
 		},
 	}.Do()
 	return __retVal
@@ -115,22 +131,25 @@ func HookVirtualTable(pClass uintptr, index int32, returnType DataType, argument
 //  @param returnType: Return type
 //  @param arguments: Arguments type array
 //  @param varIndex: Index of a first variadic argument or -1
+//  @param name: The debug name of hook for profiler and logging
 //
 //  @return Returns hook pointer
-func HookVirtualTable2(pClass uintptr, pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32) HookHandle {
+func HookVirtualTable2(pClass uintptr, pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32, name string) HookHandle {
 	var __retVal HookHandle
 	__pClass := C.uintptr_t(pClass)
 	__pFunc := C.uintptr_t(pFunc)
 	__returnType := C.uint8_t(returnType)
 	__arguments := plugify.ConstructVectorUInt8(arguments)
 	__varIndex := C.int32_t(varIndex)
+	__name := plugify.ConstructString(name)
 	plugify.Block {
 		Try: func() {
-			__retVal = uintptr(C.HookVirtualTable2(__pClass, __pFunc, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex))
+			__retVal = uintptr(C.HookVirtualTable2(__pClass, __pFunc, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
 		},
 		Finally: func() {
 			// Perform cleanup.
 			plugify.DestroyVectorUInt8(&__arguments)
+			plugify.DestroyString(&__name)
 		},
 	}.Do()
 	return __retVal
@@ -144,22 +163,25 @@ func HookVirtualTable2(pClass uintptr, pFunc uintptr, returnType DataType, argum
 //  @param returnType: Return type
 //  @param arguments: Arguments type array
 //  @param varIndex: Index of a first variadic argument or -1
+//  @param name: The debug name of hook for profiler and logging
 //
 //  @return Returns hook pointer
-func HookVirtualFunc(pClass uintptr, index int32, returnType DataType, arguments []DataType, varIndex int32) HookHandle {
+func HookVirtualFunc(pClass uintptr, index int32, returnType DataType, arguments []DataType, varIndex int32, name string) HookHandle {
 	var __retVal HookHandle
 	__pClass := C.uintptr_t(pClass)
 	__index := C.int32_t(index)
 	__returnType := C.uint8_t(returnType)
 	__arguments := plugify.ConstructVectorUInt8(arguments)
 	__varIndex := C.int32_t(varIndex)
+	__name := plugify.ConstructString(name)
 	plugify.Block {
 		Try: func() {
-			__retVal = uintptr(C.HookVirtualFunc(__pClass, __index, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex))
+			__retVal = uintptr(C.HookVirtualFunc(__pClass, __index, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
 		},
 		Finally: func() {
 			// Perform cleanup.
 			plugify.DestroyVectorUInt8(&__arguments)
+			plugify.DestroyString(&__name)
 		},
 	}.Do()
 	return __retVal
@@ -173,22 +195,25 @@ func HookVirtualFunc(pClass uintptr, index int32, returnType DataType, arguments
 //  @param returnType: Return type
 //  @param arguments: Arguments type array
 //  @param varIndex: Index of a first variadic argument or -1
+//  @param name: The debug name of hook for profiler and logging
 //
 //  @return Returns hook pointer
-func HookVirtualFunc2(pClass uintptr, pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32) HookHandle {
+func HookVirtualFunc2(pClass uintptr, pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32, name string) HookHandle {
 	var __retVal HookHandle
 	__pClass := C.uintptr_t(pClass)
 	__pFunc := C.uintptr_t(pFunc)
 	__returnType := C.uint8_t(returnType)
 	__arguments := plugify.ConstructVectorUInt8(arguments)
 	__varIndex := C.int32_t(varIndex)
+	__name := plugify.ConstructString(name)
 	plugify.Block {
 		Try: func() {
-			__retVal = uintptr(C.HookVirtualFunc2(__pClass, __pFunc, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex))
+			__retVal = uintptr(C.HookVirtualFunc2(__pClass, __pFunc, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
 		},
 		Finally: func() {
 			// Perform cleanup.
 			plugify.DestroyVectorUInt8(&__arguments)
+			plugify.DestroyString(&__name)
 		},
 	}.Do()
 	return __retVal

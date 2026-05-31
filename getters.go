@@ -5,7 +5,6 @@ package polyhook
 #cgo noescape GetError
 #cgo noescape GetFunctionAddr
 #cgo noescape GetOriginalAddr
-#cgo noescape GetDebugName
 #cgo noescape GetArgumentBool
 #cgo noescape GetArgumentInt8
 #cgo noescape GetArgumentUInt8
@@ -112,31 +111,6 @@ func GetOriginalAddr(hook HookHandle) uintptr {
 	var __retVal uintptr
 	__hook := C.uintptr_t(hook)
 	__retVal = uintptr(C.GetOriginalAddr(__hook))
-	return __retVal
-}
-
-// GetDebugName 
-//  @brief Get debug hook name
-//
-//  @param hook: Hook pointer
-//
-//  @return Returns hook debug name
-func GetDebugName(hook HookHandle) string {
-	var __retVal string
-	var __retVal_native plugify.PlgString
-	__hook := C.uintptr_t(hook)
-	plugify.Block {
-		Try: func() {
-			__native := C.GetDebugName(__hook)
-			__retVal_native = *(*plugify.PlgString)(unsafe.Pointer(&__native))
-			// Unmarshal - Convert native data to managed data.
-			__retVal = plugify.GetStringData(&__retVal_native)
-		},
-		Finally: func() {
-			// Perform cleanup.
-			plugify.DestroyString(&__retVal_native)
-		},
-	}.Do()
 	return __retVal
 }
 
