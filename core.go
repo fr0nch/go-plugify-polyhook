@@ -57,7 +57,7 @@ func HookDetour(pFunc uintptr, returnType DataType, arguments []DataType, varInd
 	__name := plugify.ConstructString(name)
 	plugify.Block {
 		Try: func() {
-			__retVal = uintptr(C.HookDetour(__pFunc, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
+			__retVal = HookHandle(C.HookDetour(__pFunc, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
 		},
 		Finally: func() {
 			// Perform cleanup.
@@ -81,7 +81,7 @@ func HookDetour2(pFunc uintptr, name string) HookHandle {
 	__name := plugify.ConstructString(name)
 	plugify.Block {
 		Try: func() {
-			__retVal = uintptr(C.HookDetour2(__pFunc, (*C.String)(unsafe.Pointer(&__name))))
+			__retVal = HookHandle(C.HookDetour2(__pFunc, (*C.String)(unsafe.Pointer(&__name))))
 		},
 		Finally: func() {
 			// Perform cleanup.
@@ -112,7 +112,7 @@ func HookVirtualTable(pClass uintptr, index int32, returnType DataType, argument
 	__name := plugify.ConstructString(name)
 	plugify.Block {
 		Try: func() {
-			__retVal = uintptr(C.HookVirtualTable(__pClass, __index, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
+			__retVal = HookHandle(C.HookVirtualTable(__pClass, __index, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
 		},
 		Finally: func() {
 			// Perform cleanup.
@@ -144,7 +144,7 @@ func HookVirtualTable2(pClass uintptr, pFunc uintptr, returnType DataType, argum
 	__name := plugify.ConstructString(name)
 	plugify.Block {
 		Try: func() {
-			__retVal = uintptr(C.HookVirtualTable2(__pClass, __pFunc, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
+			__retVal = HookHandle(C.HookVirtualTable2(__pClass, __pFunc, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
 		},
 		Finally: func() {
 			// Perform cleanup.
@@ -176,7 +176,7 @@ func HookVirtualFunc(pClass uintptr, index int32, returnType DataType, arguments
 	__name := plugify.ConstructString(name)
 	plugify.Block {
 		Try: func() {
-			__retVal = uintptr(C.HookVirtualFunc(__pClass, __index, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
+			__retVal = HookHandle(C.HookVirtualFunc(__pClass, __index, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
 		},
 		Finally: func() {
 			// Perform cleanup.
@@ -208,7 +208,7 @@ func HookVirtualFunc2(pClass uintptr, pFunc uintptr, returnType DataType, argume
 	__name := plugify.ConstructString(name)
 	plugify.Block {
 		Try: func() {
-			__retVal = uintptr(C.HookVirtualFunc2(__pClass, __pFunc, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
+			__retVal = HookHandle(C.HookVirtualFunc2(__pClass, __pFunc, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
 		},
 		Finally: func() {
 			// Perform cleanup.

@@ -33,7 +33,7 @@ var _ = plugify.Plugin()
 func FindDetour(pFunc uintptr) HookHandle {
 	var __retVal HookHandle
 	__pFunc := C.uintptr_t(pFunc)
-	__retVal = uintptr(C.FindDetour(__pFunc))
+	__retVal = HookHandle(C.FindDetour(__pFunc))
 	return __retVal
 }
 
@@ -63,7 +63,7 @@ func FindVirtual2(pClass uintptr, pFunc uintptr) HookHandle {
 	var __retVal HookHandle
 	__pClass := C.uintptr_t(pClass)
 	__pFunc := C.uintptr_t(pFunc)
-	__retVal = uintptr(C.FindVirtual2(__pClass, __pFunc))
+	__retVal = HookHandle(C.FindVirtual2(__pClass, __pFunc))
 	return __retVal
 }
 

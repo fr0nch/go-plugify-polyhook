@@ -78,7 +78,7 @@ func GetError() string {
 			__native := C.GetError()
 			__retVal_native = *(*plugify.PlgString)(unsafe.Pointer(&__native))
 			// Unmarshal - Convert native data to managed data.
-			__retVal = plugify.GetStringData(&__retVal_native)
+			__retVal = plugify.GetStringData[string](&__retVal_native)
 		},
 		Finally: func() {
 			// Perform cleanup.
@@ -285,7 +285,7 @@ func GetArgumentString(params ParametersHandle, index uint64) string {
 			__native := C.GetArgumentString(__params, __index)
 			__retVal_native = *(*plugify.PlgString)(unsafe.Pointer(&__native))
 			// Unmarshal - Convert native data to managed data.
-			__retVal = plugify.GetStringData(&__retVal_native)
+			__retVal = plugify.GetStringData[string](&__retVal_native)
 		},
 		Finally: func() {
 			// Perform cleanup.
@@ -465,7 +465,7 @@ func GetReturnString(ret ReturnHandle) string {
 			__native := C.GetReturnString(__ret)
 			__retVal_native = *(*plugify.PlgString)(unsafe.Pointer(&__native))
 			// Unmarshal - Convert native data to managed data.
-			__retVal = plugify.GetStringData(&__retVal_native)
+			__retVal = plugify.GetStringData[string](&__retVal_native)
 		},
 		Finally: func() {
 			// Perform cleanup.
@@ -669,7 +669,7 @@ func GetRegisterString(registers RegistersHandle, reg RegisterType) string {
 			__native := C.GetRegisterString(__registers, __reg)
 			__retVal_native = *(*plugify.PlgString)(unsafe.Pointer(&__native))
 			// Unmarshal - Convert native data to managed data.
-			__retVal = plugify.GetStringData(&__retVal_native)
+			__retVal = plugify.GetStringData[string](&__retVal_native)
 		},
 		Finally: func() {
 			// Perform cleanup.
