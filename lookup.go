@@ -44,11 +44,11 @@ func FindDetour(pFunc uintptr) HookHandle {
 //  @param index: Virtual table index
 //
 //  @return Returns hook pointer
-func FindVirtual(pClass uintptr, index int32) uintptr {
-	var __retVal uintptr
+func FindVirtual(pClass uintptr, index int32) HookHandle {
+	var __retVal HookHandle
 	__pClass := C.uintptr_t(pClass)
 	__index := C.int32_t(index)
-	__retVal = uintptr(C.FindVirtual(__pClass, __index))
+	__retVal = HookHandle(C.FindVirtual(__pClass, __index))
 	return __retVal
 }
 

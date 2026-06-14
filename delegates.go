@@ -7,6 +7,6 @@ var _ = plugify.Plugin()
 // Generated from polyhook
 
 // CallbackHandler - Callback function
-type CallbackHandler func(hook uintptr, params uintptr, count int32, ret uintptr, type_ CallbackType) ResultType
+type CallbackHandler func(hook HookHandle, params ParametersHandle, count int32, ret ReturnHandle, type_ CallbackType) ResultType
 
 

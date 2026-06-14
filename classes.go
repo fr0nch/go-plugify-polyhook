@@ -27,23 +27,23 @@ var (
 //  @brief RAII wrapper for Callback pointer from hook operations.
 //
 type Callback struct {
-	handle    uintptr
+	handle    HookHandle
 }
 
 // NewCallback creates a Callback from a handle
-func NewCallback(handle uintptr) *Callback {
+func NewCallback(handle HookHandle) *Callback {
 	return &Callback{
 		handle:    handle,
 	}
 }
 
 // Get returns the underlying handle
-func (w *Callback) Get() uintptr {
+func (w *Callback) Get() HookHandle {
 	return w.handle
 }
 
 // Release releases ownership and returns the handle
-func (w *Callback) Release() uintptr {
+func (w *Callback) Release() HookHandle {
 	handle := w.handle
 	w.handle = 0
 	return handle
@@ -173,23 +173,23 @@ var (
 //  @brief RAII wrapper for Callback::Parameters pointer used in callback handlers.
 //
 type Parameters struct {
-	handle    uintptr
+	handle    ParametersHandle
 }
 
 // NewParameters creates a Parameters from a handle
-func NewParameters(handle uintptr) *Parameters {
+func NewParameters(handle ParametersHandle) *Parameters {
 	return &Parameters{
 		handle:    handle,
 	}
 }
 
 // Get returns the underlying handle
-func (w *Parameters) Get() uintptr {
+func (w *Parameters) Get() ParametersHandle {
 	return w.handle
 }
 
 // Release releases ownership and returns the handle
-func (w *Parameters) Release() uintptr {
+func (w *Parameters) Release() ParametersHandle {
 	handle := w.handle
 	w.handle = 0
 	return handle
@@ -549,23 +549,23 @@ var (
 //  @brief RAII wrapper for Callback::Return pointer used in callback handlers.
 //
 type Return struct {
-	handle    uintptr
+	handle    ReturnHandle
 }
 
 // NewReturn creates a Return from a handle
-func NewReturn(handle uintptr) *Return {
+func NewReturn(handle ReturnHandle) *Return {
 	return &Return{
 		handle:    handle,
 	}
 }
 
 // Get returns the underlying handle
-func (w *Return) Get() uintptr {
+func (w *Return) Get() ReturnHandle {
 	return w.handle
 }
 
 // Release releases ownership and returns the handle
-func (w *Return) Release() uintptr {
+func (w *Return) Release() ReturnHandle {
 	handle := w.handle
 	w.handle = 0
 	return handle
@@ -900,23 +900,23 @@ var (
 //  @brief RAII wrapper for Callback::Registers pointer used in callback handlers.
 //
 type Registers struct {
-	handle    uintptr
+	handle    RegistersHandle
 }
 
 // NewRegisters creates a Registers from a handle
-func NewRegisters(handle uintptr) *Registers {
+func NewRegisters(handle RegistersHandle) *Registers {
 	return &Registers{
 		handle:    handle,
 	}
 }
 
 // Get returns the underlying handle
-func (w *Registers) Get() uintptr {
+func (w *Registers) Get() RegistersHandle {
 	return w.handle
 }
 
 // Release releases ownership and returns the handle
-func (w *Registers) Release() uintptr {
+func (w *Registers) Release() RegistersHandle {
 	handle := w.handle
 	w.handle = 0
 	return handle
