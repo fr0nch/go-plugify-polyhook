@@ -34,21 +34,11 @@ var _ = errors.New("")
 var _ = reflect.TypeOf(0)
 var _ = runtime.GOOS
 var _ = unsafe.Sizeof(0)
-var _ = plugify.Plugin()
+var _ = plugify.ApiVersion
 
 // Generated from polyhook (group: core)
 
-// HookDetour 
-//  @brief Sets a detour hook
-//
-//  @param pFunc: Function address
-//  @param returnType: Return type
-//  @param arguments: Arguments type array
-//  @param varIndex: Index of a first variadic argument or -1
-//  @param name: The debug name of hook for profiler and logging
-//
-//  @return Returns hook pointer
-func HookDetour(pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32, name string) HookHandle {
+var P_HookDetour = func(pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32, name string) HookHandle {
 	var __retVal HookHandle
 	__pFunc := C.uintptr_t(pFunc)
 	__returnType := C.uint8_t(returnType)
@@ -68,14 +58,21 @@ func HookDetour(pFunc uintptr, returnType DataType, arguments []DataType, varInd
 	return __retVal
 }
 
-// HookDetour2 
-//  @brief Sets a mid hook
+// HookDetour 
+//  @brief Sets a detour hook
 //
 //  @param pFunc: Function address
+//  @param returnType: Return type
+//  @param arguments: Arguments type array
+//  @param varIndex: Index of a first variadic argument or -1
 //  @param name: The debug name of hook for profiler and logging
 //
 //  @return Returns hook pointer
-func HookDetour2(pFunc uintptr, name string) HookHandle {
+func HookDetour(pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32, name string) HookHandle {
+	return P_HookDetour(pFunc, returnType, arguments, varIndex, name)
+}
+
+var P_HookDetour2 = func(pFunc uintptr, name string) HookHandle {
 	var __retVal HookHandle
 	__pFunc := C.uintptr_t(pFunc)
 	__name := plugify.ConstructString(name)
@@ -85,6 +82,38 @@ func HookDetour2(pFunc uintptr, name string) HookHandle {
 		},
 		Finally: func() {
 			// Perform cleanup.
+			plugify.DestroyString(&__name)
+		},
+	}.Do()
+	return __retVal
+}
+
+// HookDetour2 
+//  @brief Sets a mid hook
+//
+//  @param pFunc: Function address
+//  @param name: The debug name of hook for profiler and logging
+//
+//  @return Returns hook pointer
+func HookDetour2(pFunc uintptr, name string) HookHandle {
+	return P_HookDetour2(pFunc, name)
+}
+
+var P_HookVirtualTable = func(pClass uintptr, index int32, returnType DataType, arguments []DataType, varIndex int32, name string) HookHandle {
+	var __retVal HookHandle
+	__pClass := C.uintptr_t(pClass)
+	__index := C.int32_t(index)
+	__returnType := C.uint8_t(returnType)
+	__arguments := plugify.ConstructVectorUInt8(arguments)
+	__varIndex := C.int32_t(varIndex)
+	__name := plugify.ConstructString(name)
+	plugify.Block {
+		Try: func() {
+			__retVal = HookHandle(C.HookVirtualTable(__pClass, __index, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
+		},
+		Finally: func() {
+			// Perform cleanup.
+			plugify.DestroyVectorUInt8(&__arguments)
 			plugify.DestroyString(&__name)
 		},
 	}.Do()
@@ -103,16 +132,20 @@ func HookDetour2(pFunc uintptr, name string) HookHandle {
 //
 //  @return Returns hook pointer
 func HookVirtualTable(pClass uintptr, index int32, returnType DataType, arguments []DataType, varIndex int32, name string) HookHandle {
+	return P_HookVirtualTable(pClass, index, returnType, arguments, varIndex, name)
+}
+
+var P_HookVirtualTable2 = func(pClass uintptr, pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32, name string) HookHandle {
 	var __retVal HookHandle
 	__pClass := C.uintptr_t(pClass)
-	__index := C.int32_t(index)
+	__pFunc := C.uintptr_t(pFunc)
 	__returnType := C.uint8_t(returnType)
 	__arguments := plugify.ConstructVectorUInt8(arguments)
 	__varIndex := C.int32_t(varIndex)
 	__name := plugify.ConstructString(name)
 	plugify.Block {
 		Try: func() {
-			__retVal = HookHandle(C.HookVirtualTable(__pClass, __index, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
+			__retVal = HookHandle(C.HookVirtualTable2(__pClass, __pFunc, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
 		},
 		Finally: func() {
 			// Perform cleanup.
@@ -135,16 +168,20 @@ func HookVirtualTable(pClass uintptr, index int32, returnType DataType, argument
 //
 //  @return Returns hook pointer
 func HookVirtualTable2(pClass uintptr, pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32, name string) HookHandle {
+	return P_HookVirtualTable2(pClass, pFunc, returnType, arguments, varIndex, name)
+}
+
+var P_HookVirtualFunc = func(pClass uintptr, index int32, returnType DataType, arguments []DataType, varIndex int32, name string) HookHandle {
 	var __retVal HookHandle
 	__pClass := C.uintptr_t(pClass)
-	__pFunc := C.uintptr_t(pFunc)
+	__index := C.int32_t(index)
 	__returnType := C.uint8_t(returnType)
 	__arguments := plugify.ConstructVectorUInt8(arguments)
 	__varIndex := C.int32_t(varIndex)
 	__name := plugify.ConstructString(name)
 	plugify.Block {
 		Try: func() {
-			__retVal = HookHandle(C.HookVirtualTable2(__pClass, __pFunc, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
+			__retVal = HookHandle(C.HookVirtualFunc(__pClass, __index, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
 		},
 		Finally: func() {
 			// Perform cleanup.
@@ -167,16 +204,20 @@ func HookVirtualTable2(pClass uintptr, pFunc uintptr, returnType DataType, argum
 //
 //  @return Returns hook pointer
 func HookVirtualFunc(pClass uintptr, index int32, returnType DataType, arguments []DataType, varIndex int32, name string) HookHandle {
+	return P_HookVirtualFunc(pClass, index, returnType, arguments, varIndex, name)
+}
+
+var P_HookVirtualFunc2 = func(pClass uintptr, pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32, name string) HookHandle {
 	var __retVal HookHandle
 	__pClass := C.uintptr_t(pClass)
-	__index := C.int32_t(index)
+	__pFunc := C.uintptr_t(pFunc)
 	__returnType := C.uint8_t(returnType)
 	__arguments := plugify.ConstructVectorUInt8(arguments)
 	__varIndex := C.int32_t(varIndex)
 	__name := plugify.ConstructString(name)
 	plugify.Block {
 		Try: func() {
-			__retVal = HookHandle(C.HookVirtualFunc(__pClass, __index, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
+			__retVal = HookHandle(C.HookVirtualFunc2(__pClass, __pFunc, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
 		},
 		Finally: func() {
 			// Perform cleanup.
@@ -199,23 +240,13 @@ func HookVirtualFunc(pClass uintptr, index int32, returnType DataType, arguments
 //
 //  @return Returns hook pointer
 func HookVirtualFunc2(pClass uintptr, pFunc uintptr, returnType DataType, arguments []DataType, varIndex int32, name string) HookHandle {
-	var __retVal HookHandle
-	__pClass := C.uintptr_t(pClass)
+	return P_HookVirtualFunc2(pClass, pFunc, returnType, arguments, varIndex, name)
+}
+
+var P_UnhookDetour = func(pFunc uintptr) bool {
+	var __retVal bool
 	__pFunc := C.uintptr_t(pFunc)
-	__returnType := C.uint8_t(returnType)
-	__arguments := plugify.ConstructVectorUInt8(arguments)
-	__varIndex := C.int32_t(varIndex)
-	__name := plugify.ConstructString(name)
-	plugify.Block {
-		Try: func() {
-			__retVal = HookHandle(C.HookVirtualFunc2(__pClass, __pFunc, __returnType, (*C.Vector)(unsafe.Pointer(&__arguments)), __varIndex, (*C.String)(unsafe.Pointer(&__name))))
-		},
-		Finally: func() {
-			// Perform cleanup.
-			plugify.DestroyVectorUInt8(&__arguments)
-			plugify.DestroyString(&__name)
-		},
-	}.Do()
+	__retVal = bool(C.UnhookDetour(__pFunc))
 	return __retVal
 }
 
@@ -226,9 +257,14 @@ func HookVirtualFunc2(pClass uintptr, pFunc uintptr, returnType DataType, argume
 //
 //  @return Returns true on success, false otherwise
 func UnhookDetour(pFunc uintptr) bool {
+	return P_UnhookDetour(pFunc)
+}
+
+var P_UnhookVirtualTable = func(pClass uintptr, index int32) bool {
 	var __retVal bool
-	__pFunc := C.uintptr_t(pFunc)
-	__retVal = bool(C.UnhookDetour(__pFunc))
+	__pClass := C.uintptr_t(pClass)
+	__index := C.int32_t(index)
+	__retVal = bool(C.UnhookVirtualTable(__pClass, __index))
 	return __retVal
 }
 
@@ -240,10 +276,14 @@ func UnhookDetour(pFunc uintptr) bool {
 //
 //  @return Returns true on success, false otherwise
 func UnhookVirtualTable(pClass uintptr, index int32) bool {
+	return P_UnhookVirtualTable(pClass, index)
+}
+
+var P_UnhookVirtualTable2 = func(pClass uintptr, pFunc uintptr) bool {
 	var __retVal bool
 	__pClass := C.uintptr_t(pClass)
-	__index := C.int32_t(index)
-	__retVal = bool(C.UnhookVirtualTable(__pClass, __index))
+	__pFunc := C.uintptr_t(pFunc)
+	__retVal = bool(C.UnhookVirtualTable2(__pClass, __pFunc))
 	return __retVal
 }
 
@@ -255,10 +295,14 @@ func UnhookVirtualTable(pClass uintptr, index int32) bool {
 //
 //  @return Returns true on success, false otherwise
 func UnhookVirtualTable2(pClass uintptr, pFunc uintptr) bool {
+	return P_UnhookVirtualTable2(pClass, pFunc)
+}
+
+var P_UnhookVirtualFunc = func(pClass uintptr, index int32) bool {
 	var __retVal bool
 	__pClass := C.uintptr_t(pClass)
-	__pFunc := C.uintptr_t(pFunc)
-	__retVal = bool(C.UnhookVirtualTable2(__pClass, __pFunc))
+	__index := C.int32_t(index)
+	__retVal = bool(C.UnhookVirtualFunc(__pClass, __index))
 	return __retVal
 }
 
@@ -270,10 +314,14 @@ func UnhookVirtualTable2(pClass uintptr, pFunc uintptr) bool {
 //
 //  @return Returns true on success, false otherwise
 func UnhookVirtualFunc(pClass uintptr, index int32) bool {
+	return P_UnhookVirtualFunc(pClass, index)
+}
+
+var P_UnhookVirtualFunc2 = func(pClass uintptr, pFunc uintptr) bool {
 	var __retVal bool
 	__pClass := C.uintptr_t(pClass)
-	__index := C.int32_t(index)
-	__retVal = bool(C.UnhookVirtualFunc(__pClass, __index))
+	__pFunc := C.uintptr_t(pFunc)
+	__retVal = bool(C.UnhookVirtualFunc2(__pClass, __pFunc))
 	return __retVal
 }
 
@@ -285,18 +333,23 @@ func UnhookVirtualFunc(pClass uintptr, index int32) bool {
 //
 //  @return Returns true on success, false otherwise
 func UnhookVirtualFunc2(pClass uintptr, pFunc uintptr) bool {
-	var __retVal bool
-	__pClass := C.uintptr_t(pClass)
-	__pFunc := C.uintptr_t(pFunc)
-	__retVal = bool(C.UnhookVirtualFunc2(__pClass, __pFunc))
-	return __retVal
+	return P_UnhookVirtualFunc2(pClass, pFunc)
+}
+
+var P_UnhookAll = func() {
+	C.UnhookAll()
 }
 
 // UnhookAll 
 //  @brief Removes all previously set hooks
 //
 func UnhookAll() {
-	C.UnhookAll()
+	P_UnhookAll()
+}
+
+var P_UnhookAllVirtual = func(pClass uintptr) {
+	__pClass := C.uintptr_t(pClass)
+	C.UnhookAllVirtual(__pClass)
 }
 
 // UnhookAllVirtual 
@@ -304,8 +357,16 @@ func UnhookAll() {
 //
 //  @param pClass: Object pointer
 func UnhookAllVirtual(pClass uintptr) {
-	__pClass := C.uintptr_t(pClass)
-	C.UnhookAllVirtual(__pClass)
+	P_UnhookAllVirtual(pClass)
+}
+
+var P_AddCallback = func(hook HookHandle, type_ CallbackType, handler CallbackHandler) bool {
+	var __retVal bool
+	__hook := C.uintptr_t(hook)
+	__type_ := C.uint8_t(type_)
+	__handler := plugify.GetFunctionPointerForDelegate(handler)
+	__retVal = bool(C.AddCallback(__hook, __type_, __handler))
+	return __retVal
 }
 
 // AddCallback 
@@ -317,11 +378,16 @@ func UnhookAllVirtual(pClass uintptr) {
 //
 //  @return Returns true on success, false otherwise
 func AddCallback(hook HookHandle, type_ CallbackType, handler CallbackHandler) bool {
+	return P_AddCallback(hook, type_, handler)
+}
+
+var P_AddCallback2 = func(hook HookHandle, type_ CallbackType, handler CallbackHandler, priority int32) bool {
 	var __retVal bool
 	__hook := C.uintptr_t(hook)
 	__type_ := C.uint8_t(type_)
 	__handler := plugify.GetFunctionPointerForDelegate(handler)
-	__retVal = bool(C.AddCallback(__hook, __type_, __handler))
+	__priority := C.int32_t(priority)
+	__retVal = bool(C.AddCallback2(__hook, __type_, __handler, __priority))
 	return __retVal
 }
 
@@ -335,12 +401,15 @@ func AddCallback(hook HookHandle, type_ CallbackType, handler CallbackHandler) b
 //
 //  @return Returns true on success, false otherwise
 func AddCallback2(hook HookHandle, type_ CallbackType, handler CallbackHandler, priority int32) bool {
+	return P_AddCallback2(hook, type_, handler, priority)
+}
+
+var P_RemoveCallback = func(hook HookHandle, type_ CallbackType, handler CallbackHandler) bool {
 	var __retVal bool
 	__hook := C.uintptr_t(hook)
 	__type_ := C.uint8_t(type_)
 	__handler := plugify.GetFunctionPointerForDelegate(handler)
-	__priority := C.int32_t(priority)
-	__retVal = bool(C.AddCallback2(__hook, __type_, __handler, __priority))
+	__retVal = bool(C.RemoveCallback(__hook, __type_, __handler))
 	return __retVal
 }
 
@@ -353,11 +422,15 @@ func AddCallback2(hook HookHandle, type_ CallbackType, handler CallbackHandler, 
 //
 //  @return Returns true on success, false otherwise
 func RemoveCallback(hook HookHandle, type_ CallbackType, handler CallbackHandler) bool {
+	return P_RemoveCallback(hook, type_, handler)
+}
+
+var P_IsCallbackRegistered = func(hook HookHandle, type_ CallbackType, handler CallbackHandler) bool {
 	var __retVal bool
 	__hook := C.uintptr_t(hook)
 	__type_ := C.uint8_t(type_)
 	__handler := plugify.GetFunctionPointerForDelegate(handler)
-	__retVal = bool(C.RemoveCallback(__hook, __type_, __handler))
+	__retVal = bool(C.IsCallbackRegistered(__hook, __type_, __handler))
 	return __retVal
 }
 
@@ -370,11 +443,13 @@ func RemoveCallback(hook HookHandle, type_ CallbackType, handler CallbackHandler
 //
 //  @return Returns true on success, false otherwise
 func IsCallbackRegistered(hook HookHandle, type_ CallbackType, handler CallbackHandler) bool {
+	return P_IsCallbackRegistered(hook, type_, handler)
+}
+
+var P_AreCallbacksRegistered = func(hook HookHandle) bool {
 	var __retVal bool
 	__hook := C.uintptr_t(hook)
-	__type_ := C.uint8_t(type_)
-	__handler := plugify.GetFunctionPointerForDelegate(handler)
-	__retVal = bool(C.IsCallbackRegistered(__hook, __type_, __handler))
+	__retVal = bool(C.AreCallbacksRegistered(__hook))
 	return __retVal
 }
 
@@ -385,9 +460,6 @@ func IsCallbackRegistered(hook HookHandle, type_ CallbackType, handler CallbackH
 //
 //  @return Returns true on success, false otherwise
 func AreCallbacksRegistered(hook HookHandle) bool {
-	var __retVal bool
-	__hook := C.uintptr_t(hook)
-	__retVal = bool(C.AreCallbacksRegistered(__hook))
-	return __retVal
+	return P_AreCallbacksRegistered(hook)
 }
 

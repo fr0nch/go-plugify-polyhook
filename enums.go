@@ -3,7 +3,7 @@ package polyhook
 // Generated from polyhook
 
 // DataType - Enum representing different data types in the system.
-type DataType = uint8
+type DataType uint8
 
 const (
 	// Void - Represents no data type (void).
@@ -37,7 +37,7 @@ const (
 )
 
 // CallbackType - Enum representing the type of callback.
-type CallbackType = uint8
+type CallbackType uint8
 
 const (
 	// Pre - Callback will be executed before the original function
@@ -47,7 +47,7 @@ const (
 )
 
 // ResultType - Enum representing the possible results of an operation.
-type ResultType = int32
+type ResultType int32
 
 const (
 	// Ignored - Handler didn't take any action.
@@ -61,7 +61,7 @@ const (
 )
 
 // RegisterType - Enum representing register storage offsets based on RegisterType layout (x64)
-type RegisterType = uint64
+type RegisterType uint64
 
 const (
 	// XMM0 - XMM register 0.

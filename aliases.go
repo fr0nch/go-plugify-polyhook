@@ -2,7 +2,7 @@ package polyhook
 
 import "github.com/untrustedmodders/go-plugify"
 
-var _ = plugify.Plugin()
+var _ = plugify.ApiVersion
 
 // Generated from polyhook
 

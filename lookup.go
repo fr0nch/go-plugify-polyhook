@@ -20,9 +20,16 @@ var _ = errors.New("")
 var _ = reflect.TypeOf(0)
 var _ = runtime.GOOS
 var _ = unsafe.Sizeof(0)
-var _ = plugify.Plugin()
+var _ = plugify.ApiVersion
 
 // Generated from polyhook (group: lookup)
+
+var P_FindDetour = func(pFunc uintptr) HookHandle {
+	var __retVal HookHandle
+	__pFunc := C.uintptr_t(pFunc)
+	__retVal = HookHandle(C.FindDetour(__pFunc))
+	return __retVal
+}
 
 // FindDetour 
 //  @brief Attempts to find existing detour hook
@@ -31,9 +38,14 @@ var _ = plugify.Plugin()
 //
 //  @return Returns hook pointer
 func FindDetour(pFunc uintptr) HookHandle {
+	return P_FindDetour(pFunc)
+}
+
+var P_FindVirtual = func(pClass uintptr, index int32) HookHandle {
 	var __retVal HookHandle
-	__pFunc := C.uintptr_t(pFunc)
-	__retVal = HookHandle(C.FindDetour(__pFunc))
+	__pClass := C.uintptr_t(pClass)
+	__index := C.int32_t(index)
+	__retVal = HookHandle(C.FindVirtual(__pClass, __index))
 	return __retVal
 }
 
@@ -45,10 +57,14 @@ func FindDetour(pFunc uintptr) HookHandle {
 //
 //  @return Returns hook pointer
 func FindVirtual(pClass uintptr, index int32) HookHandle {
+	return P_FindVirtual(pClass, index)
+}
+
+var P_FindVirtual2 = func(pClass uintptr, pFunc uintptr) HookHandle {
 	var __retVal HookHandle
 	__pClass := C.uintptr_t(pClass)
-	__index := C.int32_t(index)
-	__retVal = HookHandle(C.FindVirtual(__pClass, __index))
+	__pFunc := C.uintptr_t(pFunc)
+	__retVal = HookHandle(C.FindVirtual2(__pClass, __pFunc))
 	return __retVal
 }
 
@@ -60,10 +76,13 @@ func FindVirtual(pClass uintptr, index int32) HookHandle {
 //
 //  @return Returns hook pointer
 func FindVirtual2(pClass uintptr, pFunc uintptr) HookHandle {
-	var __retVal HookHandle
-	__pClass := C.uintptr_t(pClass)
+	return P_FindVirtual2(pClass, pFunc)
+}
+
+var P_GetVirtualIndex = func(pFunc uintptr) int32 {
+	var __retVal int32
 	__pFunc := C.uintptr_t(pFunc)
-	__retVal = HookHandle(C.FindVirtual2(__pClass, __pFunc))
+	__retVal = int32(C.GetVirtualIndex(__pFunc))
 	return __retVal
 }
 
@@ -74,9 +93,6 @@ func FindVirtual2(pClass uintptr, pFunc uintptr) HookHandle {
 //
 //  @return Virtual table index
 func GetVirtualIndex(pFunc uintptr) int32 {
-	var __retVal int32
-	__pFunc := C.uintptr_t(pFunc)
-	__retVal = int32(C.GetVirtualIndex(__pFunc))
-	return __retVal
+	return P_GetVirtualIndex(pFunc)
 }
 
