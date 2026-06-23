@@ -65,7 +65,7 @@ var _ = plugify.ApiVersion
 
 // Generated from polyhook (group: getters)
 
-var P_GetError = func() string {
+var _GetError = func() string {
 	var __retVal string
 	var __retVal_native plugify.PlgString
 	plugify.Block {
@@ -89,10 +89,10 @@ var P_GetError = func() string {
 //
 //  @return Returns last error
 func GetError() string {
-	return P_GetError()
+	return _GetError()
 }
 
-var P_GetFunctionAddr = func(hook HookHandle) uintptr {
+var _GetFunctionAddr = func(hook HookHandle) uintptr {
 	var __retVal uintptr
 	__hook := C.uintptr_t(hook)
 	__retVal = uintptr(C.GetFunctionAddr(__hook))
@@ -106,10 +106,10 @@ var P_GetFunctionAddr = func(hook HookHandle) uintptr {
 //
 //  @return Returns jit generated function pointer
 func GetFunctionAddr(hook HookHandle) uintptr {
-	return P_GetFunctionAddr(hook)
+	return _GetFunctionAddr(hook)
 }
 
-var P_GetOriginalAddr = func(hook HookHandle) uintptr {
+var _GetOriginalAddr = func(hook HookHandle) uintptr {
 	var __retVal uintptr
 	__hook := C.uintptr_t(hook)
 	__retVal = uintptr(C.GetOriginalAddr(__hook))
@@ -123,10 +123,10 @@ var P_GetOriginalAddr = func(hook HookHandle) uintptr {
 //
 //  @return Returns original function pointer
 func GetOriginalAddr(hook HookHandle) uintptr {
-	return P_GetOriginalAddr(hook)
+	return _GetOriginalAddr(hook)
 }
 
-var P_GetArgumentBool = func(params ParametersHandle, index uint64) bool {
+var _GetArgumentBool = func(params ParametersHandle, index uint64) bool {
 	var __retVal bool
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
@@ -140,10 +140,10 @@ var P_GetArgumentBool = func(params ParametersHandle, index uint64) bool {
 //  @param params: Pointer to params structure
 //  @param index: Index to get
 func GetArgumentBool(params ParametersHandle, index uint64) bool {
-	return P_GetArgumentBool(params, index)
+	return _GetArgumentBool(params, index)
 }
 
-var P_GetArgumentInt8 = func(params ParametersHandle, index uint64) int8 {
+var _GetArgumentInt8 = func(params ParametersHandle, index uint64) int8 {
 	var __retVal int8
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
@@ -157,10 +157,10 @@ var P_GetArgumentInt8 = func(params ParametersHandle, index uint64) int8 {
 //  @param params: Pointer to params structure
 //  @param index: Index to get
 func GetArgumentInt8(params ParametersHandle, index uint64) int8 {
-	return P_GetArgumentInt8(params, index)
+	return _GetArgumentInt8(params, index)
 }
 
-var P_GetArgumentUInt8 = func(params ParametersHandle, index uint64) uint8 {
+var _GetArgumentUInt8 = func(params ParametersHandle, index uint64) uint8 {
 	var __retVal uint8
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
@@ -174,10 +174,10 @@ var P_GetArgumentUInt8 = func(params ParametersHandle, index uint64) uint8 {
 //  @param params: Pointer to params structure
 //  @param index: Index to get
 func GetArgumentUInt8(params ParametersHandle, index uint64) uint8 {
-	return P_GetArgumentUInt8(params, index)
+	return _GetArgumentUInt8(params, index)
 }
 
-var P_GetArgumentInt16 = func(params ParametersHandle, index uint64) int16 {
+var _GetArgumentInt16 = func(params ParametersHandle, index uint64) int16 {
 	var __retVal int16
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
@@ -191,10 +191,10 @@ var P_GetArgumentInt16 = func(params ParametersHandle, index uint64) int16 {
 //  @param params: Pointer to params structure
 //  @param index: Index to get
 func GetArgumentInt16(params ParametersHandle, index uint64) int16 {
-	return P_GetArgumentInt16(params, index)
+	return _GetArgumentInt16(params, index)
 }
 
-var P_GetArgumentUInt16 = func(params ParametersHandle, index uint64) uint16 {
+var _GetArgumentUInt16 = func(params ParametersHandle, index uint64) uint16 {
 	var __retVal uint16
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
@@ -208,10 +208,10 @@ var P_GetArgumentUInt16 = func(params ParametersHandle, index uint64) uint16 {
 //  @param params: Pointer to params structure
 //  @param index: Index to get
 func GetArgumentUInt16(params ParametersHandle, index uint64) uint16 {
-	return P_GetArgumentUInt16(params, index)
+	return _GetArgumentUInt16(params, index)
 }
 
-var P_GetArgumentInt32 = func(params ParametersHandle, index uint64) int32 {
+var _GetArgumentInt32 = func(params ParametersHandle, index uint64) int32 {
 	var __retVal int32
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
@@ -225,10 +225,10 @@ var P_GetArgumentInt32 = func(params ParametersHandle, index uint64) int32 {
 //  @param params: Pointer to params structure
 //  @param index: Index to get
 func GetArgumentInt32(params ParametersHandle, index uint64) int32 {
-	return P_GetArgumentInt32(params, index)
+	return _GetArgumentInt32(params, index)
 }
 
-var P_GetArgumentUInt32 = func(params ParametersHandle, index uint64) uint32 {
+var _GetArgumentUInt32 = func(params ParametersHandle, index uint64) uint32 {
 	var __retVal uint32
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
@@ -242,10 +242,10 @@ var P_GetArgumentUInt32 = func(params ParametersHandle, index uint64) uint32 {
 //  @param params: Pointer to params structure
 //  @param index: Index to get
 func GetArgumentUInt32(params ParametersHandle, index uint64) uint32 {
-	return P_GetArgumentUInt32(params, index)
+	return _GetArgumentUInt32(params, index)
 }
 
-var P_GetArgumentInt64 = func(params ParametersHandle, index uint64) int64 {
+var _GetArgumentInt64 = func(params ParametersHandle, index uint64) int64 {
 	var __retVal int64
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
@@ -259,10 +259,10 @@ var P_GetArgumentInt64 = func(params ParametersHandle, index uint64) int64 {
 //  @param params: Pointer to params structure
 //  @param index: Index to get
 func GetArgumentInt64(params ParametersHandle, index uint64) int64 {
-	return P_GetArgumentInt64(params, index)
+	return _GetArgumentInt64(params, index)
 }
 
-var P_GetArgumentUInt64 = func(params ParametersHandle, index uint64) uint64 {
+var _GetArgumentUInt64 = func(params ParametersHandle, index uint64) uint64 {
 	var __retVal uint64
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
@@ -276,10 +276,10 @@ var P_GetArgumentUInt64 = func(params ParametersHandle, index uint64) uint64 {
 //  @param params: Pointer to params structure
 //  @param index: Index to get
 func GetArgumentUInt64(params ParametersHandle, index uint64) uint64 {
-	return P_GetArgumentUInt64(params, index)
+	return _GetArgumentUInt64(params, index)
 }
 
-var P_GetArgumentFloat = func(params ParametersHandle, index uint64) float32 {
+var _GetArgumentFloat = func(params ParametersHandle, index uint64) float32 {
 	var __retVal float32
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
@@ -293,10 +293,10 @@ var P_GetArgumentFloat = func(params ParametersHandle, index uint64) float32 {
 //  @param params: Pointer to params structure
 //  @param index: Index to get
 func GetArgumentFloat(params ParametersHandle, index uint64) float32 {
-	return P_GetArgumentFloat(params, index)
+	return _GetArgumentFloat(params, index)
 }
 
-var P_GetArgumentDouble = func(params ParametersHandle, index uint64) float64 {
+var _GetArgumentDouble = func(params ParametersHandle, index uint64) float64 {
 	var __retVal float64
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
@@ -310,10 +310,10 @@ var P_GetArgumentDouble = func(params ParametersHandle, index uint64) float64 {
 //  @param params: Pointer to params structure
 //  @param index: Index to get
 func GetArgumentDouble(params ParametersHandle, index uint64) float64 {
-	return P_GetArgumentDouble(params, index)
+	return _GetArgumentDouble(params, index)
 }
 
-var P_GetArgumentPointer = func(params ParametersHandle, index uint64) uintptr {
+var _GetArgumentPointer = func(params ParametersHandle, index uint64) uintptr {
 	var __retVal uintptr
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
@@ -327,10 +327,10 @@ var P_GetArgumentPointer = func(params ParametersHandle, index uint64) uintptr {
 //  @param params: Pointer to params structure
 //  @param index: Index to get
 func GetArgumentPointer(params ParametersHandle, index uint64) uintptr {
-	return P_GetArgumentPointer(params, index)
+	return _GetArgumentPointer(params, index)
 }
 
-var P_GetArgumentString = func(params ParametersHandle, index uint64) string {
+var _GetArgumentString = func(params ParametersHandle, index uint64) string {
 	var __retVal string
 	var __retVal_native plugify.PlgString
 	__params := C.uintptr_t(params)
@@ -356,10 +356,10 @@ var P_GetArgumentString = func(params ParametersHandle, index uint64) string {
 //  @param params: Pointer to params structure
 //  @param index: Index to get
 func GetArgumentString(params ParametersHandle, index uint64) string {
-	return P_GetArgumentString(params, index)
+	return _GetArgumentString(params, index)
 }
 
-var P_GetArgument = func(params ParametersHandle, index uint64) any {
+var _GetArgument = func(params ParametersHandle, index uint64) any {
 	var __retVal any
 	var __retVal_native plugify.PlgVariant
 	__params := C.uintptr_t(params)
@@ -385,10 +385,10 @@ var P_GetArgument = func(params ParametersHandle, index uint64) any {
 //  @param params: Pointer to params structure
 //  @param index: Index to get
 func GetArgument(params ParametersHandle, index uint64) any {
-	return P_GetArgument(params, index)
+	return _GetArgument(params, index)
 }
 
-var P_GetReturnBool = func(ret ReturnHandle) bool {
+var _GetReturnBool = func(ret ReturnHandle) bool {
 	var __retVal bool
 	__ret := C.uintptr_t(ret)
 	__retVal = bool(C.GetReturnBool(__ret))
@@ -400,10 +400,10 @@ var P_GetReturnBool = func(ret ReturnHandle) bool {
 //
 //  @param ret: Pointer to return structure
 func GetReturnBool(ret ReturnHandle) bool {
-	return P_GetReturnBool(ret)
+	return _GetReturnBool(ret)
 }
 
-var P_GetReturnInt8 = func(ret ReturnHandle) int8 {
+var _GetReturnInt8 = func(ret ReturnHandle) int8 {
 	var __retVal int8
 	__ret := C.uintptr_t(ret)
 	__retVal = int8(C.GetReturnInt8(__ret))
@@ -415,10 +415,10 @@ var P_GetReturnInt8 = func(ret ReturnHandle) int8 {
 //
 //  @param ret: Pointer to return structure
 func GetReturnInt8(ret ReturnHandle) int8 {
-	return P_GetReturnInt8(ret)
+	return _GetReturnInt8(ret)
 }
 
-var P_GetReturnUInt8 = func(ret ReturnHandle) uint8 {
+var _GetReturnUInt8 = func(ret ReturnHandle) uint8 {
 	var __retVal uint8
 	__ret := C.uintptr_t(ret)
 	__retVal = uint8(C.GetReturnUInt8(__ret))
@@ -430,10 +430,10 @@ var P_GetReturnUInt8 = func(ret ReturnHandle) uint8 {
 //
 //  @param ret: Pointer to return structure
 func GetReturnUInt8(ret ReturnHandle) uint8 {
-	return P_GetReturnUInt8(ret)
+	return _GetReturnUInt8(ret)
 }
 
-var P_GetReturnInt16 = func(ret ReturnHandle) int16 {
+var _GetReturnInt16 = func(ret ReturnHandle) int16 {
 	var __retVal int16
 	__ret := C.uintptr_t(ret)
 	__retVal = int16(C.GetReturnInt16(__ret))
@@ -445,10 +445,10 @@ var P_GetReturnInt16 = func(ret ReturnHandle) int16 {
 //
 //  @param ret: Pointer to return structure
 func GetReturnInt16(ret ReturnHandle) int16 {
-	return P_GetReturnInt16(ret)
+	return _GetReturnInt16(ret)
 }
 
-var P_GetReturnUInt16 = func(ret ReturnHandle) uint16 {
+var _GetReturnUInt16 = func(ret ReturnHandle) uint16 {
 	var __retVal uint16
 	__ret := C.uintptr_t(ret)
 	__retVal = uint16(C.GetReturnUInt16(__ret))
@@ -460,10 +460,10 @@ var P_GetReturnUInt16 = func(ret ReturnHandle) uint16 {
 //
 //  @param ret: Pointer to return structure
 func GetReturnUInt16(ret ReturnHandle) uint16 {
-	return P_GetReturnUInt16(ret)
+	return _GetReturnUInt16(ret)
 }
 
-var P_GetReturnInt32 = func(ret ReturnHandle) int32 {
+var _GetReturnInt32 = func(ret ReturnHandle) int32 {
 	var __retVal int32
 	__ret := C.uintptr_t(ret)
 	__retVal = int32(C.GetReturnInt32(__ret))
@@ -475,10 +475,10 @@ var P_GetReturnInt32 = func(ret ReturnHandle) int32 {
 //
 //  @param ret: Pointer to return structure
 func GetReturnInt32(ret ReturnHandle) int32 {
-	return P_GetReturnInt32(ret)
+	return _GetReturnInt32(ret)
 }
 
-var P_GetReturnUInt32 = func(ret ReturnHandle) uint32 {
+var _GetReturnUInt32 = func(ret ReturnHandle) uint32 {
 	var __retVal uint32
 	__ret := C.uintptr_t(ret)
 	__retVal = uint32(C.GetReturnUInt32(__ret))
@@ -490,10 +490,10 @@ var P_GetReturnUInt32 = func(ret ReturnHandle) uint32 {
 //
 //  @param ret: Pointer to return structure
 func GetReturnUInt32(ret ReturnHandle) uint32 {
-	return P_GetReturnUInt32(ret)
+	return _GetReturnUInt32(ret)
 }
 
-var P_GetReturnInt64 = func(ret ReturnHandle) int64 {
+var _GetReturnInt64 = func(ret ReturnHandle) int64 {
 	var __retVal int64
 	__ret := C.uintptr_t(ret)
 	__retVal = int64(C.GetReturnInt64(__ret))
@@ -505,10 +505,10 @@ var P_GetReturnInt64 = func(ret ReturnHandle) int64 {
 //
 //  @param ret: Pointer to return structure
 func GetReturnInt64(ret ReturnHandle) int64 {
-	return P_GetReturnInt64(ret)
+	return _GetReturnInt64(ret)
 }
 
-var P_GetReturnUInt64 = func(ret ReturnHandle) uint64 {
+var _GetReturnUInt64 = func(ret ReturnHandle) uint64 {
 	var __retVal uint64
 	__ret := C.uintptr_t(ret)
 	__retVal = uint64(C.GetReturnUInt64(__ret))
@@ -520,10 +520,10 @@ var P_GetReturnUInt64 = func(ret ReturnHandle) uint64 {
 //
 //  @param ret: Pointer to return structure
 func GetReturnUInt64(ret ReturnHandle) uint64 {
-	return P_GetReturnUInt64(ret)
+	return _GetReturnUInt64(ret)
 }
 
-var P_GetReturnFloat = func(ret ReturnHandle) float32 {
+var _GetReturnFloat = func(ret ReturnHandle) float32 {
 	var __retVal float32
 	__ret := C.uintptr_t(ret)
 	__retVal = float32(C.GetReturnFloat(__ret))
@@ -535,10 +535,10 @@ var P_GetReturnFloat = func(ret ReturnHandle) float32 {
 //
 //  @param ret: Pointer to return structure
 func GetReturnFloat(ret ReturnHandle) float32 {
-	return P_GetReturnFloat(ret)
+	return _GetReturnFloat(ret)
 }
 
-var P_GetReturnDouble = func(ret ReturnHandle) float64 {
+var _GetReturnDouble = func(ret ReturnHandle) float64 {
 	var __retVal float64
 	__ret := C.uintptr_t(ret)
 	__retVal = float64(C.GetReturnDouble(__ret))
@@ -550,10 +550,10 @@ var P_GetReturnDouble = func(ret ReturnHandle) float64 {
 //
 //  @param ret: Pointer to return structure
 func GetReturnDouble(ret ReturnHandle) float64 {
-	return P_GetReturnDouble(ret)
+	return _GetReturnDouble(ret)
 }
 
-var P_GetReturnPointer = func(ret ReturnHandle) uintptr {
+var _GetReturnPointer = func(ret ReturnHandle) uintptr {
 	var __retVal uintptr
 	__ret := C.uintptr_t(ret)
 	__retVal = uintptr(C.GetReturnPointer(__ret))
@@ -565,10 +565,10 @@ var P_GetReturnPointer = func(ret ReturnHandle) uintptr {
 //
 //  @param ret: Pointer to return structure
 func GetReturnPointer(ret ReturnHandle) uintptr {
-	return P_GetReturnPointer(ret)
+	return _GetReturnPointer(ret)
 }
 
-var P_GetReturnString = func(ret ReturnHandle) string {
+var _GetReturnString = func(ret ReturnHandle) string {
 	var __retVal string
 	var __retVal_native plugify.PlgString
 	__ret := C.uintptr_t(ret)
@@ -592,10 +592,10 @@ var P_GetReturnString = func(ret ReturnHandle) string {
 //
 //  @param ret: Pointer to return structure
 func GetReturnString(ret ReturnHandle) string {
-	return P_GetReturnString(ret)
+	return _GetReturnString(ret)
 }
 
-var P_GetReturn = func(ret ReturnHandle) any {
+var _GetReturn = func(ret ReturnHandle) any {
 	var __retVal any
 	var __retVal_native plugify.PlgVariant
 	__ret := C.uintptr_t(ret)
@@ -619,10 +619,10 @@ var P_GetReturn = func(ret ReturnHandle) any {
 //
 //  @param ret: Pointer to return structure
 func GetReturn(ret ReturnHandle) any {
-	return P_GetReturn(ret)
+	return _GetReturn(ret)
 }
 
-var P_GetRegisterBool = func(registers RegistersHandle, reg RegisterType) bool {
+var _GetRegisterBool = func(registers RegistersHandle, reg RegisterType) bool {
 	var __retVal bool
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
@@ -636,10 +636,10 @@ var P_GetRegisterBool = func(registers RegistersHandle, reg RegisterType) bool {
 //  @param registers: Pointer to registers structure
 //  @param reg: Register to get
 func GetRegisterBool(registers RegistersHandle, reg RegisterType) bool {
-	return P_GetRegisterBool(registers, reg)
+	return _GetRegisterBool(registers, reg)
 }
 
-var P_GetRegisterInt8 = func(registers RegistersHandle, reg RegisterType) int8 {
+var _GetRegisterInt8 = func(registers RegistersHandle, reg RegisterType) int8 {
 	var __retVal int8
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
@@ -653,10 +653,10 @@ var P_GetRegisterInt8 = func(registers RegistersHandle, reg RegisterType) int8 {
 //  @param registers: Pointer to registers structure
 //  @param reg: Register to get
 func GetRegisterInt8(registers RegistersHandle, reg RegisterType) int8 {
-	return P_GetRegisterInt8(registers, reg)
+	return _GetRegisterInt8(registers, reg)
 }
 
-var P_GetRegisterUInt8 = func(registers RegistersHandle, reg RegisterType) uint8 {
+var _GetRegisterUInt8 = func(registers RegistersHandle, reg RegisterType) uint8 {
 	var __retVal uint8
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
@@ -670,10 +670,10 @@ var P_GetRegisterUInt8 = func(registers RegistersHandle, reg RegisterType) uint8
 //  @param registers: Pointer to registers structure
 //  @param reg: Register to get
 func GetRegisterUInt8(registers RegistersHandle, reg RegisterType) uint8 {
-	return P_GetRegisterUInt8(registers, reg)
+	return _GetRegisterUInt8(registers, reg)
 }
 
-var P_GetRegisterInt16 = func(registers RegistersHandle, reg RegisterType) int16 {
+var _GetRegisterInt16 = func(registers RegistersHandle, reg RegisterType) int16 {
 	var __retVal int16
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
@@ -687,10 +687,10 @@ var P_GetRegisterInt16 = func(registers RegistersHandle, reg RegisterType) int16
 //  @param registers: Pointer to registers structure
 //  @param reg: Register to get
 func GetRegisterInt16(registers RegistersHandle, reg RegisterType) int16 {
-	return P_GetRegisterInt16(registers, reg)
+	return _GetRegisterInt16(registers, reg)
 }
 
-var P_GetRegisterUInt16 = func(registers RegistersHandle, reg RegisterType) uint16 {
+var _GetRegisterUInt16 = func(registers RegistersHandle, reg RegisterType) uint16 {
 	var __retVal uint16
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
@@ -704,10 +704,10 @@ var P_GetRegisterUInt16 = func(registers RegistersHandle, reg RegisterType) uint
 //  @param registers: Pointer to registers structure
 //  @param reg: Register to get
 func GetRegisterUInt16(registers RegistersHandle, reg RegisterType) uint16 {
-	return P_GetRegisterUInt16(registers, reg)
+	return _GetRegisterUInt16(registers, reg)
 }
 
-var P_GetRegisterInt32 = func(registers RegistersHandle, reg RegisterType) int32 {
+var _GetRegisterInt32 = func(registers RegistersHandle, reg RegisterType) int32 {
 	var __retVal int32
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
@@ -721,10 +721,10 @@ var P_GetRegisterInt32 = func(registers RegistersHandle, reg RegisterType) int32
 //  @param registers: Pointer to registers structure
 //  @param reg: Register to get
 func GetRegisterInt32(registers RegistersHandle, reg RegisterType) int32 {
-	return P_GetRegisterInt32(registers, reg)
+	return _GetRegisterInt32(registers, reg)
 }
 
-var P_GetRegisterUInt32 = func(registers RegistersHandle, reg RegisterType) uint32 {
+var _GetRegisterUInt32 = func(registers RegistersHandle, reg RegisterType) uint32 {
 	var __retVal uint32
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
@@ -738,10 +738,10 @@ var P_GetRegisterUInt32 = func(registers RegistersHandle, reg RegisterType) uint
 //  @param registers: Pointer to registers structure
 //  @param reg: Register to get
 func GetRegisterUInt32(registers RegistersHandle, reg RegisterType) uint32 {
-	return P_GetRegisterUInt32(registers, reg)
+	return _GetRegisterUInt32(registers, reg)
 }
 
-var P_GetRegisterInt64 = func(registers RegistersHandle, reg RegisterType) int64 {
+var _GetRegisterInt64 = func(registers RegistersHandle, reg RegisterType) int64 {
 	var __retVal int64
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
@@ -755,10 +755,10 @@ var P_GetRegisterInt64 = func(registers RegistersHandle, reg RegisterType) int64
 //  @param registers: Pointer to registers structure
 //  @param reg: Register to get
 func GetRegisterInt64(registers RegistersHandle, reg RegisterType) int64 {
-	return P_GetRegisterInt64(registers, reg)
+	return _GetRegisterInt64(registers, reg)
 }
 
-var P_GetRegisterUInt64 = func(registers RegistersHandle, reg RegisterType) uint64 {
+var _GetRegisterUInt64 = func(registers RegistersHandle, reg RegisterType) uint64 {
 	var __retVal uint64
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
@@ -772,10 +772,10 @@ var P_GetRegisterUInt64 = func(registers RegistersHandle, reg RegisterType) uint
 //  @param registers: Pointer to registers structure
 //  @param reg: Register to get
 func GetRegisterUInt64(registers RegistersHandle, reg RegisterType) uint64 {
-	return P_GetRegisterUInt64(registers, reg)
+	return _GetRegisterUInt64(registers, reg)
 }
 
-var P_GetRegisterFloat = func(registers RegistersHandle, reg RegisterType) float32 {
+var _GetRegisterFloat = func(registers RegistersHandle, reg RegisterType) float32 {
 	var __retVal float32
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
@@ -789,10 +789,10 @@ var P_GetRegisterFloat = func(registers RegistersHandle, reg RegisterType) float
 //  @param registers: Pointer to registers structure
 //  @param reg: Register to get
 func GetRegisterFloat(registers RegistersHandle, reg RegisterType) float32 {
-	return P_GetRegisterFloat(registers, reg)
+	return _GetRegisterFloat(registers, reg)
 }
 
-var P_GetRegisterDouble = func(registers RegistersHandle, reg RegisterType) float64 {
+var _GetRegisterDouble = func(registers RegistersHandle, reg RegisterType) float64 {
 	var __retVal float64
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
@@ -806,10 +806,10 @@ var P_GetRegisterDouble = func(registers RegistersHandle, reg RegisterType) floa
 //  @param registers: Pointer to registers structure
 //  @param reg: Register to get
 func GetRegisterDouble(registers RegistersHandle, reg RegisterType) float64 {
-	return P_GetRegisterDouble(registers, reg)
+	return _GetRegisterDouble(registers, reg)
 }
 
-var P_GetRegisterPointer = func(registers RegistersHandle, reg RegisterType) uintptr {
+var _GetRegisterPointer = func(registers RegistersHandle, reg RegisterType) uintptr {
 	var __retVal uintptr
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
@@ -823,10 +823,10 @@ var P_GetRegisterPointer = func(registers RegistersHandle, reg RegisterType) uin
 //  @param registers: Pointer to registers structure
 //  @param reg: Register to get
 func GetRegisterPointer(registers RegistersHandle, reg RegisterType) uintptr {
-	return P_GetRegisterPointer(registers, reg)
+	return _GetRegisterPointer(registers, reg)
 }
 
-var P_GetRegisterString = func(registers RegistersHandle, reg RegisterType) string {
+var _GetRegisterString = func(registers RegistersHandle, reg RegisterType) string {
 	var __retVal string
 	var __retVal_native plugify.PlgString
 	__registers := C.uintptr_t(registers)
@@ -852,10 +852,10 @@ var P_GetRegisterString = func(registers RegistersHandle, reg RegisterType) stri
 //  @param registers: Pointer to registers structure
 //  @param reg: Register to get
 func GetRegisterString(registers RegistersHandle, reg RegisterType) string {
-	return P_GetRegisterString(registers, reg)
+	return _GetRegisterString(registers, reg)
 }
 
-var P_GetRegister = func(registers RegistersHandle, reg RegisterType) any {
+var _GetRegister = func(registers RegistersHandle, reg RegisterType) any {
 	var __retVal any
 	var __retVal_native plugify.PlgVariant
 	__registers := C.uintptr_t(registers)
@@ -881,6 +881,6 @@ var P_GetRegister = func(registers RegistersHandle, reg RegisterType) any {
 //  @param registers: Pointer to registers structure
 //  @param reg: Register to get
 func GetRegister(registers RegistersHandle, reg RegisterType) any {
-	return P_GetRegister(registers, reg)
+	return _GetRegister(registers, reg)
 }
 

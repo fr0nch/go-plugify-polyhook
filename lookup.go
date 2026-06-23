@@ -24,7 +24,7 @@ var _ = plugify.ApiVersion
 
 // Generated from polyhook (group: lookup)
 
-var P_FindDetour = func(pFunc uintptr) HookHandle {
+var _FindDetour = func(pFunc uintptr) HookHandle {
 	var __retVal HookHandle
 	__pFunc := C.uintptr_t(pFunc)
 	__retVal = HookHandle(C.FindDetour(__pFunc))
@@ -38,10 +38,10 @@ var P_FindDetour = func(pFunc uintptr) HookHandle {
 //
 //  @return Returns hook pointer
 func FindDetour(pFunc uintptr) HookHandle {
-	return P_FindDetour(pFunc)
+	return _FindDetour(pFunc)
 }
 
-var P_FindVirtual = func(pClass uintptr, index int32) HookHandle {
+var _FindVirtual = func(pClass uintptr, index int32) HookHandle {
 	var __retVal HookHandle
 	__pClass := C.uintptr_t(pClass)
 	__index := C.int32_t(index)
@@ -57,10 +57,10 @@ var P_FindVirtual = func(pClass uintptr, index int32) HookHandle {
 //
 //  @return Returns hook pointer
 func FindVirtual(pClass uintptr, index int32) HookHandle {
-	return P_FindVirtual(pClass, index)
+	return _FindVirtual(pClass, index)
 }
 
-var P_FindVirtual2 = func(pClass uintptr, pFunc uintptr) HookHandle {
+var _FindVirtual2 = func(pClass uintptr, pFunc uintptr) HookHandle {
 	var __retVal HookHandle
 	__pClass := C.uintptr_t(pClass)
 	__pFunc := C.uintptr_t(pFunc)
@@ -76,10 +76,10 @@ var P_FindVirtual2 = func(pClass uintptr, pFunc uintptr) HookHandle {
 //
 //  @return Returns hook pointer
 func FindVirtual2(pClass uintptr, pFunc uintptr) HookHandle {
-	return P_FindVirtual2(pClass, pFunc)
+	return _FindVirtual2(pClass, pFunc)
 }
 
-var P_GetVirtualIndex = func(pFunc uintptr) int32 {
+var _GetVirtualIndex = func(pFunc uintptr) int32 {
 	var __retVal int32
 	__pFunc := C.uintptr_t(pFunc)
 	__retVal = int32(C.GetVirtualIndex(__pFunc))
@@ -93,6 +93,6 @@ var P_GetVirtualIndex = func(pFunc uintptr) int32 {
 //
 //  @return Virtual table index
 func GetVirtualIndex(pFunc uintptr) int32 {
-	return P_GetVirtualIndex(pFunc)
+	return _GetVirtualIndex(pFunc)
 }
 

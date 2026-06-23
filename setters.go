@@ -62,7 +62,7 @@ var _ = plugify.ApiVersion
 
 // Generated from polyhook (group: setters)
 
-var P_SetArgumentBool = func(params ParametersHandle, index uint64, value bool) {
+var _SetArgumentBool = func(params ParametersHandle, index uint64, value bool) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.bool(value)
@@ -76,10 +76,10 @@ var P_SetArgumentBool = func(params ParametersHandle, index uint64, value bool) 
 //  @param index: Index to set
 //  @param value: Value to set
 func SetArgumentBool(params ParametersHandle, index uint64, value bool) {
-	P_SetArgumentBool(params, index, value)
+	_SetArgumentBool(params, index, value)
 }
 
-var P_SetArgumentInt8 = func(params ParametersHandle, index uint64, value int8) {
+var _SetArgumentInt8 = func(params ParametersHandle, index uint64, value int8) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.int8_t(value)
@@ -93,10 +93,10 @@ var P_SetArgumentInt8 = func(params ParametersHandle, index uint64, value int8) 
 //  @param index: Index to set
 //  @param value: Value to set
 func SetArgumentInt8(params ParametersHandle, index uint64, value int8) {
-	P_SetArgumentInt8(params, index, value)
+	_SetArgumentInt8(params, index, value)
 }
 
-var P_SetArgumentUInt8 = func(params ParametersHandle, index uint64, value uint8) {
+var _SetArgumentUInt8 = func(params ParametersHandle, index uint64, value uint8) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.uint8_t(value)
@@ -110,10 +110,10 @@ var P_SetArgumentUInt8 = func(params ParametersHandle, index uint64, value uint8
 //  @param index: Index to set
 //  @param value: Value to set
 func SetArgumentUInt8(params ParametersHandle, index uint64, value uint8) {
-	P_SetArgumentUInt8(params, index, value)
+	_SetArgumentUInt8(params, index, value)
 }
 
-var P_SetArgumentInt16 = func(params ParametersHandle, index uint64, value int16) {
+var _SetArgumentInt16 = func(params ParametersHandle, index uint64, value int16) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.int16_t(value)
@@ -127,10 +127,10 @@ var P_SetArgumentInt16 = func(params ParametersHandle, index uint64, value int16
 //  @param index: Index to set
 //  @param value: Value to set
 func SetArgumentInt16(params ParametersHandle, index uint64, value int16) {
-	P_SetArgumentInt16(params, index, value)
+	_SetArgumentInt16(params, index, value)
 }
 
-var P_SetArgumentUInt16 = func(params ParametersHandle, index uint64, value uint16) {
+var _SetArgumentUInt16 = func(params ParametersHandle, index uint64, value uint16) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.uint16_t(value)
@@ -144,10 +144,10 @@ var P_SetArgumentUInt16 = func(params ParametersHandle, index uint64, value uint
 //  @param index: Index to set
 //  @param value: Value to set
 func SetArgumentUInt16(params ParametersHandle, index uint64, value uint16) {
-	P_SetArgumentUInt16(params, index, value)
+	_SetArgumentUInt16(params, index, value)
 }
 
-var P_SetArgumentInt32 = func(params ParametersHandle, index uint64, value int32) {
+var _SetArgumentInt32 = func(params ParametersHandle, index uint64, value int32) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.int32_t(value)
@@ -161,10 +161,10 @@ var P_SetArgumentInt32 = func(params ParametersHandle, index uint64, value int32
 //  @param index: Index to set
 //  @param value: Value to set
 func SetArgumentInt32(params ParametersHandle, index uint64, value int32) {
-	P_SetArgumentInt32(params, index, value)
+	_SetArgumentInt32(params, index, value)
 }
 
-var P_SetArgumentUInt32 = func(params ParametersHandle, index uint64, value uint32) {
+var _SetArgumentUInt32 = func(params ParametersHandle, index uint64, value uint32) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.uint32_t(value)
@@ -178,10 +178,10 @@ var P_SetArgumentUInt32 = func(params ParametersHandle, index uint64, value uint
 //  @param index: Index to set
 //  @param value: Value to set
 func SetArgumentUInt32(params ParametersHandle, index uint64, value uint32) {
-	P_SetArgumentUInt32(params, index, value)
+	_SetArgumentUInt32(params, index, value)
 }
 
-var P_SetArgumentInt64 = func(params ParametersHandle, index uint64, value int64) {
+var _SetArgumentInt64 = func(params ParametersHandle, index uint64, value int64) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.int64_t(value)
@@ -195,10 +195,10 @@ var P_SetArgumentInt64 = func(params ParametersHandle, index uint64, value int64
 //  @param index: Index to set
 //  @param value: Value to set
 func SetArgumentInt64(params ParametersHandle, index uint64, value int64) {
-	P_SetArgumentInt64(params, index, value)
+	_SetArgumentInt64(params, index, value)
 }
 
-var P_SetArgumentUInt64 = func(params ParametersHandle, index uint64, value uint64) {
+var _SetArgumentUInt64 = func(params ParametersHandle, index uint64, value uint64) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.uint64_t(value)
@@ -212,10 +212,10 @@ var P_SetArgumentUInt64 = func(params ParametersHandle, index uint64, value uint
 //  @param index: Index to set
 //  @param value: Value to set
 func SetArgumentUInt64(params ParametersHandle, index uint64, value uint64) {
-	P_SetArgumentUInt64(params, index, value)
+	_SetArgumentUInt64(params, index, value)
 }
 
-var P_SetArgumentFloat = func(params ParametersHandle, index uint64, value float32) {
+var _SetArgumentFloat = func(params ParametersHandle, index uint64, value float32) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.float(value)
@@ -229,10 +229,10 @@ var P_SetArgumentFloat = func(params ParametersHandle, index uint64, value float
 //  @param index: Index to set
 //  @param value: Value to set
 func SetArgumentFloat(params ParametersHandle, index uint64, value float32) {
-	P_SetArgumentFloat(params, index, value)
+	_SetArgumentFloat(params, index, value)
 }
 
-var P_SetArgumentDouble = func(params ParametersHandle, index uint64, value float64) {
+var _SetArgumentDouble = func(params ParametersHandle, index uint64, value float64) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.double(value)
@@ -246,10 +246,10 @@ var P_SetArgumentDouble = func(params ParametersHandle, index uint64, value floa
 //  @param index: Index to set
 //  @param value: Value to set
 func SetArgumentDouble(params ParametersHandle, index uint64, value float64) {
-	P_SetArgumentDouble(params, index, value)
+	_SetArgumentDouble(params, index, value)
 }
 
-var P_SetArgumentPointer = func(params ParametersHandle, index uint64, value uintptr) {
+var _SetArgumentPointer = func(params ParametersHandle, index uint64, value uintptr) {
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
 	__value := C.uintptr_t(value)
@@ -263,10 +263,10 @@ var P_SetArgumentPointer = func(params ParametersHandle, index uint64, value uin
 //  @param index: Index to set
 //  @param value: Value to set
 func SetArgumentPointer(params ParametersHandle, index uint64, value uintptr) {
-	P_SetArgumentPointer(params, index, value)
+	_SetArgumentPointer(params, index, value)
 }
 
-var P_SetArgumentString = func(hook HookHandle, params ParametersHandle, index uint64, value string) {
+var _SetArgumentString = func(hook HookHandle, params ParametersHandle, index uint64, value string) {
 	__hook := C.uintptr_t(hook)
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
@@ -290,10 +290,10 @@ var P_SetArgumentString = func(hook HookHandle, params ParametersHandle, index u
 //  @param index: Index to set
 //  @param value: Value to set
 func SetArgumentString(hook HookHandle, params ParametersHandle, index uint64, value string) {
-	P_SetArgumentString(hook, params, index, value)
+	_SetArgumentString(hook, params, index, value)
 }
 
-var P_SetArgument = func(hook HookHandle, params ParametersHandle, index uint64, value any) {
+var _SetArgument = func(hook HookHandle, params ParametersHandle, index uint64, value any) {
 	__hook := C.uintptr_t(hook)
 	__params := C.uintptr_t(params)
 	__index := C.uint64_t(index)
@@ -317,10 +317,10 @@ var P_SetArgument = func(hook HookHandle, params ParametersHandle, index uint64,
 //  @param index: Value to set
 //  @param value: Value to set
 func SetArgument(hook HookHandle, params ParametersHandle, index uint64, value any) {
-	P_SetArgument(hook, params, index, value)
+	_SetArgument(hook, params, index, value)
 }
 
-var P_SetReturnBool = func(ret ReturnHandle, value bool) {
+var _SetReturnBool = func(ret ReturnHandle, value bool) {
 	__ret := C.uintptr_t(ret)
 	__value := C.bool(value)
 	C.SetReturnBool(__ret, __value)
@@ -332,10 +332,10 @@ var P_SetReturnBool = func(ret ReturnHandle, value bool) {
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
 func SetReturnBool(ret ReturnHandle, value bool) {
-	P_SetReturnBool(ret, value)
+	_SetReturnBool(ret, value)
 }
 
-var P_SetReturnInt8 = func(ret ReturnHandle, value int8) {
+var _SetReturnInt8 = func(ret ReturnHandle, value int8) {
 	__ret := C.uintptr_t(ret)
 	__value := C.int8_t(value)
 	C.SetReturnInt8(__ret, __value)
@@ -347,10 +347,10 @@ var P_SetReturnInt8 = func(ret ReturnHandle, value int8) {
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
 func SetReturnInt8(ret ReturnHandle, value int8) {
-	P_SetReturnInt8(ret, value)
+	_SetReturnInt8(ret, value)
 }
 
-var P_SetReturnUInt8 = func(ret ReturnHandle, value uint8) {
+var _SetReturnUInt8 = func(ret ReturnHandle, value uint8) {
 	__ret := C.uintptr_t(ret)
 	__value := C.uint8_t(value)
 	C.SetReturnUInt8(__ret, __value)
@@ -362,10 +362,10 @@ var P_SetReturnUInt8 = func(ret ReturnHandle, value uint8) {
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
 func SetReturnUInt8(ret ReturnHandle, value uint8) {
-	P_SetReturnUInt8(ret, value)
+	_SetReturnUInt8(ret, value)
 }
 
-var P_SetReturnInt16 = func(ret ReturnHandle, value int16) {
+var _SetReturnInt16 = func(ret ReturnHandle, value int16) {
 	__ret := C.uintptr_t(ret)
 	__value := C.int16_t(value)
 	C.SetReturnInt16(__ret, __value)
@@ -377,10 +377,10 @@ var P_SetReturnInt16 = func(ret ReturnHandle, value int16) {
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
 func SetReturnInt16(ret ReturnHandle, value int16) {
-	P_SetReturnInt16(ret, value)
+	_SetReturnInt16(ret, value)
 }
 
-var P_SetReturnUInt16 = func(ret ReturnHandle, value uint16) {
+var _SetReturnUInt16 = func(ret ReturnHandle, value uint16) {
 	__ret := C.uintptr_t(ret)
 	__value := C.uint16_t(value)
 	C.SetReturnUInt16(__ret, __value)
@@ -392,10 +392,10 @@ var P_SetReturnUInt16 = func(ret ReturnHandle, value uint16) {
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
 func SetReturnUInt16(ret ReturnHandle, value uint16) {
-	P_SetReturnUInt16(ret, value)
+	_SetReturnUInt16(ret, value)
 }
 
-var P_SetReturnInt32 = func(ret ReturnHandle, value int32) {
+var _SetReturnInt32 = func(ret ReturnHandle, value int32) {
 	__ret := C.uintptr_t(ret)
 	__value := C.int32_t(value)
 	C.SetReturnInt32(__ret, __value)
@@ -407,10 +407,10 @@ var P_SetReturnInt32 = func(ret ReturnHandle, value int32) {
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
 func SetReturnInt32(ret ReturnHandle, value int32) {
-	P_SetReturnInt32(ret, value)
+	_SetReturnInt32(ret, value)
 }
 
-var P_SetReturnUInt32 = func(ret ReturnHandle, value uint32) {
+var _SetReturnUInt32 = func(ret ReturnHandle, value uint32) {
 	__ret := C.uintptr_t(ret)
 	__value := C.uint32_t(value)
 	C.SetReturnUInt32(__ret, __value)
@@ -422,10 +422,10 @@ var P_SetReturnUInt32 = func(ret ReturnHandle, value uint32) {
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
 func SetReturnUInt32(ret ReturnHandle, value uint32) {
-	P_SetReturnUInt32(ret, value)
+	_SetReturnUInt32(ret, value)
 }
 
-var P_SetReturnInt64 = func(ret ReturnHandle, value int64) {
+var _SetReturnInt64 = func(ret ReturnHandle, value int64) {
 	__ret := C.uintptr_t(ret)
 	__value := C.int64_t(value)
 	C.SetReturnInt64(__ret, __value)
@@ -437,10 +437,10 @@ var P_SetReturnInt64 = func(ret ReturnHandle, value int64) {
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
 func SetReturnInt64(ret ReturnHandle, value int64) {
-	P_SetReturnInt64(ret, value)
+	_SetReturnInt64(ret, value)
 }
 
-var P_SetReturnUInt64 = func(ret ReturnHandle, value uint64) {
+var _SetReturnUInt64 = func(ret ReturnHandle, value uint64) {
 	__ret := C.uintptr_t(ret)
 	__value := C.uint64_t(value)
 	C.SetReturnUInt64(__ret, __value)
@@ -452,10 +452,10 @@ var P_SetReturnUInt64 = func(ret ReturnHandle, value uint64) {
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
 func SetReturnUInt64(ret ReturnHandle, value uint64) {
-	P_SetReturnUInt64(ret, value)
+	_SetReturnUInt64(ret, value)
 }
 
-var P_SetReturnFloat = func(ret ReturnHandle, value float32) {
+var _SetReturnFloat = func(ret ReturnHandle, value float32) {
 	__ret := C.uintptr_t(ret)
 	__value := C.float(value)
 	C.SetReturnFloat(__ret, __value)
@@ -467,10 +467,10 @@ var P_SetReturnFloat = func(ret ReturnHandle, value float32) {
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
 func SetReturnFloat(ret ReturnHandle, value float32) {
-	P_SetReturnFloat(ret, value)
+	_SetReturnFloat(ret, value)
 }
 
-var P_SetReturnDouble = func(ret ReturnHandle, value float64) {
+var _SetReturnDouble = func(ret ReturnHandle, value float64) {
 	__ret := C.uintptr_t(ret)
 	__value := C.double(value)
 	C.SetReturnDouble(__ret, __value)
@@ -482,10 +482,10 @@ var P_SetReturnDouble = func(ret ReturnHandle, value float64) {
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
 func SetReturnDouble(ret ReturnHandle, value float64) {
-	P_SetReturnDouble(ret, value)
+	_SetReturnDouble(ret, value)
 }
 
-var P_SetReturnPointer = func(ret ReturnHandle, value uintptr) {
+var _SetReturnPointer = func(ret ReturnHandle, value uintptr) {
 	__ret := C.uintptr_t(ret)
 	__value := C.uintptr_t(value)
 	C.SetReturnPointer(__ret, __value)
@@ -497,10 +497,10 @@ var P_SetReturnPointer = func(ret ReturnHandle, value uintptr) {
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
 func SetReturnPointer(ret ReturnHandle, value uintptr) {
-	P_SetReturnPointer(ret, value)
+	_SetReturnPointer(ret, value)
 }
 
-var P_SetReturnString = func(hook HookHandle, ret ReturnHandle, value string) {
+var _SetReturnString = func(hook HookHandle, ret ReturnHandle, value string) {
 	__hook := C.uintptr_t(hook)
 	__ret := C.uintptr_t(ret)
 	__value := plugify.ConstructString(value)
@@ -522,10 +522,10 @@ var P_SetReturnString = func(hook HookHandle, ret ReturnHandle, value string) {
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
 func SetReturnString(hook HookHandle, ret ReturnHandle, value string) {
-	P_SetReturnString(hook, ret, value)
+	_SetReturnString(hook, ret, value)
 }
 
-var P_SetReturn = func(hook HookHandle, ret ReturnHandle, value any) {
+var _SetReturn = func(hook HookHandle, ret ReturnHandle, value any) {
 	__hook := C.uintptr_t(hook)
 	__ret := C.uintptr_t(ret)
 	__value := plugify.ConstructVariant(value)
@@ -547,10 +547,10 @@ var P_SetReturn = func(hook HookHandle, ret ReturnHandle, value any) {
 //  @param ret: Pointer to return structure
 //  @param value: Value to set
 func SetReturn(hook HookHandle, ret ReturnHandle, value any) {
-	P_SetReturn(hook, ret, value)
+	_SetReturn(hook, ret, value)
 }
 
-var P_SetRegisterBool = func(registers RegistersHandle, reg RegisterType, value bool) {
+var _SetRegisterBool = func(registers RegistersHandle, reg RegisterType, value bool) {
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
 	__value := C.bool(value)
@@ -564,10 +564,10 @@ var P_SetRegisterBool = func(registers RegistersHandle, reg RegisterType, value 
 //  @param reg: Register to set
 //  @param value: Value to set
 func SetRegisterBool(registers RegistersHandle, reg RegisterType, value bool) {
-	P_SetRegisterBool(registers, reg, value)
+	_SetRegisterBool(registers, reg, value)
 }
 
-var P_SetRegisterInt8 = func(registers RegistersHandle, reg RegisterType, value int8) {
+var _SetRegisterInt8 = func(registers RegistersHandle, reg RegisterType, value int8) {
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
 	__value := C.int8_t(value)
@@ -581,10 +581,10 @@ var P_SetRegisterInt8 = func(registers RegistersHandle, reg RegisterType, value 
 //  @param reg: Register to set
 //  @param value: Value to set
 func SetRegisterInt8(registers RegistersHandle, reg RegisterType, value int8) {
-	P_SetRegisterInt8(registers, reg, value)
+	_SetRegisterInt8(registers, reg, value)
 }
 
-var P_SetRegisterUInt8 = func(registers RegistersHandle, reg RegisterType, value uint8) {
+var _SetRegisterUInt8 = func(registers RegistersHandle, reg RegisterType, value uint8) {
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
 	__value := C.uint8_t(value)
@@ -598,10 +598,10 @@ var P_SetRegisterUInt8 = func(registers RegistersHandle, reg RegisterType, value
 //  @param reg: Register to set
 //  @param value: Value to set
 func SetRegisterUInt8(registers RegistersHandle, reg RegisterType, value uint8) {
-	P_SetRegisterUInt8(registers, reg, value)
+	_SetRegisterUInt8(registers, reg, value)
 }
 
-var P_SetRegisterInt16 = func(registers RegistersHandle, reg RegisterType, value int16) {
+var _SetRegisterInt16 = func(registers RegistersHandle, reg RegisterType, value int16) {
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
 	__value := C.int16_t(value)
@@ -615,10 +615,10 @@ var P_SetRegisterInt16 = func(registers RegistersHandle, reg RegisterType, value
 //  @param reg: Register to set
 //  @param value: Value to set
 func SetRegisterInt16(registers RegistersHandle, reg RegisterType, value int16) {
-	P_SetRegisterInt16(registers, reg, value)
+	_SetRegisterInt16(registers, reg, value)
 }
 
-var P_SetRegisterUInt16 = func(registers RegistersHandle, reg RegisterType, value uint16) {
+var _SetRegisterUInt16 = func(registers RegistersHandle, reg RegisterType, value uint16) {
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
 	__value := C.uint16_t(value)
@@ -632,10 +632,10 @@ var P_SetRegisterUInt16 = func(registers RegistersHandle, reg RegisterType, valu
 //  @param reg: Register to set
 //  @param value: Value to set
 func SetRegisterUInt16(registers RegistersHandle, reg RegisterType, value uint16) {
-	P_SetRegisterUInt16(registers, reg, value)
+	_SetRegisterUInt16(registers, reg, value)
 }
 
-var P_SetRegisterInt32 = func(registers RegistersHandle, reg RegisterType, value int32) {
+var _SetRegisterInt32 = func(registers RegistersHandle, reg RegisterType, value int32) {
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
 	__value := C.int32_t(value)
@@ -649,10 +649,10 @@ var P_SetRegisterInt32 = func(registers RegistersHandle, reg RegisterType, value
 //  @param reg: Register to set
 //  @param value: Value to set
 func SetRegisterInt32(registers RegistersHandle, reg RegisterType, value int32) {
-	P_SetRegisterInt32(registers, reg, value)
+	_SetRegisterInt32(registers, reg, value)
 }
 
-var P_SetRegisterUInt32 = func(registers RegistersHandle, reg RegisterType, value uint32) {
+var _SetRegisterUInt32 = func(registers RegistersHandle, reg RegisterType, value uint32) {
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
 	__value := C.uint32_t(value)
@@ -666,10 +666,10 @@ var P_SetRegisterUInt32 = func(registers RegistersHandle, reg RegisterType, valu
 //  @param reg: Register to set
 //  @param value: Value to set
 func SetRegisterUInt32(registers RegistersHandle, reg RegisterType, value uint32) {
-	P_SetRegisterUInt32(registers, reg, value)
+	_SetRegisterUInt32(registers, reg, value)
 }
 
-var P_SetRegisterInt64 = func(registers RegistersHandle, reg RegisterType, value int64) {
+var _SetRegisterInt64 = func(registers RegistersHandle, reg RegisterType, value int64) {
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
 	__value := C.int64_t(value)
@@ -683,10 +683,10 @@ var P_SetRegisterInt64 = func(registers RegistersHandle, reg RegisterType, value
 //  @param reg: Register to set
 //  @param value: Value to set
 func SetRegisterInt64(registers RegistersHandle, reg RegisterType, value int64) {
-	P_SetRegisterInt64(registers, reg, value)
+	_SetRegisterInt64(registers, reg, value)
 }
 
-var P_SetRegisterUInt64 = func(registers RegistersHandle, reg RegisterType, value uint64) {
+var _SetRegisterUInt64 = func(registers RegistersHandle, reg RegisterType, value uint64) {
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
 	__value := C.uint64_t(value)
@@ -700,10 +700,10 @@ var P_SetRegisterUInt64 = func(registers RegistersHandle, reg RegisterType, valu
 //  @param reg: Register to set
 //  @param value: Value to set
 func SetRegisterUInt64(registers RegistersHandle, reg RegisterType, value uint64) {
-	P_SetRegisterUInt64(registers, reg, value)
+	_SetRegisterUInt64(registers, reg, value)
 }
 
-var P_SetRegisterFloat = func(registers RegistersHandle, reg RegisterType, value float32) {
+var _SetRegisterFloat = func(registers RegistersHandle, reg RegisterType, value float32) {
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
 	__value := C.float(value)
@@ -717,10 +717,10 @@ var P_SetRegisterFloat = func(registers RegistersHandle, reg RegisterType, value
 //  @param reg: Register to set
 //  @param value: Value to set
 func SetRegisterFloat(registers RegistersHandle, reg RegisterType, value float32) {
-	P_SetRegisterFloat(registers, reg, value)
+	_SetRegisterFloat(registers, reg, value)
 }
 
-var P_SetRegisterDouble = func(registers RegistersHandle, reg RegisterType, value float64) {
+var _SetRegisterDouble = func(registers RegistersHandle, reg RegisterType, value float64) {
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
 	__value := C.double(value)
@@ -734,10 +734,10 @@ var P_SetRegisterDouble = func(registers RegistersHandle, reg RegisterType, valu
 //  @param reg: Register to set
 //  @param value: Value to set
 func SetRegisterDouble(registers RegistersHandle, reg RegisterType, value float64) {
-	P_SetRegisterDouble(registers, reg, value)
+	_SetRegisterDouble(registers, reg, value)
 }
 
-var P_SetRegisterPointer = func(registers RegistersHandle, reg RegisterType, value uintptr) {
+var _SetRegisterPointer = func(registers RegistersHandle, reg RegisterType, value uintptr) {
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
 	__value := C.uintptr_t(value)
@@ -751,10 +751,10 @@ var P_SetRegisterPointer = func(registers RegistersHandle, reg RegisterType, val
 //  @param reg: Register to set
 //  @param value: Value to set
 func SetRegisterPointer(registers RegistersHandle, reg RegisterType, value uintptr) {
-	P_SetRegisterPointer(registers, reg, value)
+	_SetRegisterPointer(registers, reg, value)
 }
 
-var P_SetRegisterString = func(hook HookHandle, registers RegistersHandle, reg RegisterType, value string) {
+var _SetRegisterString = func(hook HookHandle, registers RegistersHandle, reg RegisterType, value string) {
 	__hook := C.uintptr_t(hook)
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
@@ -778,10 +778,10 @@ var P_SetRegisterString = func(hook HookHandle, registers RegistersHandle, reg R
 //  @param reg: Register to set
 //  @param value: Value to set
 func SetRegisterString(hook HookHandle, registers RegistersHandle, reg RegisterType, value string) {
-	P_SetRegisterString(hook, registers, reg, value)
+	_SetRegisterString(hook, registers, reg, value)
 }
 
-var P_SetRegister = func(hook HookHandle, registers RegistersHandle, reg RegisterType, value any) {
+var _SetRegister = func(hook HookHandle, registers RegistersHandle, reg RegisterType, value any) {
 	__hook := C.uintptr_t(hook)
 	__registers := C.uintptr_t(registers)
 	__reg := C.uint64_t(reg)
@@ -805,6 +805,6 @@ var P_SetRegister = func(hook HookHandle, registers RegistersHandle, reg Registe
 //  @param reg: Register to set
 //  @param value: Value to set
 func SetRegister(hook HookHandle, registers RegistersHandle, reg RegisterType, value any) {
-	P_SetRegister(hook, registers, reg, value)
+	_SetRegister(hook, registers, reg, value)
 }
 
