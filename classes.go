@@ -54,8 +54,8 @@ func (w *Callback) Reset() {
 	w.handle = 0
 }
 
-// IsValid returns true if handle is not nil
-func (w *Callback) IsValid() bool {
+// Valid returns true if handle is not nil
+func (w *Callback) Valid() bool {
 	return w.handle != 0
 }
 
@@ -200,8 +200,8 @@ func (w *Parameters) Reset() {
 	w.handle = 0
 }
 
-// IsValid returns true if handle is not nil
-func (w *Parameters) IsValid() bool {
+// Valid returns true if handle is not nil
+func (w *Parameters) Valid() bool {
 	return w.handle != 0
 }
 
@@ -576,8 +576,8 @@ func (w *Return) Reset() {
 	w.handle = 0
 }
 
-// IsValid returns true if handle is not nil
-func (w *Return) IsValid() bool {
+// Valid returns true if handle is not nil
+func (w *Return) Valid() bool {
 	return w.handle != 0
 }
 
@@ -927,8 +927,8 @@ func (w *Registers) Reset() {
 	w.handle = 0
 }
 
-// IsValid returns true if handle is not nil
-func (w *Registers) IsValid() bool {
+// Valid returns true if handle is not nil
+func (w *Registers) Valid() bool {
 	return w.handle != 0
 }
 
